@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProfile name="dev">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+    <springProfile name="prod,test">
+        <appender name="rollingJson" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <File>${LOG_FILE}.json</File>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                <fileNamePattern>${LOG_FILE}-%i.json</fileNamePattern>
+                <minIndex>1</minIndex>
+                <maxIndex>3</maxIndex>
+            </rollingPolicy>
+            <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                <maxFileSize>128MB</maxFileSize>
+            </triggeringPolicy>
+        </appender>
+        <root>
+            <appender-ref ref="rollingJson"/>
+        </root>
+    </springProfile>
+</configuration>
