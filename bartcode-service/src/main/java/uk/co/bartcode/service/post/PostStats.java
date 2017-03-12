@@ -19,4 +19,5 @@ public class PostStats {
     public int getComments() {
         return comments;
     }
+
 }

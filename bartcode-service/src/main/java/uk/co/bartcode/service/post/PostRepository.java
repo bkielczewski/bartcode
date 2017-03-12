@@ -5,12 +5,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@RepositoryRestResource(excerptProjection = PostExcerptProjection.class)
 public interface PostRepository extends JpaRepository<Post, String> {
 
     @RestResource(path = "year", rel = "year")
@@ -28,39 +30,27 @@ public interface PostRepository extends JpaRepository<Post, String> {
     Page<Post> findByTags(@Param("tag") String tag, Pageable pageable);
 
     @RestResource(path = "popular", rel = "popular")
-    List<Post> findAllOrderByPopularity(Pageable pageable);
+    List<Post> findTop10ByOrderByPopularityDesc(Pageable pageable);
 
-    @RestResource(path = "count", rel = "count")
-    @Query("SELECT FUNCTION('YEAR', p.published) AS year, FUNCTION('MONTH', p.published) as month, COUNT(p.id) AS count " +
+    @RestResource(path = "datePostCounts", rel = "datePostCounts")
+    @Query("SELECT NEW uk.co.bartcode.service.post.DatePostCount(" +
+            "FUNCTION('YEAR', p.published), FUNCTION('MONTH', p.published), COUNT(p.id)) " +
             "FROM Post p " +
             "GROUP BY FUNCTION('YEAR', p.published), FUNCTION('MONTH', p.published) " +
-            "ORDER BY year DESC, month ASC")
-    List<YearMonthCount> getCount();
+            "ORDER BY FUNCTION('YEAR', p.published) DESC, FUNCTION('MONTH', p.published) ASC")
+    List<DatePostCount> getDatePostCounts();
 
-    @RestResource(path = "countYear", rel = "countYear")
-    @Query("SELECT FUNCTION('MONTH', p.published) AS month, COUNT(p.id) AS count " +
-            "FROM Post p " +
-            "WHERE FUNCTION('YEAR', p.published) = ?1 " +
-            "GROUP BY FUNCTION('MONTH', p.published) " +
-            "ORDER BY month ASC")
-    List<MonthCount> getCountByYear(@Param("year") Integer year);
-
-    @RestResource(path = "countYearMonth", rel = "countYearMonth")
-    @Query("SELECT COUNT(p.id) FROM Post p " +
-            "WHERE FUNCTION('YEAR', p.published) = ?1 " +
-            "AND FUNCTION('MONTH', p.published) = ?2")
-    Integer getCountByYearMonth(@Param("year") Integer year, @Param("month") Integer month);
-
-    @RestResource(path = "countTag", rel = "countTag")
-    @Query("SELECT t, COUNT(p.id) as count FROM Post p JOIN p.tags t " +
+    @RestResource(path = "tagPostCounts", rel = "tagPostCounts")
+    @Query("SELECT NEW uk.co.bartcode.service.post.TagPostCount(t, COUNT(p.id)) " +
+            "FROM Post p JOIN p.tags t " +
             "GROUP BY t")
-    List<TagCount> getCountByTag();
+    List<TagPostCount> getTagPostCounts();
 
     @RestResource(exported = false)
-    Optional<Post> getBySourceFile(String sourceFile);
+    Optional<Post> getByFile(String file);
 
     @Transactional
     @RestResource(exported = false)
-    void deleteBySourceFileStartingWith(String sourceFile);
+    void deleteByFileStartingWith(String file);
 
 }

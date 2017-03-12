@@ -45,6 +45,14 @@
                 <version>${guava.version}</version>
             </dependency>
 
+            <!-- Jackson -->
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
             <!-- Logstash Logback Encoder -->
 
             <dependency>

@@ -9,26 +9,27 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Service
 class FilesystemSeekerService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FilesystemSeekerService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FilesystemSeekerService.class);
 
-    @SuppressWarnings("SameParameterValue")
-    List<String> seekFilesByExtension(String extension, String baseDir) {
-        LOGGER.debug("Searching for files, extension={}, baseDir={}", extension, baseDir);
+    void seekFilesByExtension(String extension, String baseDir, Consumer<FilesystemChangeEvent> consumer) {
+        logger.debug("Searching for files, extension={}, baseDir={}", extension, baseDir);
         Finder finder = new Finder(extension);
         try {
             Files.walkFileTree(Paths.get(baseDir), finder);
         } catch (IOException e) {
             throw new RuntimeException("Couldn't search for files, directory=" + baseDir, e);
         }
-        return finder.filesFound;
+        finder.filesFound
+                .forEach(file -> consumer.accept(
+                        new FilesystemChangeEvent(this, file, false, EventType.CREATE)));
     }
 
     private static final class Finder implements FileVisitor<Path> {
-
         private final String extension;
         private final List<String> filesFound = new ArrayList<>();
 
@@ -44,7 +45,7 @@ class FilesystemSeekerService {
         @Override
         public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
             if (file.toString().endsWith(extension)) {
-                LOGGER.trace("Found file {}", file.toString());
+                logger.trace("Found file {}", file.toString());
                 filesFound.add(file.toString());
             }
             return FileVisitResult.CONTINUE;

@@ -5,33 +5,36 @@ import org.springframework.context.ApplicationEvent;
 
 public class FilesystemChangeEvent extends ApplicationEvent {
 
-    private final String target;
-    private final Type type;
+    private final String path;
+    private final boolean isDirectory;
+    private final EventType type;
 
-    FilesystemChangeEvent(Object source, String target, Type type) {
+    FilesystemChangeEvent(Object source, String path, boolean isDirectory, EventType type) {
         super(source);
-        this.target = target;
+        this.path = path;
+        this.isDirectory = isDirectory;
         this.type = type;
     }
 
-    public String getTarget() {
-        return target;
+    public String getPath() {
+        return path;
     }
 
-    public Type getType() {
+    public boolean isDirectory() {
+        return isDirectory;
+    }
+
+    public EventType getType() {
         return type;
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("target", target)
+                .add("target", path)
+                .add("isDirectory", isDirectory)
                 .add("type", type)
                 .toString();
-    }
-
-    public enum Type {
-        CREATE, DELETE, IGNORE, MODIFY
     }
 
 }

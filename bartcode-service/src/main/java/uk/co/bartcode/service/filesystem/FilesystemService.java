@@ -7,10 +7,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.WatchEvent;
-
-import static java.nio.file.StandardWatchEventKinds.*;
-import static uk.co.bartcode.service.filesystem.FilesystemChangeEvent.Type.*;
+import static uk.co.bartcode.service.filesystem.EventType.CREATE;
 
 @Service
 class FilesystemService {
@@ -39,26 +36,18 @@ class FilesystemService {
     }
 
     private void doWatchDirectoryForChanges() {
-        watcherService.startWatchThread(dataPath, (target, kind) -> eventPublisher.publishEvent(
-                new FilesystemChangeEvent(this, target, getType(kind))));
+        watcherService.startWatchThread(dataPath, this::handleWatchEvent);
+    }
+
+    private void handleWatchEvent(FilesystemChangeEvent event) {
+        if (event.isDirectory() && event.getType().equals(CREATE)) {
+            seekerService.seekFilesByExtension(EXTENSION, event.getPath(), eventPublisher::publishEvent);
+        }
+        eventPublisher.publishEvent(event);
     }
 
     private void scanExistingFiles() {
-        seekerService.seekFilesByExtension(EXTENSION, dataPath)
-                .forEach(file -> eventPublisher.publishEvent(
-                        new FilesystemChangeEvent(this, file, CREATE)));
-    }
-
-    private FilesystemChangeEvent.Type getType(WatchEvent.Kind<?> kind) {
-        if (kind == ENTRY_CREATE) {
-            return CREATE;
-        } else if (kind == ENTRY_MODIFY) {
-            return MODIFY;
-        } else if (kind == ENTRY_DELETE) {
-            return DELETE;
-        } else {
-            return IGNORE;
-        }
+        seekerService.seekFilesByExtension(EXTENSION, dataPath, eventPublisher::publishEvent);
     }
 
 }
