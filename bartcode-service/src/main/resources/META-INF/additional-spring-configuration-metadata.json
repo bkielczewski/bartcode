@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "application.data-path",
+      "type": "java.lang.String",
+      "description": "Path where the posts will be kept"
+    }
+  ]
+}
