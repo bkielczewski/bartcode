@@ -15,6 +15,9 @@ import java.util.Optional;
 @RepositoryRestResource(excerptProjection = PostExcerptProjection.class)
 public interface PostRepository extends JpaRepository<Post, String> {
 
+    @RestResource(path = "slug", rel = "slug")
+    Post findOneBySlug(@Param("slug") String slug);
+
     @RestResource(path = "year", rel = "year")
     @Query("SELECT p FROM Post p " +
             "WHERE FUNCTION('YEAR', p.published) = ?1")

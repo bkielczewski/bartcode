@@ -12,10 +12,7 @@ class RepositoryRestMvcConfig extends RepositoryRestConfigurerAdapter {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(
-                DatePostCount.class,
-                TagPostCount.class,
-                Post.class);
+        config.exposeIdsFor(DatePostCount.class, TagPostCount.class, Post.class);
     }
 
 

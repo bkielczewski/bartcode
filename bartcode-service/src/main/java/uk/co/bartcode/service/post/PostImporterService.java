@@ -10,15 +10,19 @@ import uk.co.bartcode.service.filesystem.FilesystemChangeEvent;
 import static uk.co.bartcode.service.filesystem.EventType.*;
 
 @Service
-class PostSourceFileChangeListener {
+class PostImporterService {
 
-    private static final Logger logger = LoggerFactory.getLogger(PostSourceFileChangeListener.class);
-    private final PostFileReader postFileReader;
+    private static final Logger logger = LoggerFactory.getLogger(PostImporterService.class);
+    private final PostFactoryService postFactory;
+    private final PostStatsService statsService;
     private final PostRepository postRepository;
 
     @Autowired
-    PostSourceFileChangeListener(PostFileReader postFileReader, PostRepository postRepository) {
-        this.postFileReader = postFileReader;
+    PostImporterService(PostFactoryService postFactory,
+                        PostStatsService statsService,
+                        PostRepository postRepository) {
+        this.postFactory = postFactory;
+        this.statsService = statsService;
         this.postRepository = postRepository;
     }
 
@@ -33,10 +37,17 @@ class PostSourceFileChangeListener {
                 logger.trace("Deleting post, id={}", post.getId());
                 postRepository.delete(post);
             });
-            postRepository.save(postFileReader.readFromFile(event.getPath()));
+            createAndUpdateStats(event.getPath());
         } else {
             logger.debug("Ignoring, event={}", event);
         }
+    }
+
+    private void createAndUpdateStats(String file) {
+        Post post = postFactory.create(file);
+        post.setStats(statsService.getUpdatedStats(post.getCanonicalUrl()));
+        post.setPopularity(statsService.calculatePopularity(post.getStats()));
+        postRepository.save(post);
     }
 
 }

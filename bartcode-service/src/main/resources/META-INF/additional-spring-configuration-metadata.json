@@ -1,6 +1,11 @@
 {
   "properties": [
     {
+      "name": "application.base-url",
+      "type": "java.lang.String",
+      "description": "Base url for the website"
+    },
+    {
       "name": "application.data-path",
       "type": "java.lang.String",
       "description": "Path where the posts will be kept"

@@ -8,6 +8,7 @@ import com.vladsch.flexmark.parser.Parser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -24,54 +25,55 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-class PostFileReader {
+class PostFactoryService {
 
-    private static final Logger logger = LoggerFactory.getLogger(PostFileReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(PostFactoryService.class);
     private static final String EXCERPT_END_TAG = "<!--more-->";
     private static final IParse parser = Parser.builder().build();
     private static final IRender renderer = HtmlRenderer.builder().build();
-    private final PostStatsService statsService;
     private final PostPropertyExtractor propertyExtractor;
 
+    @Value("${application.base-url}")
+    private String baseUrl;
+
     @Autowired
-    PostFileReader(PostStatsService statsService,
-                   PostPropertyExtractor propertyExtractor) {
-        this.statsService = statsService;
+    PostFactoryService(PostPropertyExtractor propertyExtractor) {
         this.propertyExtractor = propertyExtractor;
     }
 
-    Post readFromFile(String file) {
+    Post create(String file) {
         try {
+            logger.debug("Processing, file={}", file);
             String markdown = new String(Files.readAllBytes(Paths.get(file)));
             Map<String, String> properties = propertyExtractor.extractProperties(markdown);
             ZonedDateTime published = getPublished(properties.get("date"), file);
-            String id = getId(file, published);
+            String slug = getSlug(file, published);
             String html = getHtml(markdown);
             String excerpt = getExcerpt(html);
             return Post.builder()
-                    .withId(id)
+                    .withSlug(slug)
                     .withFile(file)
-                    .withTitle(properties.getOrDefault("title", getTitleFromId(id)))
+                    .withCanonicalUrl(properties.getOrDefault("url", baseUrl + slug))
+                    .withTitle(properties.getOrDefault("title", getTitleFromSlug(slug)))
                     .withDescription(properties.getOrDefault("description", ""))
                     .withText(html)
                     .withExcerpt(excerpt)
                     .withTags(getTags(properties.get("tags")))
                     .withPublished(published)
-                    .withStats(statsService.getPostsStats(id))
                     .build();
         } catch (IOException e) {
             throw new RuntimeException("Cannot create document from file=" + file, e);
         }
     }
 
-    private String getId(String file, ZonedDateTime published) {
+    private String getSlug(String file, ZonedDateTime published) {
         return String.format("/%s/%s/%s/",
                 published.getYear(),
                 String.format("%02d", published.getMonthValue()),
                 com.google.common.io.Files.getNameWithoutExtension(file));
     }
 
-    private String getTitleFromId(String id) {
+    private String getTitleFromSlug(String id) {
         return StringUtils.capitalize(id
                 .replaceFirst("/[0-9]+/[0-9]+/", "")
                 .replace("-", " ")

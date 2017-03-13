@@ -6,16 +6,15 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Projection(name = "excerpt", types = {Post.class})
-public interface PostExcerptProjection {
+interface PostExcerptProjection {
+
     String getId();
 
+    String getSlug();
     String getTitle();
-
     String getExcerpt();
-
     ZonedDateTime getPublished();
-
     List<String> getTags();
-
     PostStats getStats();
+
 }
