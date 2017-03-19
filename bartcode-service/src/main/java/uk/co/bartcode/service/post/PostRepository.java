@@ -46,7 +46,8 @@ public interface PostRepository extends JpaRepository<Post, String> {
     @RestResource(path = "tagPostCounts", rel = "tagPostCounts")
     @Query("SELECT NEW uk.co.bartcode.service.post.TagPostCount(t, COUNT(p.id)) " +
             "FROM Post p JOIN p.tags t " +
-            "GROUP BY t")
+            "GROUP BY t " +
+            "ORDER BY COUNT(p.id) DESC")
     List<TagPostCount> getTagPostCounts();
 
     @RestResource(exported = false)
