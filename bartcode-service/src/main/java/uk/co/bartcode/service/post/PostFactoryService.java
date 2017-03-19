@@ -81,7 +81,11 @@ class PostFactoryService {
     }
 
     private List<String> getTags(String tags) {
-        return (tags == null) ? Collections.emptyList() : Splitter.on(',').splitToList(tags);
+        return (tags == null) ? Collections.emptyList() :
+                Splitter.on(',')
+                        .trimResults()
+                        .omitEmptyStrings()
+                        .splitToList(tags);
     }
 
     private ZonedDateTime getPublished(String dateString, String file) throws IOException {
