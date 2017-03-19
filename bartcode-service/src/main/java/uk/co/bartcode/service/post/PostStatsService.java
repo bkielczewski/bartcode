@@ -31,14 +31,14 @@ class PostStatsService {
 
     private void updateAndSave(Post post) {
         PostStats current = post.getStats();
-        PostStats updated = getUpdatedStats(post.getId());
+        PostStats updated = getUpdatedStats(post.getCanonicalUrl());
         current.setComments(updated.getComments());
         current.setShares(updated.getShares());
         postRepository.save(post);
     }
 
-    public PostStats getUpdatedStats(String postId) {
-        return facebookStatsService.getStats(postId);
+    public PostStats getUpdatedStats(String url) {
+        return facebookStatsService.getStats(url);
     }
 
     public int calculatePopularity(PostStats stats) {
