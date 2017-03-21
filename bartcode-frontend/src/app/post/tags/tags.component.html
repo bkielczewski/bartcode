@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let tagCount of tagCounts">
+    <a href="#" [style.font-size.rem]="getFontSize(tagCount)">{{ tagCount.tag }}</a>
+  </li>
+</ul>

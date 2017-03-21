@@ -1,0 +1,13 @@
+@import '../../variables';
+
+md-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  a {
+    color: $text-inverted;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../variables';
+
+.cover {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  text-align: center;
+  color: $text-inverted;
+  //noinspection CssUnknownTarget
+  background: url('/assets/4.png') $background-100 no-repeat center center;
+  background-size: cover;
+
+  .title {
+    width: 50%;
+    margin: auto;
+
+    h1 {
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
+      font-size: 5em;
+      margin: 0;
+      text-transform: full-width;
+    }
+
+    h2 {
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
+      padding-bottom: 1em;
+      border-bottom: 1px solid;
+    }
+  }
+}

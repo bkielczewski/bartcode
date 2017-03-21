@@ -1,0 +1,17 @@
+@import '../../variables';
+
+footer {
+  min-height: 150px;
+  background-color: $background-100;
+  color: $text-inverted;
+  padding: 2em 0 2em 0;
+
+  ul {
+    list-style-type: none;
+    li {
+      a {
+        color: $text-inverted;
+      }
+    }
+  }
+}
