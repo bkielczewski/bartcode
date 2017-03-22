@@ -7,11 +7,13 @@ import { TagsComponent } from './tags/tags.component';
 import { TagPostCountService } from './tags/tag-post-count.service';
 import { PopularService } from './popular/popular.service';
 import { DatePostCountService } from './dates/date-post-count.service';
+import { PostRoutingModule } from './post-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule
+    HttpModule,
+    PostRoutingModule
   ],
   declarations: [
     DatesComponent,

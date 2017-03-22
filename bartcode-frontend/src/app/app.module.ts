@@ -9,6 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { PostModule } from './post/post.module';
 import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
+    AppRoutingModule,
+    ArticleModule,
     PostModule
   ],
   providers: [],
