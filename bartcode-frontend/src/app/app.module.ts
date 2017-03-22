@@ -11,13 +11,15 @@ import { PostModule } from './post/post.module';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticleModule } from './article/article.module';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
