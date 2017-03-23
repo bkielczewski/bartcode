@@ -21,7 +21,6 @@ class PostPropertyExtractor {
         Map<String, String> props = new HashMap<>();
         while (m.find()) {
             String commentBlock = m.group(1);
-            logger.trace("Extracting properties from comment block: {}", commentBlock);
             props.putAll(extract(commentBlock));
         }
         logger.debug("Extracted: {}", props);
