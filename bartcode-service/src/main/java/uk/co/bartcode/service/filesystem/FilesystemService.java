@@ -16,17 +16,17 @@ class FilesystemService {
     private final FilesystemSeekerService seekerService;
     private final FilesystemWatcherService watcherService;
     private final ApplicationEventPublisher eventPublisher;
-
-    @Value("${application.data-path}")
-    private String dataPath;
+    private final String dataPath;
 
     @Autowired
     FilesystemService(FilesystemSeekerService seekerService,
                       FilesystemWatcherService watcherService,
-                      ApplicationEventPublisher eventPublisher) {
+                      ApplicationEventPublisher eventPublisher,
+                      @Value("${application.data-path}") String dataPath) {
         this.seekerService = seekerService;
         this.watcherService = watcherService;
         this.eventPublisher = eventPublisher;
+        this.dataPath = dataPath;
     }
 
     @EventListener(ContextRefreshedEvent.class)
