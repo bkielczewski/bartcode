@@ -13,7 +13,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private String id;
+    private Long id;
 
     @Column(name = "slug", nullable = false, updatable = false)
     private String slug;
@@ -75,7 +75,7 @@ public class Post {
         return new Builder();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(excerptProjection = PostExcerptProjection.class)
-public interface PostRepository extends JpaRepository<Post, String> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
     @RestResource(path = "slug", rel = "slug")
     Post findOneBySlug(@Param("slug") String slug);
