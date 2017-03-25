@@ -2,10 +2,10 @@ export interface Post {
 
   id: number;
   stats: Stats;
-  slug: string;
+  relativeUrl: string;
   published: string;
   tags: string[];
-  title: string;
+  metadata: Metadata;
   excerpt: string;
 
 }
@@ -13,4 +13,10 @@ export interface Post {
 export interface Stats {
   shares: number;
   comments: number;
+}
+
+export interface Metadata {
+  canonicalUrl: string;
+  title: string;
+  description: string;
 }
