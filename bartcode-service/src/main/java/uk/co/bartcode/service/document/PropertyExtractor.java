@@ -1,22 +1,22 @@
-package uk.co.bartcode.service.post;
+package uk.co.bartcode.service.document;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service
-class PostPropertyExtractor {
+@Component
+public class PropertyExtractor {
 
     private static final Pattern PATTERN_PROPERTY_BLOCK = Pattern.compile("[^\\s]*<!--(.*?)-->", Pattern.DOTALL);
     private static final Pattern PATTERN_PROPERTY = Pattern.compile("\\s*([a-zA-Z0-9_]+)\\s*[=|:]\\s*(.+)\\s*");
-    private static final Logger logger = LoggerFactory.getLogger(PostPropertyExtractor.class);
+    private static final Logger logger = LoggerFactory.getLogger(PropertyExtractor.class);
 
-    Map<String, String> extractProperties(String source) {
+    public Map<String, String> extractProperties(String source) {
         Matcher m = PATTERN_PROPERTY_BLOCK.matcher(source);
         Map<String, String> props = new HashMap<>();
         while (m.find()) {

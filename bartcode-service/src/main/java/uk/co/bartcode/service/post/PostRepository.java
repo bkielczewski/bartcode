@@ -8,15 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @RepositoryRestResource(excerptProjection = PostExcerptProjection.class)
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @RestResource(path = "slug", rel = "slug")
-    Post findOneBySlug(@Param("slug") String slug);
+    @RestResource(path = "relativeUrl", rel = "relativeUrl")
+    Post findOneByRelativeUrl(@Param("relativeUrl") String relativeUrl);
 
     @RestResource(path = "year", rel = "year")
     @Query("SELECT p FROM Post p " +
@@ -33,7 +31,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findByTags(@Param("tag") String tag, Pageable pageable);
 
     @RestResource(path = "popular", rel = "popular")
-    List<Post> findTop10ByOrderByPopularityDesc(Pageable pageable);
+    List<Post> findTop10ByOrderByStatsSharesDesc(Pageable pageable);
 
     @RestResource(path = "datePostCounts", rel = "datePostCounts")
     @Query("SELECT NEW uk.co.bartcode.service.post.DatePostCount(" +
@@ -49,12 +47,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "GROUP BY t " +
             "ORDER BY COUNT(p.id) DESC")
     List<TagPostCount> getTagPostCounts();
-
-    @RestResource(exported = false)
-    Optional<Post> getByFile(String file);
-
-    @Transactional
-    @RestResource(exported = false)
-    void deleteByFileStartingWith(String file);
 
 }

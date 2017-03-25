@@ -1,6 +1,7 @@
 package uk.co.bartcode.service.post;
 
 import org.springframework.data.rest.core.config.Projection;
+import uk.co.bartcode.service.document.DocumentMetadata;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -10,8 +11,9 @@ interface PostExcerptProjection {
 
     String getId();
 
-    String getSlug();
-    String getTitle();
+    String getRelativeUrl();
+
+    DocumentMetadata getMetadata();
     String getExcerpt();
     ZonedDateTime getPublished();
     List<String> getTags();

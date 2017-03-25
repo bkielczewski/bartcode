@@ -17,7 +17,8 @@ class PostStatsService {
     private final FacebookStatsService facebookStatsService;
 
     @Autowired
-    public PostStatsService(PostRepository postRepository, FacebookStatsService facebookStatsService) {
+    public PostStatsService(PostRepository postRepository,
+                            FacebookStatsService facebookStatsService) {
         this.postRepository = postRepository;
         this.facebookStatsService = facebookStatsService;
     }
@@ -31,7 +32,7 @@ class PostStatsService {
 
     private void updateAndSave(Post post) {
         PostStats current = post.getStats();
-        PostStats updated = getUpdatedStats(post.getCanonicalUrl());
+        PostStats updated = getUpdatedStats(post.getMetadata().getCanonicalUrl());
         current.setComments(updated.getComments());
         current.setShares(updated.getShares());
         postRepository.save(post);
@@ -39,10 +40,6 @@ class PostStatsService {
 
     public PostStats getUpdatedStats(String url) {
         return facebookStatsService.getStats(url);
-    }
-
-    public int calculatePopularity(PostStats stats) {
-        return (2 * stats.getShares()) * stats.getComments();
     }
 
 }

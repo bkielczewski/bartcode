@@ -8,7 +8,17 @@
     {
       "name": "application.data-path",
       "type": "java.lang.String",
-      "description": "Path where the posts will be kept"
+      "description": "Path where all files are kept"
+    },
+    {
+      "name": "application.document-path",
+      "type": "java.lang.String",
+      "description": "Path where documents are kept"
+    },
+    {
+      "name": "application.post-path",
+      "type": "java.lang.String",
+      "description": "Path where posts are kept"
     }
   ]
 }
