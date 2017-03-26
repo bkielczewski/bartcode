@@ -23,6 +23,13 @@ a {
 }
 
 .content {
-  width: 1170px;
+  width: $layout-breakpoint-lg;
+  line-height: 1.5rem;
   margin: auto;
+
+  @media (max-width: $layout-breakpoint-lg) {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+  }
 }

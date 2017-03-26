@@ -10,14 +10,12 @@
   background-size: cover;
 
   .title {
-    width: 50%;
-    margin: auto;
-
     h1 {
       text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
       font-size: 5em;
       margin: 0;
       text-transform: full-width;
+
     }
 
     h2 {
@@ -25,5 +23,15 @@
       padding-bottom: 1em;
       border-bottom: 1px solid;
     }
+
+    @media (max-width: $layout-breakpoint-sm) {
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
   }
+
 }
