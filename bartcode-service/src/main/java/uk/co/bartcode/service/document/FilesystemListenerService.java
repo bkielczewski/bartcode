@@ -32,7 +32,7 @@ class FilesystemListenerService {
         if (event.isDirectory() && event.getType().equals(DELETE)) {
             logger.trace("Deleting, directory={}", event.getPath());
             documentRepository.deleteByFileStartingWith(event.getPath());
-        } else if (event.getType().equals(CREATE) || event.getType().equals(MODIFY)) {
+        } else if (!event.isDirectory() && (event.getType().equals(CREATE) || event.getType().equals(MODIFY))) {
             documentRepository.getByFile(event.getPath()).ifPresent(document -> {
                 logger.trace("Deleting, id={}", document.getId());
                 documentRepository.delete(document);
