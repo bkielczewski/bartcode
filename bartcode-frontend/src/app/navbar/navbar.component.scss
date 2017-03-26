@@ -4,6 +4,7 @@ md-toolbar {
   position: fixed;
   top: 0;
   z-index: 1;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.44);
   a {
     color: $text-inverted;
     &:hover {
