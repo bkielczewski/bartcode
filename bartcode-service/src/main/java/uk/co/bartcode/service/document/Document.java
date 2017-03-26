@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Inheritance
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Document {
 
     @Id
