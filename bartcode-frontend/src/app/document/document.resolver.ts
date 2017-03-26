@@ -17,7 +17,7 @@ export class DocumentResolver implements Resolve<Document> {
     const relativeUrl = '/' + route.params['relativeUrl'];
     return this.documentService.getDocumentByRelativeUrl(relativeUrl)
       .catch(() => {
-        this.router.navigate(['/404']);
+        this.router.navigate(['/error'], { queryParams: { code: '404' } });
         return Promise.resolve(null);
       });
   }
