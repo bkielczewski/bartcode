@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { PostModule } from './post/post.module';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ArticleModule } from './article/article.module';
+import { DocumentModule } from './document/document.module';
 import { ErrorComponent } from './error/error.component';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { ErrorComponent } from './error/error.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    ArticleModule,
+    DocumentModule,
     PostModule
   ],
   providers: [],

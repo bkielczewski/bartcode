@@ -1,22 +1,15 @@
-export interface Post {
+import { Document } from '../document/document';
 
-  id: number;
+export interface Post extends Document {
+
+  excerpt: string;
   stats: Stats;
-  relativeUrl: string;
   published: string;
   tags: string[];
-  metadata: Metadata;
-  excerpt: string;
 
 }
 
 export interface Stats {
   shares: number;
   comments: number;
-}
-
-export interface Metadata {
-  canonicalUrl: string;
-  title: string;
-  description: string;
 }
