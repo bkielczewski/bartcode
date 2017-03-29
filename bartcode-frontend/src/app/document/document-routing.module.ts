@@ -5,7 +5,13 @@ import { DocumentComponent } from './document.component';
 import { DocumentResolver } from './document.resolver';
 
 const routes: Routes = [
-  { path: ':relativeUrl', component: DocumentComponent, pathMatch: 'full', resolve: { document: DocumentResolver } }
+  {
+    path: 'privacy-and-cookies',
+    component: DocumentComponent,
+    pathMatch: 'full',
+    resolve: { document: DocumentResolver }
+  },
+  { path: 'about', component: DocumentComponent, pathMatch: 'full', resolve: { document: DocumentResolver } }
 ];
 
 @NgModule({

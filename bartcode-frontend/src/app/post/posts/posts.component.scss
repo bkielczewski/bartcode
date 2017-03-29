@@ -1,0 +1,34 @@
+@import "../../../variables";
+
+post-dates {
+  padding-right: 10rem;
+
+  @media (max-width: $layout-breakpoint-sm) {
+    padding-right: 0;
+  }
+}
+
+main {
+  article {
+    header {
+      ul {
+        color: $text-muted;
+        padding: 0 0 1rem 0;
+        list-style-type: none;
+        li {
+          display: inline-block;
+          margin: 0 1em 0 0;
+
+          i {
+            position: relative;
+            top: .1rem;
+            font-size: inherit;
+          }
+        }
+      }
+    }
+    footer {
+      text-align: right;
+    }
+  }
+}

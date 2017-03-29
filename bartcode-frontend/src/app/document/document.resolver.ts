@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Document } from './document';
 import { Observable } from 'rxjs';
@@ -14,10 +15,10 @@ export class DocumentResolver implements Resolve<Document> {
     Observable<Document>
     | Promise<Document>
     | Document {
-    const relativeUrl = '/' + route.params['relativeUrl'];
+    const relativeUrl = '/' + route.url[0];
     return this.documentService.getDocumentByRelativeUrl(relativeUrl)
-      .catch(() => {
-        this.router.navigate(['/error'], { queryParams: { code: '404' } });
+      .catch((err: Response) => {
+        this.router.navigate(['/error'], { queryParams: { code: err.status } });
         return Promise.resolve(null);
       });
   }

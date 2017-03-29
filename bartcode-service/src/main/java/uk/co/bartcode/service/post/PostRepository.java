@@ -16,6 +16,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @RestResource(path = "relativeUrl", rel = "relativeUrl")
     Post findOneByRelativeUrl(@Param("relativeUrl") String relativeUrl);
 
+    @RestResource(path = "recent", rel = "recent")
+    Page<Post> findAllByOrderByPublishedDesc(Pageable pageable);
+
     @RestResource(path = "year", rel = "year")
     @Query("SELECT p FROM Post p " +
             "WHERE FUNCTION('YEAR', p.published) = ?1")

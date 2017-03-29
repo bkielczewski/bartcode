@@ -1,25 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { PostModule } from './post/post.module';
+import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentModule } from './document/document.module';
-import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
+    ErrorComponent,
     FooterComponent,
-    ErrorComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +30,12 @@ import { ErrorComponent } from './error/error.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    DocumentModule,
-    PostModule
+    PostModule,
+    DocumentModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: "en-GB" }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

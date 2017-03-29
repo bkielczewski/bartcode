@@ -1,0 +1,23 @@
+@import "../../../variables";
+
+ul {
+  list-style-type: none;
+  margin-bottom: 3rem;
+
+  li {
+    ul {
+      li {
+        margin-bottom: .5rem;
+      }
+    }
+
+    a.active {
+      color: $text-primary;
+      border-bottom: 1px dotted $text-primary;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
