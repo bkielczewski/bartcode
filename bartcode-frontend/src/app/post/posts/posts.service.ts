@@ -24,13 +24,16 @@ export class PostsService {
       .refCount();
   }
 
-  private getParams(page?: number, size?: number, year?: number, month?: number): URLSearchParams {
+  private getParams(page?: number, size?: number, year?: number, month?: number, tag?: string): URLSearchParams {
     const params: URLSearchParams = new URLSearchParams();
     if (year) {
       params.set('year', year.toString());
     }
     if (month) {
       params.set('month', month.toString());
+    }
+    if (tag) {
+      params.set('tag', tag);
     }
     params.set('page', page ? page.toString() : '0');
     params.set('size', size ? size.toString() : PostsService.DEFAULT_PAGE_SIZE);
@@ -52,6 +55,14 @@ export class PostsService {
   getPostsByYearMonth(year: number, month: number, page?: number, size?: number): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/yearMonth',
       { search: this.getParams(page, size, year, month) })
+      .flatMap((response: Response) => this.extractResponseData(response))
+      .publishReplay()
+      .refCount();
+  }
+
+  getPostsByTag(tag: string, page?: number, size?: number): Observable<Post> {
+    return this.http.get(environment.serviceUrl + '/posts/search/tag',
+      { search: this.getParams(page, size, null, null, tag) })
       .flatMap((response: Response) => this.extractResponseData(response))
       .publishReplay()
       .refCount();
