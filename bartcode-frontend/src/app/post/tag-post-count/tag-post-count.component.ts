@@ -3,11 +3,11 @@ import { TagPostCountService } from './tag-post-count.service';
 import { TagPostCount } from './tag-post-count';
 
 @Component({
-  selector: 'post-tags',
-  templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.scss']
+  selector: 'app-tag-post-count',
+  templateUrl: './tag-post-count.component.html',
+  styleUrls: ['./tag-post-count.component.scss']
 })
-export class TagsComponent implements OnInit {
+export class TagPostCountComponent implements OnInit {
 
   tagCounts: TagPostCount[];
 

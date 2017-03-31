@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { PopularComponent } from './popular.component';
+import { TagPostCountComponent } from './tag-post-count.component';
 
-describe('PopularComponent', () => {
-  let component: PopularComponent;
-  let fixture: ComponentFixture<PopularComponent>;
+describe('TagPostCountComponent', () => {
+  let component: TagPostCountComponent;
+  let fixture: ComponentFixture<TagPostCountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PopularComponent]
+      declarations: [TagPostCountComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopularComponent);
+    fixture = TestBed.createComponent(TagPostCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

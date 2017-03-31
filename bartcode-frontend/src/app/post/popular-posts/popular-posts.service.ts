@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Post } from '../post';
+
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+
+import { Post } from '../post';
 import { Resources } from '../../spring-data-rest';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
-export class PopularService {
+export class PopularPostsService {
 
   constructor(private http: Http) {
   }

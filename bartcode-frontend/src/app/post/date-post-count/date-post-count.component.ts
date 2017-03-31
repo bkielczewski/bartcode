@@ -3,11 +3,11 @@ import { DatePostCountService } from './date-post-count.service';
 import { DatePostCount } from './date-post-count';
 
 @Component({
-  selector: 'post-dates',
-  templateUrl: './dates.component.html',
-  styleUrls: ['./dates.component.scss']
+  selector: 'app-date-post-count',
+  templateUrl: './date-post-count.component.html',
+  styleUrls: ['./date-post-count.component.scss']
 })
-export class DatesComponent implements OnInit {
+export class DatePostCountComponent implements OnInit {
 
   years: number[] = [];
   yearCounts: { [year: number]: DatePostCount[] } = {};

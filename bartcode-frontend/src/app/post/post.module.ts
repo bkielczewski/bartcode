@@ -6,16 +6,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { PostRoutingModule } from './post-routing.module';
 
-import { DatesComponent } from './dates/dates.component';
-import { PopularComponent } from './popular/popular.component';
+import { DatePostCountComponent } from './date-post-count/date-post-count.component';
+import { PopularPostsComponent } from './popular-posts/popular-posts.component';
 import { PostsComponent } from './posts/posts.component';
-import { TagsComponent } from './tags/tags.component';
+import { TagPostCountComponent } from './tag-post-count/tag-post-count.component';
 
-import { DatePostCountService } from './dates/date-post-count.service';
-import { PopularService } from './popular/popular.service';
-import { TagPostCountService } from './tags/tag-post-count.service';
+import { DatePostCountService } from './date-post-count/date-post-count.service';
+import { PopularPostsService } from './popular-posts/popular-posts.service';
+import { TagPostCountService } from './tag-post-count/tag-post-count.service';
 
-import { RelativeTimePipe } from './posts/relative-time.pipe';
+import { RelativeTimePipe } from './relative-time.pipe';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   imports: [
@@ -26,20 +27,21 @@ import { RelativeTimePipe } from './posts/relative-time.pipe';
     FlexLayoutModule
   ],
   declarations: [
-    DatesComponent,
-    PopularComponent,
+    DatePostCountComponent,
+    PopularPostsComponent,
     PostsComponent,
     RelativeTimePipe,
-    TagsComponent
+    TagPostCountComponent,
+    PostComponent,
   ],
   exports: [
-    DatesComponent,
-    PopularComponent,
-    TagsComponent
+    DatePostCountComponent,
+    PopularPostsComponent,
+    TagPostCountComponent
   ],
   providers: [
     DatePostCountService,
-    PopularService,
+    PopularPostsService,
     TagPostCountService
   ]
 })
