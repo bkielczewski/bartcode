@@ -1,0 +1,12 @@
+<h2><a routerLink="/{{ post.relativeUrl }}">{{ post.metadata.title }}</a></h2>
+<ul>
+  <li><i class="material-icons">access_time</i> {{ post.published | relativeTime }}</li>
+  <li><i class="material-icons">date_range</i> {{ post.published | date: "shortDate"}}</li>
+  <li><i class="material-icons">comment</i> {{ post.stats.comments }}</li>
+  <li><i class="material-icons">share</i> {{ post.stats.shares }}</li>
+  <li>
+    <i class="material-icons">label_outline</i>
+    <a *ngFor="let tag of post.tags; let isLast = last" routerLink="/tag/{{ tag }}">{{ tag }}<span
+      *ngIf="!isLast">, </span></a>
+  </li>
+</ul>

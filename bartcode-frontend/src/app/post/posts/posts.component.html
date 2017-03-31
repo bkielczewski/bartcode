@@ -5,14 +5,7 @@
   <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-sm="2">
     <article *ngFor="let post of posts">
       <header>
-        <h2><a routerLink="/{{ post.relativeUrl }}">{{ post.metadata.title }}</a></h2>
-        <ul>
-          <li><i class="material-icons">access_time</i> {{ post.published | relativeTime }}</li>
-          <li><i class="material-icons">date_range</i> {{ post.published | date: "shortDate"}}</li>
-          <li><i class="material-icons">comment</i> {{ post.stats.comments }}</li>
-          <li><i class="material-icons">share</i> {{ post.stats.shares }}</li>
-          <li><i class="material-icons">label_outline</i> {{ post.tags.join(', ') }}</li>
-        </ul>
+        <app-post-header [post]="post"></app-post-header>
       </header>
       <section [innerHtml]="post.excerpt">
       </section>

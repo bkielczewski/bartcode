@@ -15,13 +15,14 @@ const routes: Routes = [
   { path: 'blog', component: PostsComponent, pathMatch: 'full', resolve: { posts: RecentPostsResolver } },
   { matcher: year, component: PostsComponent, pathMatch: 'full', resolve: { posts: YearPostsResolver } },
   { matcher: yearMonth, component: PostsComponent, pathMatch: 'full', resolve: { posts: YearMonthPostsResolver } },
-  { path: ':year/:month/:slug', component: PostComponent, pathMatch: 'full', resolve: { posts: PostResolver } }
+  { path: ':year/:month/:slug', component: PostComponent, pathMatch: 'full', resolve: { post: PostResolver } }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
+    PostResolver,
     PostService,
     PostsService,
     RecentPostsResolver,

@@ -15,8 +15,9 @@ import { DatePostCountService } from './date-post-count/date-post-count.service'
 import { PopularPostsService } from './popular-posts/popular-posts.service';
 import { TagPostCountService } from './tag-post-count/tag-post-count.service';
 
-import { RelativeTimePipe } from './relative-time.pipe';
+import { RelativeTimePipe } from './post-header/relative-time.pipe';
 import { PostComponent } from './post/post.component';
+import { PostHeaderComponent } from './post-header/post-header.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { PostComponent } from './post/post.component';
     RelativeTimePipe,
     TagPostCountComponent,
     PostComponent,
+    PostHeaderComponent,
   ],
   exports: [
     DatePostCountComponent,

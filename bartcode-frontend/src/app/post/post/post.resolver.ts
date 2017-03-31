@@ -14,7 +14,7 @@ export class PostResolver implements Resolve<Post> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post> | Promise<Post> | Post {
-    const relativeUrl = route.params['year'] + '/' + route.params['month'] + '/' + route.params['slug'];
+    const relativeUrl = '/' + route.params['year'] + '/' + route.params['month'] + '/' + route.params['slug'];
     return this.postService.getPostByRelativeUrl(relativeUrl)
       .catch((err: Response) => {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
