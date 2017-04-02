@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Post } from '../post';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+
+import { Post } from '../post';
 import * as hljs from 'highlight.js';
 
-declare const document;
+declare const document: any;
+declare const FB: any;
 
 @Component({
   selector: 'app-post',
@@ -31,6 +33,9 @@ export class PostComponent implements OnInit, AfterViewInit {
     if (document) {
       const blocks = document.querySelectorAll('pre code');
       Array(blocks).forEach.call(blocks, hljs.highlightBlock);
+    }
+    if (FB) {
+      FB.XFBML.parse();
     }
   }
 
