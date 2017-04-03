@@ -27,6 +27,16 @@ h1 {
   margin-bottom: 4rem;
 }
 
+pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+
+  code {
+    white-space: inherit;
+  }
+}
+
 .content {
   width: $layout-breakpoint-lg;
   line-height: 1.5rem;
@@ -41,5 +51,15 @@ h1 {
   &.full-page {
     padding-top: 8rem;
     padding-bottom: 8rem;
+  }
+}
+
+.adsense {
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+
+  ins {
+    display: inline-block;
   }
 }

@@ -1,18 +1,16 @@
 @import "../../../variables";
 
-app-date-post-count {
-  padding-right: 10rem;
-
-  @media (max-width: $layout-breakpoint-sm) {
-    padding-right: 0;
-  }
-}
-
 main {
-  article {
-    header {
+  aside {
+    padding-right: 10rem;
 
+    @media (max-width: $layout-breakpoint-sm) {
+      padding-right: 0;
     }
+  }
+
+  article {
+    width: 100%;
     footer {
       text-align: right;
     }

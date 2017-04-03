@@ -1,10 +1,17 @@
-article {
-  header {
-    .fb-like {
-      float: right;
-    }
+main {
+  aside {
   }
-  footer {
-    padding-top: 2em;
+
+  article {
+    width: 100%;
+
+    header {
+      .fb-like {
+        float: right;
+      }
+    }
+    footer {
+      padding-top: 2em;
+    }
   }
 }

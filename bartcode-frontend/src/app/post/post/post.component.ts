@@ -5,8 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from '../post';
 import * as hljs from 'highlight.js';
 
-declare const document: any;
-declare const FB: any;
+declare const window: any;
 
 @Component({
   selector: 'app-post',
@@ -30,12 +29,20 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (document) {
-      const blocks = document.querySelectorAll('pre code');
-      Array(blocks).forEach.call(blocks, hljs.highlightBlock);
-    }
-    if (FB) {
-      FB.XFBML.parse();
+    if (window) {
+      if (window['hljs']) {
+        const blocks = window.document.querySelectorAll('pre code');
+        Array(blocks).forEach.call(blocks, window.hljs.highlightBlock);
+      }
+      if (window['FB']) {
+        window.FB.XFBML.parse();
+      }
+      if (window && window['adsbygoogle']) {
+        const units = window.document.querySelectorAll('.adsbygoogle');
+        for (let i = 0; i < units.length; i++) {
+          window.adsbygoogle.push({});
+        }
+      }
     }
   }
 

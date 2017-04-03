@@ -1,11 +1,40 @@
-<article class="content full-page">
-  <header>
-    <div class="fb-like" [attr.data-href]="post.metadata.canonicalUrl" data-layout="button"
-         data-action="like" data-show-faces="false" data-share="true"></div>
-    <app-post-header [post]="post"></app-post-header>
-  </header>
-  <section [innerHtml]="post.textSafeHtml"></section>
-  <footer>
-    <div class="fb-comments" data-width="100%" [attr.data-href]="post.metadata.canonicalUrl" data-numposts="5"></div>
-  </footer>
-</article>
+<main fxLayout="column" fxLayout.gt-sm fxLayoutAlign.gt-sm="space-between top" class="content full-page">
+  <aside fxFlex="25%" fxFlexOrder="2" fxFlexOrder.gt-sm="1" fxFlexAlign.gt-sm="stretch">
+    <div class="adsense" fxHide fxShow.gt-sm>
+      <ins class="adsbygoogle"
+           style="width:160px;height:600px"
+           data-ad-client="ca-pub-9090328787535038"
+           data-ad-slot="2543787708"></ins>
+    </div>
+  </aside>
+
+  <article fxFlex="75%" fxFlexOrder="1" fxFlexOrder.gt-sm="2">
+    <div class="adsense" fxHide fxShow.gt-sm>
+      <ins class="adsbygoogle"
+           style="width:728px;height:90px"
+           data-ad-client="ca-pub-9090328787535038"
+           data-ad-slot="2455821704"></ins>
+    </div>
+    <header>
+      <div class="fb-like" [attr.data-href]="post.metadata.canonicalUrl" data-layout="button"
+           data-action="like" data-show-faces="false" data-share="true"></div>
+      <app-post-header [post]="post"></app-post-header>
+    </header>
+    <section [innerHtml]="post.textSafeHtml"></section>
+    <footer>
+      <div class="adsense">
+        <ins class="adsbygoogle"
+             style="width:336px;height:280px"
+             data-ad-client="ca-pub-9090328787535038"
+             data-ad-slot="9979088504"></ins>
+      </div>
+
+      <div class="comments">
+        <div class="fb-comments" data-width="100%" [attr.data-href]="post.metadata.canonicalUrl"
+             data-numposts="10"></div>
+      </div>
+    </footer>
+  </article>
+
+</main>
+

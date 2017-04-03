@@ -1,8 +1,24 @@
 <main fxLayout="column" fxLayout.gt-sm fxLayoutAlign.gt-sm="space-between top" class="content full-page">
 
-  <app-date-post-count fxFlexOrder="2" fxFlexOrder.gt-sm="1" fxFlexAlign.gt-sm="stretch"></app-date-post-count>
+  <aside fxFlexOrder="2" fxFlexOrder.gt-sm="1" fxFlexAlign.gt-sm="stretch">
+    <app-date-post-count></app-date-post-count>
+
+    <div class="adsense">
+      <ins class="adsbygoogle"
+           style="width:160px;height:600px"
+           data-ad-client="ca-pub-9090328787535038"
+           data-ad-slot="2543787708"></ins>
+    </div>
+  </aside>
 
   <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-sm="2">
+    <div class="adsense" fxHide fxShow.gt-sm>
+      <ins class="adsbygoogle"
+           style="width:728px;height:90px"
+           data-ad-client="ca-pub-9090328787535038"
+           data-ad-slot="2455821704"></ins>
+    </div>
+
     <article *ngFor="let post of posts">
       <header>
         <app-post-header [post]="post"></app-post-header>
