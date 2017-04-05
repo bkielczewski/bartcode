@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentModule } from './document/document.module';
+import { AdsenseModule } from './adsense/adsense.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DocumentModule } from './document/document.module';
     FlexLayoutModule,
     AppRoutingModule,
     PostModule,
-    DocumentModule
+    DocumentModule,
+    AdsenseModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "en-GB" }

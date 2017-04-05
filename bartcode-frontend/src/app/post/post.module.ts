@@ -4,6 +4,9 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AdsenseModule } from '../adsense/adsense.module';
+import { FacebookModule } from '../facebook/facebook.module';
+import { HljsModule } from '../hljs/hljs.module';
 import { PostRoutingModule } from './post-routing.module';
 
 import { DatePostCountComponent } from './date-post-count/date-post-count.component';
@@ -25,7 +28,10 @@ import { PostHeaderComponent } from './post-header/post-header.component';
     HttpModule,
     PostRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AdsenseModule,
+    HljsModule,
+    FacebookModule
   ],
   declarations: [
     DatePostCountComponent,

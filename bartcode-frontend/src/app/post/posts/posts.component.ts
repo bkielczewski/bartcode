@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from '../post';
@@ -10,7 +10,7 @@ declare const window: any;
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent implements OnInit, AfterViewInit {
+export class PostsComponent implements OnInit {
   posts: Post[] = [];
 
   constructor(private route: ActivatedRoute) {
@@ -18,15 +18,6 @@ export class PostsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: { posts: Post[] }) => this.posts = data.posts);
-  }
-
-  ngAfterViewInit(): void {
-    if (window && window['adsbygoogle']) {
-      const units = window.document.querySelectorAll('.adsbygoogle');
-      for (let i = 0; i < units.length; i++) {
-        window.adsbygoogle.push({});
-      }
-    }
   }
 
 }
