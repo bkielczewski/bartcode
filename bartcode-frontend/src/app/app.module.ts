@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MdButtonModule, MdToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './error/error.component';
@@ -25,11 +25,12 @@ import { AdsenseModule } from './adsense/adsense.module';
     NavbarComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
     FlexLayoutModule,
+    MdToolbarModule,
+    MdButtonModule,
     AppRoutingModule,
     PostModule,
     DocumentModule,
@@ -38,7 +39,9 @@ import { AdsenseModule } from './adsense/adsense.module';
   providers: [
     { provide: LOCALE_ID, useValue: "en-GB" }
   ],
-  bootstrap: [AppComponent]
+  exports: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }
