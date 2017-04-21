@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^4.0",
     "@angular/router": "^4.0",
     "angular-ssr": "latest",
+    "apicache": "^0.8.4",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "core-js": "^2.4",

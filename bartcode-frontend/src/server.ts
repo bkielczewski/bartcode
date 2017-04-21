@@ -1,24 +1,30 @@
 import { enableProdMode } from '@angular/core';
 import { ApplicationBuilderFromModuleFactory } from 'angular-ssr';
-import { join } from 'path';
 import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
 
-import express = require('express');
-import url = require('url');
+import { join } from 'path';
+import * as express from 'express';
+import * as url from 'url';
+import * as compression from 'compression';
+import * as apicache from 'apicache';
 
 enableProdMode();
 
 const PORT = process.env.PORT || 4000;
-const dist = join(process.cwd(), 'dist');
+const dist = join(__dirname, '..', 'dist/');
 const builder = new ApplicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
 const application = builder.build();
-const http = express();
+const app = express();
+const cache = apicache.middleware;
 
-http.get('*.*', express.static(join(__dirname, '..', 'dist')));
+app.use(compression());
 
-http.get(/.*/, async (request, response) => {
+app.get('*.*', express.static(dist));
+
+app.get(/.*/, cache('5 minutes'), async (request, response) => {
   try {
-    const snapshot = await application.renderUri(absoluteUri(request));
+    const uri = absoluteUri(request);
+    const snapshot = await application.renderUri(uri);
     response.send(snapshot.renderedDocument);
   }
   catch (exception) {
@@ -27,7 +33,7 @@ http.get(/.*/, async (request, response) => {
   }
 });
 
-http.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`listening on http://localhost:${PORT}!`);
 });
 
