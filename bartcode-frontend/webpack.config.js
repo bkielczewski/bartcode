@@ -33,7 +33,10 @@ module.exports = {
   },
   plugins: [
     new ngToolsWebpack.AotPlugin({
-      tsConfigPath: './tsconfig-server.json'
+      tsConfigPath: './tsconfig-server.json',
+      hostReplacementPaths: {
+        "environments/environment.ts": "environments/environment.prod.ts"
+      },
     })
   ],
   module: {

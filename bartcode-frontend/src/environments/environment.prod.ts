@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl: "https://bartcode-service"
+  serviceUrl: "http://bartcode-service"
 };
