@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AdsenseModule } from '../adsense/adsense.module';
 import { FacebookModule } from '../facebook/facebook.module';
@@ -21,13 +19,13 @@ import { TagPostCountService } from './tag-post-count/tag-post-count.service';
 import { RelativeTimePipe } from './post-header/relative-time.pipe';
 import { PostComponent } from './post/post.component';
 import { PostHeaderComponent } from './post-header/post-header.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
     PostRoutingModule,
-    MaterialModule,
     FlexLayoutModule,
     AdsenseModule,
     HljsModule,

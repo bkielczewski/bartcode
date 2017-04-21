@@ -15,6 +15,8 @@ import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentModule } from './document/document.module';
 import { AdsenseModule } from './adsense/adsense.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AdsenseModule } from './adsense/adsense.module';
     NavbarComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     HttpModule,
@@ -39,7 +43,7 @@ import { AdsenseModule } from './adsense/adsense.module';
   providers: [
     { provide: LOCALE_ID, useValue: "en-GB" }
   ],
-  exports: [
+  bootstrap: [
     AppComponent
   ]
 })

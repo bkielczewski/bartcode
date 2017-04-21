@@ -3,8 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Post } from '../post';
 
-declare const window: any;
-
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',

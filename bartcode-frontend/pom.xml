@@ -65,21 +65,12 @@
             </goals>
           </execution>
           <execution>
-            <id>npm build client</id>
+            <id>npm build</id>
             <goals>
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run-script build:client</arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>npm build server</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <configuration>
-              <arguments>run-script build:server</arguments>
+              <arguments>run-script build</arguments>
             </configuration>
           </execution>
         </executions>

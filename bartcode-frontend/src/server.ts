@@ -1,32 +1,40 @@
-import 'reflect-metadata';
-import 'zone.js/dist/zone-node';
-
 import { enableProdMode } from '@angular/core';
-import { AppServerModuleNgFactory } from '../aot/src/app/app-server.module.ngfactory';
-import { serverEngine } from './server-engine';
-
-import * as express from 'express';
-
+import { ApplicationBuilderFromModuleFactory } from 'angular-ssr';
 import { join } from 'path';
+import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
 
-
-const PORT = process.env.PORT || 4000;
+import express = require('express');
+import url = require('url');
 
 enableProdMode();
 
-const app = express();
+const PORT = process.env.PORT || 4000;
+const dist = join(process.cwd(), 'dist');
+const builder = new ApplicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
+const application = builder.build();
+const http = express();
 
+http.get('*.*', express.static(join(__dirname, '..', 'dist')));
 
-app.engine('html', serverEngine({
-  bootstrap: [AppServerModuleNgFactory]
-}));
-
-app.set('views', 'src');
-app.set('view engine', 'html');
-app.get('*.*', express.static(join(__dirname, '..', 'dist')));
-app.get('*', (req, res) => {
-  res.render('index', { req });
+http.get(/.*/, async (request, response) => {
+  try {
+    const snapshot = await application.renderUri(absoluteUri(request));
+    response.send(snapshot.renderedDocument);
+  }
+  catch (exception) {
+    console.error(exception);
+    response.send(builder.templateDocument());
+  }
 });
-app.listen(PORT, () => {
+
+http.listen(PORT, () => {
   console.log(`listening on http://localhost:${PORT}!`);
 });
+
+const absoluteUri = (request: express.Request): string => {
+  return url.format({
+    protocol: request.protocol,
+    host: request.get('host'),
+    pathname: request.originalUrl
+  });
+};

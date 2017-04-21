@@ -17,7 +17,6 @@
   },
   "exclude": [
     "server.ts",
-    "server-engine.ts",
     "test.ts",
     "**/*.spec.ts"
   ]

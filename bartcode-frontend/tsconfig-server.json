@@ -18,11 +18,11 @@
     ]
   },
   "files": [
-    "./src/app/app-server.module.ts",
+    "./src/app/app.module.ts",
     "./src/server.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "./aot",
-    "entryModule": "./src/app/app-server.module#AppServerModule"
+    "entryModule": "./src/app/app.module#AppModule"
   }
 }
