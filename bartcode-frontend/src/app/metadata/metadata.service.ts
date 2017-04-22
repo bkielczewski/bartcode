@@ -4,8 +4,8 @@ import { Meta, Title } from '@angular/platform-browser';
 @Injectable()
 export class MetadataService {
   private indexTitle;
-  private indexDescription: HTMLMetaElement;
-  private indexUrl: HTMLMetaElement;
+  private indexDescription: string;
+  private indexUrl: string;
 
   constructor(private title: Title, private meta: Meta) {
     this.onInit();
@@ -13,18 +13,28 @@ export class MetadataService {
 
   private onInit() {
     this.indexTitle = this.title.getTitle();
-    this.indexDescription = this.meta.getTag('name="description"');
-    this.indexUrl = this.meta.getTag('property="og.url"');
+    this.indexDescription = this.fromTagOrEmpty('name="description"');
+    this.indexUrl = this.fromTagOrEmpty('property="og.url"');
+  }
+
+  private fromTagOrEmpty(selector: string) {
+    const tag = this.meta.getTag(selector);
+    return tag ? tag.content : '';
   }
 
   public updateMetadata(title?: string, description?: string, url?: string) {
     this.updateTitle(title);
-    this.updateDescription(description ? description : this.indexDescription ? this.indexDescription.content : '');
-    this.updateUrl(url ? url : this.indexUrl ? this.indexUrl.content : '');
+    this.updateDescription(description ? description : this.indexDescription);
+    this.updateUrl(url ? url : this.indexUrl);
   }
 
   private updateTitle(title: string) {
-    const updatedTitle = this.indexTitle + (title ? ' - ' + title : '');
+    let updatedTitle;
+    if (title) {
+      updatedTitle = title + ' ' + this.indexTitle.substring(this.indexTitle.indexOf('-'));
+    } else {
+      updatedTitle = this.indexTitle;
+    }
     this.title.setTitle(updatedTitle);
     this.meta.updateTag({ content: updatedTitle }, 'property="og:title"');
   }
