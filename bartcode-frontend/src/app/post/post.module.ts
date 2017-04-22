@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MdButtonModule } from '@angular/material';
 
+import { MetadataModule } from '../metadata/metadata.module';
 import { AdsenseModule } from '../adsense/adsense.module';
 import { FacebookModule } from '../facebook/facebook.module';
 import { HljsModule } from '../hljs/hljs.module';
@@ -19,7 +22,6 @@ import { TagPostCountService } from './tag-post-count/tag-post-count.service';
 import { RelativeTimePipe } from './post-header/relative-time.pipe';
 import { PostComponent } from './post/post.component';
 import { PostHeaderComponent } from './post-header/post-header.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpModule,
     PostRoutingModule,
     FlexLayoutModule,
+    MdButtonModule,
+    MetadataModule,
     AdsenseModule,
     HljsModule,
     FacebookModule

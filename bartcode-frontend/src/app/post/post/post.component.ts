@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from '../post';
+import { MetadataService } from '../../metadata/metadata.service';
 
 @Component({
   selector: 'app-post',
@@ -13,16 +14,19 @@ export class PostComponent implements OnInit {
   post: Post;
 
   constructor(private route: ActivatedRoute,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private metadataService: MetadataService) {
   }
 
   ngOnInit() {
     this.route.data.subscribe((data: { post: Post }) => this.onPostLoaded(data.post));
   }
 
-  onPostLoaded(post: Post) {
+  private onPostLoaded(post: Post) {
     post.textSafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.text);
     this.post = post;
+    this.metadataService.updateMetadata(post.metadata.title, post.metadata.description, post.metadata.canonicalUrl);
   }
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Document } from './document';
+import { MetadataService } from '../metadata/metadata.service';
 
 @Component({
   selector: 'app-document',
@@ -12,11 +13,17 @@ export class DocumentComponent implements OnInit {
 
   document: Document;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              private metadataService: MetadataService) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { document: Document }) => this.document = data.document);
+    this.route.data.subscribe((data: { document: Document }) => this.onDocumentLoaded(data.document));
+  }
+
+  private onDocumentLoaded(document: Document) {
+    this.document = document;
+    this.metadataService.updateMetadata(document.metadata.title, document.metadata.description, document.metadata.canonicalUrl);
   }
 
 }
