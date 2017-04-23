@@ -10,6 +10,9 @@ footer {
     list-style-type: none;
     padding: 0;
     li {
+      img {
+        padding-right: 1rem;
+      }
       a {
         color: $text-inverted;
       }

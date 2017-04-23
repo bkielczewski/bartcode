@@ -39,3 +39,22 @@
 
 </main>
 
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ post.metadata.title }}",
+  "keywords": "{{ post.tags }}",
+  "url": "{{ post.metadata.canonicalUrl }}",
+  "datePublished": "{{ post.published }}",
+  "description": "{{ post.metadata.description }}",
+  "articleBody": "{{ post.excerpt }}",
+  "author": {
+    "@type": "Person",
+    "name": "Bartosz Kielczewski"
+  }
+}
+
+
+</script>
+
