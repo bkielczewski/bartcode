@@ -1,0 +1,19 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+build:
+  cache: true
+
+  ci:
+   - mvn clean install -q
+
+  post_ci:
+    - (cd ./bartcode-service; mvn -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} docker:build docker:push -q)
+    - (cd ./bartcode-frontend; mvn -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} docker:build docker:push -q)
+
+integrations:
+    hub:
+      - integrationName: docker
+        type: "Docker"

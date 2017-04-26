@@ -11,13 +11,18 @@ import * as apicache from 'apicache';
 enableProdMode();
 
 const PORT = process.env.PORT || 4000;
-const dist = join(__dirname, '..', 'dist/');
+const dist = join(__dirname, '..', 'dist');
+const documentAssets = join(__dirname, '..', '..', 'data', 'documents', 'assets');
+const postAssets = join(__dirname, '..', '..', 'data', 'posts', 'assets');
 const builder = new ApplicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
 const application = builder.build();
 const app = express();
 const cache = apicache.middleware;
 
 app.use(compression());
+
+app.get('/documents/assets/**', express.static(documentAssets));
+app.get('/posts/assets/**', express.static(postAssets));
 
 app.get('*.*', express.static(dist));
 

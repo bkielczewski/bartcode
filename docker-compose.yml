@@ -1,0 +1,21 @@
+version: '2.0'
+
+services:
+  bartcode-frontend:
+    image: bkielczewski/bartcode-frontend:master
+    ports:
+      - 4000:4000
+    volumes:
+      - ./data:/data
+    links:
+      - bartcode-service
+    restart: unless-stopped
+
+  bartcode-service:
+    image: bkielczewski/bartcode-service:master
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    restart: unless-stopped

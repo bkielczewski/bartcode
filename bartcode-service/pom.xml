@@ -92,6 +92,13 @@
     <build>
         <plugins>
 
+            <!-- Docker -->
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+
             <!-- Spring Boot Maven -->
 
             <plugin>
