@@ -19,4 +19,16 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
     @RestResource(exported = false)
     void deleteByFileStartingWith(String file);
 
+    @RestResource(exported = false)
+    @Override
+    void delete(Long id);
+
+    @RestResource(exported = false)
+    @Override
+    void delete(Document document);
+
+    @RestResource(exported = false)
+    @Override
+    Document save(Document document);
+
 }

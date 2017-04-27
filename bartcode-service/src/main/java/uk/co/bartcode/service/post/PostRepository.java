@@ -51,4 +51,16 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "ORDER BY COUNT(p.id) DESC")
     List<TagPostCount> getTagPostCounts();
 
+    @RestResource(exported = false)
+    @Override
+    void delete(Long id);
+
+    @RestResource(exported = false)
+    @Override
+    void delete(Post document);
+
+    @RestResource(exported = false)
+    @Override
+    Post save(Post document);
+
 }
