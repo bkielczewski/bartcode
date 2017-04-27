@@ -8,11 +8,14 @@ import uk.co.bartcode.service.post.Post;
 import uk.co.bartcode.service.post.TagPostCount;
 
 @Configuration
-class RepositoryRestMvcConfig extends RepositoryRestConfigurerAdapter {
+class RepositoryRestConfig extends RepositoryRestConfigurerAdapter {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(DatePostCount.class, TagPostCount.class, Post.class);
+        config.getCorsRegistry().addMapping("/**")
+                .allowedOrigins("http://localhost:4000")
+                .allowedMethods("GET");
     }
 
 
