@@ -1,4 +1,6 @@
+const webpack = require('webpack');
 const ngToolsWebpack = require('@ngtools/webpack');
+const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
 module.exports = {
@@ -10,18 +12,7 @@ module.exports = {
   },
   target: 'node',
   externals: [
-    '@angular/cli',
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/compiler-cli',
-    '@angular/core',
-    '@angular/forms',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/router',
-    '@angular/tsc-wrapped',
-    '@angular/service-worker',
-    'angular-ssr'
+    nodeExternals({modulesFromFile: true})
   ],
   node: {
     __dirname: true
@@ -35,9 +26,10 @@ module.exports = {
     new ngToolsWebpack.AotPlugin({
       tsConfigPath: './tsconfig-server.json',
       hostReplacementPaths: {
-        "environments/environment.ts": "environments/environment.prod.ts"
-      },
-    })
+        "src/environments/environment.ts": "src/environments/environment.prod.ts"
+      }
+    }),
+    new webpack.ProgressPlugin(),
   ],
   module: {
     rules: [
