@@ -19,6 +19,7 @@ export class PostsService {
   getRecentPosts(page?: number, size?: number): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/recent',
       { search: this.getParams(page, size) })
+      .catch(() => Observable.empty())
       .flatMap((response: Response) => this.extractResponseData(response))
       .publishReplay()
       .refCount();
@@ -47,6 +48,7 @@ export class PostsService {
   getPostsByYear(year: number, page?: number, size?: number): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/year',
       { search: this.getParams(page, size, year) })
+      .catch(() => Observable.empty())
       .flatMap((response: Response) => this.extractResponseData(response))
       .publishReplay()
       .refCount();
@@ -55,6 +57,7 @@ export class PostsService {
   getPostsByYearMonth(year: number, month: number, page?: number, size?: number): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/yearMonth',
       { search: this.getParams(page, size, year, month) })
+      .catch(() => Observable.empty())
       .flatMap((response: Response) => this.extractResponseData(response))
       .publishReplay()
       .refCount();
@@ -63,6 +66,7 @@ export class PostsService {
   getPostsByTag(tag: string, page?: number, size?: number): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/tag',
       { search: this.getParams(page, size, null, null, tag) })
+      .catch(() => Observable.empty())
       .flatMap((response: Response) => this.extractResponseData(response))
       .publishReplay()
       .refCount();
