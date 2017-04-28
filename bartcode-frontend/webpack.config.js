@@ -12,6 +12,19 @@ module.exports = {
   },
   target: 'node',
   externals: [
+    '@angular/cli',
+    '@angular/common',
+    '@angular/compiler',
+    '@angular/compiler-cli',
+    '@angular/core',
+    '@angular/flex-layout',
+    '@angular/forms',
+    '@angular/http',
+    '@angular/material',
+    '@angular/platform-browser',
+    '@angular/router',
+    '@angular/tsc-wrapped',
+    '@angular/service-worker',
     nodeExternals({modulesFromFile: true})
   ],
   node: {
