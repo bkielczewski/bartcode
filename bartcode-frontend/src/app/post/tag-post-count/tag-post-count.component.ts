@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TagPostCountService } from './tag-post-count.service';
 import { TagPostCount } from './tag-post-count';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-tag-post-count',
@@ -17,6 +18,7 @@ export class TagPostCountComponent implements OnInit {
   ngOnInit() {
     this.tagCountService.getTagCounts()
       .toArray()
+      .catch(() => <Observable<TagPostCount[]>> Observable.empty())
       .subscribe(tagCounts => this.tagCounts = tagCounts);
   }
 

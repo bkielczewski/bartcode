@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePostCountService } from './date-post-count.service';
 import { DatePostCount } from './date-post-count';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-date-post-count',
@@ -17,6 +18,7 @@ export class DatePostCountComponent implements OnInit {
 
   ngOnInit() {
     this.dateCountService.getDateCounts()
+      .catch(() => <Observable<DatePostCount>>Observable.empty())
       .subscribe(dateCount => this.update(dateCount));
   }
 
