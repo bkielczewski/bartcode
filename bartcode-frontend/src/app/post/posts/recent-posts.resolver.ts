@@ -13,12 +13,12 @@ export class RecentPostsResolver implements Resolve<Post[]> {
   constructor(private postsService: PostsService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> | Promise<Post[]> | Post[] {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> {
     return this.postsService.getRecentPosts(route.params['page'], route.params['size'])
       .toArray()
       .catch((err: Response) => {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
-        return Promise.resolve(null);
+        return Observable.throw(new Error('Couldn\'t get recent posts, response: ' + err.statusText));
       });
   }
 

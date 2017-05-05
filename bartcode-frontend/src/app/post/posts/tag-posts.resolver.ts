@@ -13,12 +13,12 @@ export class TagPostsResolver implements Resolve<Post[]> {
   constructor(private postsService: PostsService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> | Promise<Post[]> | Post[] {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> {
     return this.postsService.getPostsByTag(route.params['tag'])
       .toArray()
       .catch((err: Response) => {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
-        return Promise.resolve(null);
+        return Observable.throw(new Error('Couldn\'t get posts by tag, response: ' + err.statusText));
       });
   }
 
