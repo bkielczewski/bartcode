@@ -16,10 +16,7 @@ export class PopularPostsService {
 
   getPopular(): Observable<Post> {
     return this.http.get(environment.serviceUrl + '/posts/search/popular')
-      .catch(() => Observable.empty())
-      .flatMap((response: Response) => (<Resources<Post>> response.json())._embedded['posts'])
-      .publishReplay()
-      .refCount();
+      .flatMap((response: Response) => (<Resources<Post>> response.json())._embedded['posts']);
   }
 
 }

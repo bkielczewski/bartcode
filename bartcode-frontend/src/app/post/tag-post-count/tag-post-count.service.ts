@@ -13,10 +13,7 @@ export class TagPostCountService {
 
   getTagCounts(): Observable<TagPostCount> {
     return this.http.get(environment.serviceUrl + '/posts/search/tagPostCounts')
-      .catch(() => Observable.empty())
-      .flatMap((response: Response) => (<Resources<TagPostCount>> response.json())._embedded['tagPostCounts'])
-      .publishReplay()
-      .refCount();
+      .flatMap((response: Response) => (<Resources<TagPostCount>> response.json())._embedded['tagPostCounts']);
   }
 
 }

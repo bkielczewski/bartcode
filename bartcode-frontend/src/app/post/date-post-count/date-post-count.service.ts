@@ -15,10 +15,7 @@ export class DatePostCountService {
 
   getDateCounts(): Observable<DatePostCount> {
     return this.http.get(environment.serviceUrl + '/posts/search/datePostCounts')
-      .catch(() => Observable.empty())
-      .flatMap((response: Response) => (<Resources<DatePostCount>> response.json())._embedded['datePostCounts'])
-      .publishReplay()
-      .refCount();
+      .flatMap((response: Response) => (<Resources<DatePostCount>> response.json())._embedded['datePostCounts']);
   }
 
 }
