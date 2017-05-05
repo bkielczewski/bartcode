@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.events
       .filter(event => event instanceof NavigationStart)
-      .subscribe((data) => this.metadataService.updateMetadata());
+      .subscribe((data) => this.metadataService.resetMetadata());
   }
 
 }

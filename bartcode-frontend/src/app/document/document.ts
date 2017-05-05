@@ -1,4 +1,5 @@
 import { SafeHtml } from '@angular/platform-browser';
+import { Metadata } from '../metadata/metadata';
 
 export interface Document {
 
@@ -6,13 +7,5 @@ export interface Document {
   metadata: Metadata;
   text: string;
   textSafeHtml: SafeHtml;
-
-}
-
-export interface Metadata {
-
-  canonicalUrl: string;
-  title: string;
-  description: string;
 
 }

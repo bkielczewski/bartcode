@@ -23,7 +23,7 @@ export class DocumentComponent implements OnInit {
 
   private onDocumentLoaded(document: Document) {
     this.document = document;
-    this.metadataService.updateMetadata(document.metadata.title, document.metadata.description, document.metadata.canonicalUrl);
+    this.metadataService.updateMetadata(document.metadata);
   }
 
 }
