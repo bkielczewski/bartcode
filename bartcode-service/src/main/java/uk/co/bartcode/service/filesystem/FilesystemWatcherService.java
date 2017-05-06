@@ -59,12 +59,11 @@ class FilesystemWatcherService {
         for (WatchEvent<?> event : events) {
             Path child = parent.resolve((Path) event.context());
             boolean isDirectory = Files.isDirectory(child, LinkOption.NOFOLLOW_LINKS);
-            if (event.kind() == ENTRY_CREATE && isDirectory) {
+            if (isDirectory && event.kind() == ENTRY_CREATE) {
                 logger.trace("Detected creation of the new directory={}, will add it to watch", child);
                 registerRecursively(child, watchService);
             }
-            consumer.accept(new FilesystemChangeEvent(this, child.toString(),
-                    isDirectory, EventType.valueOf(event.kind())));
+            consumer.accept(new FilesystemChangeEvent(this, child.toString(), EventType.valueOf(event.kind())));
         }
     }
 

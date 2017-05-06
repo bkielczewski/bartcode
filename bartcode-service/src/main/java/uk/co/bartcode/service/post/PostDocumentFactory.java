@@ -48,7 +48,8 @@ class PostDocumentFactory implements DocumentFactory {
 
     @Override
     public boolean supports(String file) {
-        return StringUtils.startsWithIgnoreCase(file, postPath);
+        return StringUtils.startsWithIgnoreCase(file, postPath)
+                && StringUtils.endsWithIgnoreCase(file, ".md");
     }
 
     @Override

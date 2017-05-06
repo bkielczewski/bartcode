@@ -7,6 +7,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Paths;
+
 import static uk.co.bartcode.service.filesystem.EventType.CREATE;
 
 @Service
@@ -40,7 +44,8 @@ class FilesystemService {
     }
 
     private void handleWatchEvent(FilesystemChangeEvent event) {
-        if (event.isDirectory() && event.getType().equals(CREATE)) {
+        boolean isDirectory = Files.isDirectory(Paths.get(event.getPath()), LinkOption.NOFOLLOW_LINKS);
+        if (isDirectory && event.getType().equals(CREATE)) {
             seekerService.seekFilesByExtension(EXTENSION, event.getPath(), eventPublisher::publishEvent);
         }
         eventPublisher.publishEvent(event);

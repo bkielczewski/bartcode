@@ -26,7 +26,7 @@ class FilesystemSeekerService {
         }
         finder.filesFound
                 .forEach(file -> consumer.accept(
-                        new FilesystemChangeEvent(this, file, false, EventType.CREATE)));
+                        new FilesystemChangeEvent(this, file, EventType.CREATE)));
     }
 
     private static final class Finder implements FileVisitor<Path> {

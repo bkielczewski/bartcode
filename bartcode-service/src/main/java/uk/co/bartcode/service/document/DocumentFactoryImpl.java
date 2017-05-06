@@ -31,7 +31,8 @@ class DocumentFactoryImpl implements DocumentFactory {
 
     @Override
     public boolean supports(String file) {
-        return StringUtils.startsWithIgnoreCase(file, documentPath);
+        return StringUtils.startsWithIgnoreCase(file, documentPath)
+                && StringUtils.endsWithIgnoreCase(file, ".md");
     }
 
     @Override

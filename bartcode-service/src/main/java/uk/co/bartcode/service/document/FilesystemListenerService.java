@@ -29,10 +29,10 @@ class FilesystemListenerService {
     @EventListener(FilesystemChangeEvent.class)
     void onFilesystemChangeEvent(FilesystemChangeEvent event) {
         logger.debug("Handling, event={}", event);
-        if (event.isDirectory() && event.getType().equals(DELETE)) {
+        if (event.getType().equals(DELETE)) {
             logger.trace("Deleting, directory={}", event.getPath());
             documentRepository.deleteByFileStartingWith(event.getPath());
-        } else if (!event.isDirectory() && (event.getType().equals(CREATE) || event.getType().equals(MODIFY))) {
+        } else if (event.getType().equals(CREATE) || event.getType().equals(MODIFY)) {
             documentRepository.getByFile(event.getPath()).ifPresent(document -> {
                 logger.trace("Deleting, id={}", document.getId());
                 documentRepository.delete(document);
@@ -42,11 +42,10 @@ class FilesystemListenerService {
     }
 
     private void doImport(String file) {
-        DocumentFactory documentFactory = documentFactories.stream()
+        documentFactories.stream()
                 .filter(factory -> factory.supports(file))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("No appropriate factory found, file=" + file));
-        documentRepository.save(documentFactory.create(file));
+                .ifPresent(factory -> documentRepository.save(factory.create(file)));
     }
 
 }
