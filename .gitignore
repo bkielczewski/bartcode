@@ -1,7 +1,4 @@
-# data
-/data
-
-# compiled output
+# Compiled output
 /target
 
 # IDEs and editors
@@ -15,6 +12,6 @@
 *.ipr
 *.iws
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
