@@ -14,7 +14,7 @@ class RepositoryRestConfig extends RepositoryRestConfigurerAdapter {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(DatePostCount.class, TagPostCount.class, Post.class);
         config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:4000")
+                .allowedOrigins("http://localhost:4000", "http://localhost:4200")
                 .allowedMethods("GET");
     }
 
