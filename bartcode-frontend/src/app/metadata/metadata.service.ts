@@ -45,11 +45,13 @@ export class MetadataService {
     }
     this.titleService.setTitle(updatedTitle);
     this.metaService.updateTag({ content: updatedTitle }, 'property="og:title"');
+    this.metaService.updateTag({ content: updatedTitle }, 'name="twitter:title"');
   }
 
   private updateDescription(description: string) {
     this.metaService.updateTag({ content: description }, 'name="description"');
     this.metaService.updateTag({ content: description }, 'property="og:description"');
+    this.metaService.updateTag({ content: description }, 'name="twitter:description"');
   }
 
   private updateCanonicalUrl(url: string) {
