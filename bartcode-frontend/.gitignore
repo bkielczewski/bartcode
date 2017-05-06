@@ -32,6 +32,7 @@
 /libpeerconnection.log
 /node
 npm-debug.log
+/target
 testem.log
 /typings
 
