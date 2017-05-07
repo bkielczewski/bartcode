@@ -1,8 +1,8 @@
 @import '../../variables';
 
 .cover {
-  padding-top: 20%;
-  padding-bottom: 20%;
+  padding-top: 14em;
+  padding-bottom: 10em;
   text-align: center;
   color: $text-inverted;
   //noinspection CssUnknownTarget
@@ -26,6 +26,7 @@
     }
 
     @media (max-width: $layout-breakpoint-sm) {
+
       h1 {
         font-size: 3rem;
       }
