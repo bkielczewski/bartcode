@@ -21,7 +21,7 @@ export class PostResolver implements Resolve<Post> {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
         return Observable.throw(err.status == 404 ?
           new NotFoundError('Post Not Found, url=' + relativeUrl) :
-          new Error('Couldn\'t get post, response: ' + err.statusText));
+          new Error('Couldn\'t get post, cause: ' + err));
       });
   }
 

@@ -19,7 +19,7 @@ export class DocumentResolver implements Resolve<Document> {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
         return Observable.throw(err.status == 404 ?
           new NotFoundError('Document Not Found, url=' + relativeUrl) :
-          new Error('Couldn\'t get document, response: ' + err.statusText));
+          new Error('Couldn\'t get document, cause: ' + err));
       });
   }
 
