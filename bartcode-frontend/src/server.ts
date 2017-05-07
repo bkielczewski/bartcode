@@ -12,9 +12,9 @@ import { NotFoundError } from './app/error/errors';
 enableProdMode();
 
 const PORT = process.env.PORT || 4000;
-const dist = join(__dirname, '..', 'dist');
-const documentAssets = join(__dirname, '..', '..', 'data', 'documents', 'assets');
-const postAssets = join(__dirname, '..', '..', 'data', 'posts', 'assets');
+const dist = join(__dirname, '/../dist');
+const documentAssets = join(__dirname, '/../../data/documents/assets');
+const postAssets = join(__dirname, '/../../data/posts/assets');
 
 const builder = new ApplicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
 const application = builder.build();
@@ -47,9 +47,9 @@ const getAbsoluteUri = (request: express.Request): string => {
   });
 };
 
-app.get('/documents/assets/**', express.static(documentAssets));
-app.get('/posts/assets/**', express.static(postAssets));
-app.get('/*.*', express.static(dist));
+app.use("/", express.static(dist));
+app.use("/documents/assets", express.static(documentAssets));
+app.use("/posts/assets", express.static(postAssets));
 
 const appRoutes: Promise<any> = application.discoverRoutes()
   .then(routes => routes
