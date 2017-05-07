@@ -47,16 +47,16 @@ const getAbsoluteUri = (request: express.Request): string => {
   });
 };
 
+app.get('/documents/assets/**', express.static(documentAssets));
+app.get('/posts/assets/**', express.static(postAssets));
+app.get('/*.*', express.static(dist));
+
 const appRoutes: Promise<any> = application.discoverRoutes()
   .then(routes => routes
     .filter(route => route.path)
     .map(route => '/' + route.path.join('/'))
     .forEach(path => app.get(path, cache('5 minutes'), appRouteHandler))
   );
-
-app.get('/documents/assets/**', express.static(documentAssets));
-app.get('/posts/assets/**', express.static(postAssets));
-app.get('/*.*', express.static(dist));
 
 Promise.all([appRoutes]).then(() => {
   app.get('*', (request, response) => response.status(404).send('Page Not Found, url=' + request.originalUrl));
