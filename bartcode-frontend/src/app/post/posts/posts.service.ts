@@ -16,10 +16,10 @@ export class PostsService {
   constructor(private http: Http) {
   }
 
-  getRecentPosts(page?: number, size?: number): Observable<Post> {
+  getRecentPosts(page?: number, size?: number): Observable<Resources<Post>> {
     return this.http.get(environment.serviceUrl + '/posts/search/recent',
       { search: this.getParams(page, size) })
-      .flatMap((response: Response) => this.extractResponseData(response));
+      .map((response: Response) => response.json());
   }
 
   private getParams(page?: number, size?: number, year?: number, month?: number, tag?: string): URLSearchParams {
@@ -38,26 +38,22 @@ export class PostsService {
     return params;
   }
 
-  private extractResponseData(response: Response): Post[] {
-    return (<Resources<Post>> response.json())._embedded['posts'];
-  }
-
-  getPostsByYear(year: number, page?: number, size?: number): Observable<Post> {
+  getPostsByYear(year: number, page?: number, size?: number): Observable<Resources<Post>> {
     return this.http.get(environment.serviceUrl + '/posts/search/year',
       { search: this.getParams(page, size, year) })
-      .flatMap((response: Response) => this.extractResponseData(response));
+      .map((response: Response) => response.json());
   }
 
-  getPostsByYearMonth(year: number, month: number, page?: number, size?: number): Observable<Post> {
+  getPostsByYearMonth(year: number, month: number, page?: number, size?: number): Observable<Resources<Post>> {
     return this.http.get(environment.serviceUrl + '/posts/search/yearMonth',
       { search: this.getParams(page, size, year, month) })
-      .flatMap((response: Response) => this.extractResponseData(response));
+      .map((response: Response) => response.json());
   }
 
-  getPostsByTag(tag: string, page?: number, size?: number): Observable<Post> {
+  getPostsByTag(tag: string, page?: number, size?: number): Observable<Resources<Post>> {
     return this.http.get(environment.serviceUrl + '/posts/search/tag',
       { search: this.getParams(page, size, null, null, tag) })
-      .flatMap((response: Response) => this.extractResponseData(response));
+      .map((response: Response) => response.json());
   }
 
 }

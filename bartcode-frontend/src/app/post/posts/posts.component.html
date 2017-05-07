@@ -29,5 +29,15 @@
         <button md-button routerLink="/{{ post.relativeUrl }}">Read more</button>
       </footer>
     </article>
+
+    <nav fxLayout fxLayoutAlign="space-between center" *ngIf="nextPageUrl || previousPageUrl">
+      <button md-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
+        <i class="material-icons">arrow_back</i> Previous Page
+      </button>
+      <button md-button routerLink="/{{ nextPageUrl }}" [disabled]="!nextPageUrl">
+        Next Page <i class="material-icons">arrow_forward</i>
+      </button>
+    </nav>
   </div>
+
 </main>

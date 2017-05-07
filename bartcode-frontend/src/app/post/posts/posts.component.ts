@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { Post } from '../post';
 import { MetadataService } from '../../metadata/metadata.service';
+import { Resources } from '../../spring-data-rest';
 
 @Component({
   selector: 'app-posts',
@@ -11,6 +12,8 @@ import { MetadataService } from '../../metadata/metadata.service';
 })
 export class PostsComponent implements OnInit {
   posts: Post[] = [];
+  nextPageUrl: string;
+  previousPageUrl: string;
 
   constructor(private route: ActivatedRoute,
               private metadataService: MetadataService,
@@ -18,8 +21,31 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { posts: Post[] }) => this.posts = data.posts);
-    this.route.params.subscribe((params: Params) => this.updateMetadata(params));
+    this.route.data.subscribe((data: RouteData) => this.onUpdate(data));
+    this.route.params.subscribe((params: Params) => this.onParamsUpdate(params));
+  }
+
+  private onUpdate(data: RouteData) {
+    this.posts = data.posts._embedded.posts;
+    this.updatePagingUrls(data);
+  }
+
+  private onParamsUpdate(params: Params) {
+    this.updateMetadata(params);
+  }
+
+  private updatePagingUrls(data: RouteData) {
+    const pageNumber = data.posts.page.number + 1;
+    if (pageNumber < (data.posts.page.totalPages)) {
+      this.nextPageUrl = data.pagingUrl + '/page/' + (pageNumber + 1);
+    } else {
+      this.nextPageUrl = null;
+    }
+    if (pageNumber > 1) {
+      this.previousPageUrl = data.pagingUrl + '/page/' + (pageNumber - 1);
+    } else {
+      this.previousPageUrl = null;
+    }
   }
 
   private updateMetadata(params: Params) {
@@ -33,6 +59,9 @@ export class PostsComponent implements OnInit {
     } else {
       title = 'Blog';
     }
+    if (params['page']) {
+      title += ', page #' + params['page']
+    }
     this.metadataService.updateMetadata(title);
   }
 
@@ -40,4 +69,9 @@ export class PostsComponent implements OnInit {
     return new Date('1900-' + month + '-01').toLocaleString(this.locale, { month: 'long' });
   }
 
+}
+
+interface RouteData {
+  posts: Resources<Post>,
+  pagingUrl: string
 }

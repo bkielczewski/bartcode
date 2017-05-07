@@ -6,19 +6,19 @@ import { Observable } from 'rxjs';
 
 import { PostsService } from './posts.service';
 import { Post } from '../post';
+import { Resources } from '../../spring-data-rest';
 
 @Injectable()
-export class RecentPostsResolver implements Resolve<Post[]> {
+export class RecentPostsResolver implements Resolve<Resources<Post>> {
 
   constructor(private postsService: PostsService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post[]> {
-    return this.postsService.getRecentPosts(route.params['page'], route.params['size'])
-      .toArray()
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resources<Post>> {
+    return this.postsService.getRecentPosts(route.params['page'] - 1, route.params['size'])
       .catch((err: Response) => {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
-        return Observable.throw(new Error('Couldn\'t get recent posts, response: ' + err.statusText));
+        return Observable.throw(new Error('Couldn\'t get recent posts, cause: ' + err));
       });
   }
 
