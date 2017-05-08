@@ -47,9 +47,9 @@ const getAbsoluteUri = (request: express.Request): string => {
   });
 };
 
-app.use("/", express.static(dist));
-app.use("/documents/assets", express.static(documentAssets));
-app.use("/posts/assets", express.static(postAssets));
+app.get('*.*', express.static(dist));
+app.use('/documents/assets', express.static(documentAssets));
+app.use('/posts/assets', express.static(postAssets));
 
 const appRoutes: Promise<any> = application.discoverRoutes()
   .then(routes => routes
