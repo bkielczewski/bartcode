@@ -1,8 +1,8 @@
 @import '../../variables';
 
 .cover {
-  padding-top: 14em;
-  padding-bottom: 10em;
+  padding-top: 14rem;
+  padding-bottom: 10rem;
   text-align: center;
   color: $text-inverted;
   //noinspection CssUnknownTarget
@@ -12,7 +12,7 @@
   .title {
     h1 {
       text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
-      font-size: 5em;
+      font-size: 5rem;
       margin: 0;
       text-transform: full-width;
       font-weight: normal;
@@ -21,7 +21,7 @@
 
     h2 {
       text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
-      padding-bottom: 1em;
+      padding-bottom: 1rem;
       border-bottom: 1px solid;
     }
 
