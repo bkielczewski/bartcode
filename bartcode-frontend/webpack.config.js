@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const ngToolsWebpack = require('@ngtools/webpack');
-const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
 module.exports = {
@@ -12,6 +11,7 @@ module.exports = {
   },
   target: 'node',
   externals: [
+    '@angular/animations',
     '@angular/cli',
     '@angular/common',
     '@angular/compiler',
@@ -25,7 +25,20 @@ module.exports = {
     '@angular/router',
     '@angular/tsc-wrapped',
     '@angular/service-worker',
-    nodeExternals({modulesFromFile: true})
+    'angular-ssr',
+    'apicache',
+    'compression',
+    'express',
+    function (context, request, callback) {
+      const exclusions = [/\@ngrx/, /rxjs/, /zone\.js/, /reflect-metadata/];
+
+      if (exclusions.some(expr => expr.test(request))) {
+        callback(null, `commonjs ${request.replace(/^.*?(\\|\/)node_modules(\\|\/)/, String())}`);
+      }
+      else {
+        callback();
+      }
+    },
   ],
   node: {
     __dirname: true
