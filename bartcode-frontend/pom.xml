@@ -13,12 +13,6 @@
   </parent>
 
   <build>
-    <resources>
-      <resource>
-        <directory>./dist</directory>
-      </resource>
-    </resources>
-
     <plugins>
 
       <!-- Clean -->
@@ -47,22 +41,7 @@
 
       <plugin>
         <groupId>com.spotify</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <dockerDirectory>./src/docker</dockerDirectory>
-          <resources>
-            <resource>
-              <targetPath>/app/dist</targetPath>
-              <directory>./dist</directory>
-              <include>**</include>
-            </resource>
-            <resource>
-              <targetPath>/app/node_modules</targetPath>
-              <directory>./node_modules</directory>
-              <include>**</include>
-            </resource>
-          </resources>
-        </configuration>
+        <artifactId>dockerfile-maven-plugin</artifactId>
       </plugin>
 
       <!-- Frontend -->

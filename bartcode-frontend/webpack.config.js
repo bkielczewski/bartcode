@@ -29,6 +29,7 @@ module.exports = {
     'apicache',
     'compression',
     'express',
+    'hammerjs',
     function (context, request, callback) {
       const exclusions = [/\@ngrx/, /rxjs/, /zone\.js/, /reflect-metadata/];
 

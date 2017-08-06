@@ -17,20 +17,20 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.6.RELEASE</version>
     </parent>
 
     <properties>
-        <branch>none</branch>
-        <build.number>none</build.number>
+        <branch>local</branch>
+        <build.number>unknown</build.number>
         <docker-prefix>bkielczewski</docker-prefix>
-        <docker-maven-plugin.version>0.4.13</docker-maven-plugin.version>
-        <flexmark-java.version>0.19.4</flexmark-java.version>
-        <frontend-maven-plugin.version>1.3</frontend-maven-plugin.version>
-        <guava.version>21.0</guava.version>
+        <dockerfile-maven-plugin.version>1.3.0</dockerfile-maven-plugin.version>
+        <flexmark-java.version>0.22.22</flexmark-java.version>
+        <frontend-maven-plugin.version>1.5</frontend-maven-plugin.version>
+        <guava.version>23.0</guava.version>
         <java.version>1.8</java.version>
-        <logstash-logback-encoder.version>4.9</logstash-logback-encoder.version>
-        <nodejs.version>v7.10.0</nodejs.version>
+        <logstash-logback-encoder.version>4.11</logstash-logback-encoder.version>
+        <nodejs.version>v8.2.1</nodejs.version>
     </properties>
 
     <dependencyManagement>
@@ -79,25 +79,50 @@
 
                 <plugin>
                     <groupId>com.spotify</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker-maven-plugin.version}</version>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${dockerfile-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>tag-version</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${project.version}</tag>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>tag-branch</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${branch}</tag>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>tag-branch-build</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${branch}-build-${build.number}</tag>
+                            </configuration>
+                        </execution>
+                    </executions>
                     <configuration>
-                        <useConfigFile>true</useConfigFile>
-                        <imageName>${docker-prefix}/${project.artifactId}</imageName>
-                        <dockerDirectory>src/main/docker</dockerDirectory>
-                        <forceTags>true</forceTags>
-                        <imageTags>
-                            <imageTag>${project.version}</imageTag>
-                            <imageTag>${branch}</imageTag>
-                            <imageTag>${branch}-build-${build.number}</imageTag>
-                        </imageTags>
-                        <resources>
-                            <resource>
-                                <targetPath>/</targetPath>
-                                <directory>${project.build.directory}</directory>
-                                <include>${project.build.finalName}.jar</include>
-                            </resource>
-                        </resources>
+                        <repository>${docker-prefix}/${project.artifactId}</repository>
                     </configuration>
                 </plugin>
 
@@ -110,10 +135,19 @@
                 </plugin>
 
             </plugins>
-
         </pluginManagement>
 
         <plugins>
+
+            <!-- Deploy -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
 
             <!-- Versions -->
 

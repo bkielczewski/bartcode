@@ -1,22 +1,21 @@
 import { enableProdMode } from '@angular/core';
-import { ApplicationBuilderFromModuleFactory } from 'angular-ssr';
 import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
+
+import { applicationBuilderFromModuleFactory } from 'angular-ssr';
 
 import { join } from 'path';
 import * as express from 'express';
 import * as url from 'url';
 import * as compression from 'compression';
 import * as apicache from 'apicache';
-import { NotFoundError } from './app/error/errors';
 
 enableProdMode();
 
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 const dist = join(__dirname, '/../dist');
 const documentAssets = join(__dirname, '/../../data/documents/assets');
 const postAssets = join(__dirname, '/../../data/posts/assets');
-
-const builder = new ApplicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
+const builder = applicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
 const application = builder.build();
 const cache = apicache.middleware;
 const app = express();
@@ -30,12 +29,8 @@ const appRouteHandler = async (request, response) => {
     response.send(snapshot.renderedDocument);
   }
   catch (error) {
-    if (error instanceof NotFoundError) {
-      response.status(404).send(error.message);
-    } else {
-      console.error(error.message);
-      response.status(500).send(error.message);
-    }
+    console.error(error.message);
+    response.status(500).send(error.message);
   }
 };
 
@@ -60,7 +55,8 @@ const appRoutes: Promise<any> = application.discoverRoutes()
 
 Promise.all([appRoutes]).then(() => {
   app.get('*', (request, response) => response.status(404).send('Page Not Found, url=' + request.originalUrl));
-  app.listen(PORT, () => {
-    console.log(`listening on http://localhost:${PORT}!`);
+  app.listen(port, () => {
+    console.log(`listening on http://localhost:${port}!`);
   })
 });
+

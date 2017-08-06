@@ -1,8 +1,9 @@
-FROM node:7
+FROM node:8
+
 EXPOSE 4000
 
-VOLUME /data
-ADD /app /app
+COPY ./dist /app
+COPY ./node_modules /app
 
 WORKDIR /app
 CMD ["node", "./dist/server.js"]
