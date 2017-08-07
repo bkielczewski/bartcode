@@ -1,6 +1,9 @@
 @import '../../variables';
 
 .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-top: 14rem;
   padding-bottom: 10rem;
   text-align: center;
@@ -26,7 +29,6 @@
     }
 
     @media (max-width: $layout-breakpoint-sm) {
-
       h1 {
         font-size: 3rem;
       }
@@ -36,4 +38,28 @@
     }
   }
 
+}
+
+.content {
+  & > * {
+    flex: 1 1 50%;
+  }
+
+  @media (max-width: $layout-breakpoint-sm) {
+    & > * {
+      flex: 1 1 50%;
+    }
+  }
+}
+
+@media (max-width: $layout-breakpoint-sm) {
+  [appAdsense] {
+    .adsense {
+      display: none;
+    }
+
+    .adsense:first-child {
+      display: block;
+    }
+  }
 }

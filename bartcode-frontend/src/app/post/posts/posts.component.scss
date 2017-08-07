@@ -2,21 +2,38 @@
 
 main {
   aside {
+    order: 1;
     padding-right: 10rem;
 
     @media (max-width: $layout-breakpoint-sm) {
       padding-right: 0;
+      order: 2;
     }
   }
 
-  article {
-    width: 100%;
-    footer {
-      text-align: right;
-    }
-  }
+  & > div {
+    order: 2;
 
-  nav {
-    padding: 2rem 0 2rem 0;
+    article {
+      width: 100%;
+      footer {
+        text-align: right;
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 0 2rem 0;
+    }
+
+    @media (max-width: $layout-breakpoint-sm) {
+      order: 1;
+
+      .adsense {
+        display: none;
+      }
+    }
   }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdButtonModule } from '@angular/material';
 
 import { MetadataModule } from '../metadata/metadata.module';
@@ -28,7 +27,6 @@ import { PostHeaderComponent } from './post-header/post-header.component';
     CommonModule,
     HttpModule,
     PostRoutingModule,
-    FlexLayoutModule,
     MdButtonModule,
     MetadataModule,
     AdsenseModule,

@@ -50,9 +50,16 @@ pre {
 }
 
 .content {
+  display: flex;
+  justify-content: space-between;
   width: $layout-breakpoint-lg;
   line-height: 1.5rem;
   margin: auto;
+
+  @media (max-width: $layout-breakpoint-sm) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 
   @media (max-width: $layout-breakpoint-lg) {
     width: 100%;

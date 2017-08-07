@@ -7,8 +7,17 @@ md-toolbar {
   z-index: 2;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.44);
 
-  img {
-    padding-right: 1rem;
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      padding-right: 1rem;
+    }
+  }
+
+  .spacer {
+    flex: 1 1;
   }
 
   a {
@@ -17,4 +26,17 @@ md-toolbar {
       text-decoration: none;
     }
   }
+
+  @media (max-width: $layout-breakpoint-sm) {
+    .content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo, .spacer {
+      display: none;
+    }
+  }
+
 }

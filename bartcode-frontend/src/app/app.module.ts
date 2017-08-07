@@ -2,8 +2,9 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdButtonModule, MdToolbarModule } from '@angular/material';
+import { MdButtonModule, MdIconModule, MdToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './error/error.component';
@@ -15,8 +16,6 @@ import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentModule } from './document/document.module';
 import { AdsenseModule } from './adsense/adsense.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -32,9 +31,9 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     FormsModule,
     HttpModule,
-    FlexLayoutModule,
-    MdToolbarModule,
     MdButtonModule,
+    MdIconModule,
+    MdToolbarModule,
     AppRoutingModule,
     PostModule,
     DocumentModule,

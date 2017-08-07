@@ -1,8 +1,20 @@
+@import "../../../variables";
+
 main {
   aside {
+    order: 1;
+
+    @media (max-width: $layout-breakpoint-sm) {
+      order: 2;
+
+      .adsense {
+        display: none;
+      }
+    }
   }
 
   article {
+    order: 2;
     width: 100%;
 
     header {
@@ -12,6 +24,14 @@ main {
     }
     footer {
       padding-top: 2rem;
+    }
+
+    @media (max-width: $layout-breakpoint-sm) {
+      order: 1;
+
+      .adsense:first-child {
+        display: none;
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
-<main appAdsense fxLayout="column" fxLayout.gt-sm fxLayoutAlign.gt-sm="space-between top" class="content full-page">
+<main appAdsense class="content full-page">
 
-  <aside fxFlexOrder="2" fxFlexOrder.gt-sm="1" fxFlexAlign.gt-sm="stretch">
+  <aside>
     <app-date-post-count></app-date-post-count>
 
     <div class="adsense">
@@ -11,8 +11,8 @@
     </div>
   </aside>
 
-  <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-sm="2">
-    <div class="adsense" fxHide fxShow.gt-sm>
+  <div>
+    <div class="adsense">
       <ins class="adsbygoogle"
            style="width:728px;height:90px"
            data-ad-client="ca-pub-9090328787535038"
@@ -30,7 +30,7 @@
       </footer>
     </article>
 
-    <nav fxLayout fxLayoutAlign="space-between center" *ngIf="nextPageUrl || previousPageUrl">
+    <nav *ngIf="nextPageUrl || previousPageUrl">
       <button md-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
         <i class="material-icons">arrow_back</i> Previous Page
       </button>
