@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Post } from '../shared/post';
 
 @Component({
@@ -6,15 +6,9 @@ import { Post } from '../shared/post';
   templateUrl: './post-header.component.html',
   styleUrls: ['./post-header.component.scss']
 })
-export class PostHeaderComponent implements OnInit {
+export class PostHeaderComponent {
 
   @Input()
   post: Post;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }
