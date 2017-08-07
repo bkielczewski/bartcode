@@ -7,11 +7,8 @@ build:
   cache: true
 
   ci:
-   - mvn clean install -q
-
-  post_ci:
-    - (cd ./bartcode-service; mvn -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} docker:build docker:push -q)
-    - (cd ./bartcode-frontend; mvn -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} docker:build docker:push -q)
+   - sed -ie 's/https:\/\///g' ~/.docker/config.json
+   - mvn clean deploy -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} -q
 
 integrations:
     hub:
