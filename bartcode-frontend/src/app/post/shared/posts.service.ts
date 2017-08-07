@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs';
-import { Resources } from '../../spring-data-rest';
-import { Post } from '../post';
+import { Resources } from '../../shared/spring-data-rest';
+import { Post } from './post';
 
 import { environment } from '../../../environments/environment';
 

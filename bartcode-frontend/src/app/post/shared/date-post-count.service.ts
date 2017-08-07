@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { DatePostCount } from './date-post-count';
-import { Resources } from '../../spring-data-rest';
+import { Resources } from '../../shared/spring-data-rest';
 
 import { environment } from '../../../environments/environment';
 

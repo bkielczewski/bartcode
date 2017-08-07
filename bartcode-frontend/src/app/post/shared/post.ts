@@ -1,4 +1,4 @@
-import { Document } from '../document/document';
+import { Document } from '../../document/shared/document';
 
 export interface Post extends Document {
 

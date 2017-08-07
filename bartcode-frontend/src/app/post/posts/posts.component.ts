@@ -1,9 +1,9 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Post } from '../post';
+import { Post } from '../shared/post';
 import { MetadataService } from '../../metadata/metadata.service';
-import { Resources } from '../../spring-data-rest';
+import { Resources } from '../../shared/spring-data-rest';
 
 @Component({
   selector: 'app-posts',

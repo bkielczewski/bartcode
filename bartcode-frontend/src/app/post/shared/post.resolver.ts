@@ -4,9 +4,9 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 
 import { Observable } from 'rxjs';
 
-import { Post } from '../post';
+import { Post } from './post';
 import { PostService } from './post.service';
-import { NotFoundError } from '../../error/errors';
+import { NotFoundError } from '../../shared/not-found-error';
 
 @Injectable()
 export class PostResolver implements Resolve<Post> {

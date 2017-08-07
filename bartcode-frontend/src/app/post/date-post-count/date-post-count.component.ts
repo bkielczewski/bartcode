@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePostCountService } from './date-post-count.service';
-import { DatePostCount } from './date-post-count';
+import { DatePostCountService } from '../shared/date-post-count.service';
+import { DatePostCount } from '../shared/date-post-count';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

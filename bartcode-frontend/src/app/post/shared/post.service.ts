@@ -3,7 +3,7 @@ import { Http, Response, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs';
 
-import { Post } from '../post';
+import { Post } from './post';
 
 import { environment } from '../../../environments/environment';
 

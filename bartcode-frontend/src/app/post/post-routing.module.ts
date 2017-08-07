@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PagingUrlResolver } from './posts/paging-url.resolver';
+import { PagingUrlResolver } from './shared/paging-url.resolver';
 import { PostComponent } from './post/post.component';
-import { PostResolver } from './post/post.resolver';
-import { PostService } from './post/post.service';
+import { PostResolver } from './shared/post.resolver';
+import { PostService } from './shared/post.service';
 import { PostsComponent } from './posts/posts.component';
-import { PostsService } from './posts/posts.service';
-import { RecentPostsResolver } from './posts/recent-posts.resolver';
-import { TagPostsResolver } from './posts/tag-posts.resolver';
-import { YearMonthPostsResolver } from './posts/year-month-posts.resolver';
-import { YearPostsResolver } from './posts/year-posts.resolver';
+import { PostsService } from './shared/posts.service';
+import { RecentPostsResolver } from './shared/recent-posts.resolver';
+import { TagPostsResolver } from './shared/tag-posts.resolver';
+import { YearMonthPostsResolver } from './shared/year-month-posts.resolver';
+import { YearPostsResolver } from './shared/year-posts.resolver';
 import { year, yearMonth } from './post-routing-url-matchers';
 
 const routes: Routes = [

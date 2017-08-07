@@ -5,8 +5,8 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs';
 
 import { PostsService } from './posts.service';
-import { Post } from '../post';
-import { Resources } from '../../spring-data-rest';
+import { Post } from './post';
+import { Resources } from '../../shared/spring-data-rest';
 
 @Injectable()
 export class YearMonthPostsResolver implements Resolve<Resources<Post>> {

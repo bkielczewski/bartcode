@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { TagPostCount } from './tag-post-count';
-import { Resources } from '../../spring-data-rest';
+import { Resources } from '../../shared/spring-data-rest';
 
 @Injectable()
 export class TagPostCountService {

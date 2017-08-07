@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-import { Post } from '../post';
+import { Post } from '../shared/post';
 import { MetadataService } from '../../metadata/metadata.service';
 
 @Component({

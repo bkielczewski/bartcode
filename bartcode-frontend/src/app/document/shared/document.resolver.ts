@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Document } from './document';
 import { Observable } from 'rxjs';
 import { DocumentService } from './document.service';
-import { NotFoundError } from '../error/errors';
+import { NotFoundError } from '../../shared/not-found-error';
 
 @Injectable()
 export class DocumentResolver implements Resolve<Document> {

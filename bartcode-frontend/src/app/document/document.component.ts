@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Document } from './document';
+import { Document } from './shared/document';
 import { MetadataService } from '../metadata/metadata.service';
 
 @Component({

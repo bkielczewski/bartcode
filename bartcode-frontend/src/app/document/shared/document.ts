@@ -1,5 +1,5 @@
 import { SafeHtml } from '@angular/platform-browser';
-import { Metadata } from '../metadata/metadata';
+import { Metadata } from '../../metadata/metadata';
 
 export interface Document {
 

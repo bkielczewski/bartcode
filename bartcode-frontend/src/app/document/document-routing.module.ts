@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DocumentService } from './document.service';
+import { DocumentService } from './shared/document.service';
 import { DocumentComponent } from './document.component';
-import { DocumentResolver } from './document.resolver';
+import { DocumentResolver } from './shared/document.resolver';
 
 const routes: Routes = [
   {

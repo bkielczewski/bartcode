@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TagPostCountService } from './tag-post-count.service';
-import { TagPostCount } from './tag-post-count';
+import { TagPostCountService } from '../shared/tag-post-count.service';
+import { TagPostCount } from '../shared/tag-post-count';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

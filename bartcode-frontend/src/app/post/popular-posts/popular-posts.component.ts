@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PopularPostsService } from './popular-posts.service';
-import { Post } from '../post';
+import { PopularPostsService } from '../shared/popular-posts.service';
+import { Post } from '../shared/post';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

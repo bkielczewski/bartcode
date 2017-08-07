@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 declare const window: any;
 declare const FB: any;
