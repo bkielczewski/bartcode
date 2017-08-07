@@ -8,6 +8,7 @@ import * as express from 'express';
 import * as url from 'url';
 import * as compression from 'compression';
 import * as apicache from 'apicache';
+import { NotFoundError } from './app/shared/not-found-error';
 
 enableProdMode();
 
@@ -29,8 +30,12 @@ const appRouteHandler = async (request, response) => {
     response.send(snapshot.renderedDocument);
   }
   catch (error) {
-    console.error(error.message);
-    response.status(500).send(error.message);
+    if (error instanceof NotFoundError) {
+      response.status(404).send(error.message);
+    } else {
+      console.error(error.message);
+      response.status(500).send(error.message);
+    }
   }
 };
 
