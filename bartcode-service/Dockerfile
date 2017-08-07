@@ -4,7 +4,7 @@ EXPOSE 8080
 
 VOLUME /app/logs
 
-ADD ./bartcode-service-*.jar /app/app.jar
+COPY ./target/bartcode-service-*.jar /app/app.jar
 
 WORKDIR /app
 RUN bash -c 'touch ./app.jar'
