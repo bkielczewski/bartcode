@@ -7,7 +7,6 @@ build:
   cache: true
 
   ci:
-   - sed -ie 's/https:\/\///g' ~/.docker/config.json
    - mvn clean deploy -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} -q
 
 integrations:
