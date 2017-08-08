@@ -3,11 +3,14 @@
 main {
   aside {
     order: 1;
-    padding-right: 10rem;
+    min-width: 25%;
 
     @media (max-width: $layout-breakpoint-sm) {
-      padding-right: 0;
       order: 2;
+
+      .adsense {
+        display: none;
+      }
     }
   }
 

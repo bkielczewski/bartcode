@@ -3,6 +3,7 @@
 main {
   aside {
     order: 1;
+    min-width: 25%;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
