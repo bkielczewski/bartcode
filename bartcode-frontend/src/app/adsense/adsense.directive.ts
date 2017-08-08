@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, Inject } from '@angular/core';
+import { AfterViewInit, Directive, Inject, NgZone } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 declare const adsbygoogle: any;
@@ -8,17 +8,21 @@ declare const adsbygoogle: any;
 })
 export class AdsenseDirective implements AfterViewInit {
 
-  constructor(@Inject(DOCUMENT) private document) {
+  constructor(@Inject(DOCUMENT) private document, private zone: NgZone) {
   }
 
   ngAfterViewInit(): void {
     if (this.document && typeof adsbygoogle !== 'undefined') {
       const units = this.document.querySelectorAll('.adsbygoogle');
-      for (let i = 0; i < units.length; i++) {
-        try {
-          adsbygoogle.push({});
-        } catch (ignore) {
-        }
+      this.zone.runOutsideAngular(() => this.requestAds(units.length));
+    }
+  }
+
+  private requestAds(count: number) {
+    for (let i = 0; i < count; i++) {
+      try {
+        adsbygoogle.push({});
+      } catch (ignore) {
       }
     }
   }
