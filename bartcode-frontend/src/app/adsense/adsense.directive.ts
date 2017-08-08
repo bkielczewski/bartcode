@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 declare const adsbygoogle: any;
 
@@ -15,7 +15,10 @@ export class AdsenseDirective implements AfterViewInit {
     if (this.document && typeof adsbygoogle !== 'undefined') {
       const units = this.document.querySelectorAll('.adsbygoogle');
       for (let i = 0; i < units.length; i++) {
-        adsbygoogle.push({});
+        try {
+          adsbygoogle.push({});
+        } catch (ignore) {
+        }
       }
     }
   }
