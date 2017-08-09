@@ -1,8 +1,19 @@
+@import "../../../variables";
+
 ul {
   list-style-type: none;
   padding: 0;
   li {
     display: inline-block;
     padding: 5px;
+  }
+
+  a.active {
+    color: $text-primary;
+    border-bottom: 1px dotted $text-primary;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

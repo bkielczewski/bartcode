@@ -1,15 +1,19 @@
 @import '../../variables';
 
 footer {
-  min-height: 150px;
-  background-color: $background-100;
-  color: $text-inverted;
+  background-color: $background-300;
+  color: $text-muted;
   padding: 2rem 0 2rem 0;
+  font-size: smaller;
 
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
+
+  a {
+    color: $text-muted;
+  }
 
   .content {
     ul {
@@ -18,9 +22,6 @@ footer {
       li {
         img {
           padding-right: 1rem;
-        }
-        a {
-          color: $text-inverted;
         }
         &.github {
           display: flex;

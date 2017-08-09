@@ -1,5 +1,6 @@
 <ul>
   <li *ngFor="let tagCount of tagCounts">
-    <a routerLink="/tag/{{ tagCount.tag }}" [style.font-size.rem]="getFontSize(tagCount)">{{ tagCount.tag }}</a>
+    <a routerLinkActive="active" routerLink="/tag/{{ tagCount.tag }}" [style.font-size.rem]="getFontSize(tagCount)">{{
+      tagCount.tag }}</a>
   </li>
 </ul>

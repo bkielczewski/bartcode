@@ -4,12 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 14rem;
-  padding-bottom: 10rem;
+  padding-top: 15rem;
+  padding-bottom: 15rem;
+  margin-bottom: 1rem;
   text-align: center;
   color: $text-inverted;
   //noinspection CssUnknownTarget
-  background: url('/assets/4.png') $background-100 no-repeat center center;
+  background: url('/assets/planes.jpg') $background-300 no-repeat center center;
   background-size: cover;
 
   .title {
