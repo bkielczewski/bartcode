@@ -1,7 +1,6 @@
 import { AfterViewInit, Directive, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-declare const window: any;
 declare const FB: any;
 
 @Directive({
@@ -13,8 +12,8 @@ export class XfbmlDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.document && window && FB) {
-      window.fbAsyncInit = FB.XFBML.parse();
+    if (this.document && FB != null) {
+      this.document.fbAsyncInit = FB.XFBML.parse();
     }
   }
 
