@@ -6,8 +6,7 @@ import { MetadataService } from '../metadata/metadata.service';
 
 @Component({
   selector: 'app-document',
-  templateUrl: './document.component.html',
-  styleUrls: ['./document.component.scss']
+  templateUrl: './document.component.html'
 })
 export class DocumentComponent implements OnInit {
 

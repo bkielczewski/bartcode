@@ -6,8 +6,12 @@ import { HljsDirective } from './hljs.directive';
   imports: [
     CommonModule,
   ],
-  declarations: [HljsDirective],
-  exports: [HljsDirective]
+  declarations: [
+    HljsDirective
+  ],
+  exports: [
+    HljsDirective
+  ]
 })
 export class HljsModule {
 }

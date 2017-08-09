@@ -9,9 +9,18 @@ const routes: Routes = [
     path: 'privacy-and-cookies',
     component: DocumentComponent,
     pathMatch: 'full',
-    resolve: { document: DocumentResolver }
+    resolve: {
+      document: DocumentResolver
+    }
   },
-  { path: 'about', component: DocumentComponent, pathMatch: 'full', resolve: { document: DocumentResolver } }
+  {
+    path: 'about',
+    component: DocumentComponent,
+    pathMatch: 'full',
+    resolve: {
+      document: DocumentResolver
+    }
+  }
 ];
 
 @NgModule({

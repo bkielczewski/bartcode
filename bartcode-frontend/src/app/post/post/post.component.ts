@@ -11,6 +11,7 @@ import { MetadataService } from '../../metadata/metadata.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+
   post: Post;
 
   constructor(private route: ActivatedRoute,

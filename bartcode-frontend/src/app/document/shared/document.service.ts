@@ -16,6 +16,6 @@ export class DocumentService {
     const params: URLSearchParams = new URLSearchParams();
     params.set('relativeUrl', relativeUrl);
     return this.http.get(environment.serviceUrl + '/documents/search/relativeUrl', { search: params })
-      .map((response: Response) => (<Document> response.json()));
+      .map((response: Response) => <Document> response.json());
   }
 }

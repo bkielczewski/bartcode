@@ -12,7 +12,7 @@ export class AdsenseDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.document && typeof adsbygoogle !== 'undefined') {
+    if (this.document && adsbygoogle) {
       const units = this.document.querySelectorAll('.adsbygoogle');
       this.zone.runOutsideAngular(() => this.requestAds(units.length));
     }
