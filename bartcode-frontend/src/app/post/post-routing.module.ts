@@ -51,24 +51,6 @@ const routes: Routes = [
     }
   },
   {
-    path: ':year/:month/:slug',
-    component: PostComponent,
-    pathMatch: 'full',
-    resolve: {
-      post: PostResolver,
-      pagingUrl: PagingUrlResolver
-    }
-  },
-  {
-    path: ':year/:month/:slug/page/:page',
-    component: PostComponent,
-    pathMatch: 'full',
-    resolve: {
-      post: PostResolver,
-      pagingUrl: PagingUrlResolver
-    }
-  },
-  {
     path: 'tag/:tag',
     component: PostsComponent,
     pathMatch: 'full',
@@ -83,6 +65,15 @@ const routes: Routes = [
     pathMatch: 'full',
     resolve: {
       posts: TagPostsResolver,
+      pagingUrl: PagingUrlResolver
+    }
+  },
+  {
+    path: ':year/:month/:slug',
+    component: PostComponent,
+    pathMatch: 'full',
+    resolve: {
+      post: PostResolver,
       pagingUrl: PagingUrlResolver
     }
   }
