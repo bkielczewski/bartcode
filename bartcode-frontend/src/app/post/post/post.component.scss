@@ -3,10 +3,13 @@
 main {
   aside {
     order: 1;
-    min-width: 25%;
+    max-width: 33%;
+    padding-right: 2rem;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
+      max-width: none;
+      padding-right: 0;
 
       .adsense {
         display: none;
@@ -25,6 +28,13 @@ main {
     }
     footer {
       padding-top: 2rem;
+    }
+
+    .notice {
+      color: $text-muted;
+      background: rgb(255, 254, 141);
+      border: 1px solid $text-muted;
+      padding: 1rem;
     }
 
     @media (max-width: $layout-breakpoint-sm) {

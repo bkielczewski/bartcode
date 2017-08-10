@@ -3,10 +3,14 @@
 main {
   aside {
     order: 1;
-    min-width: 25%;
+    max-width: 33%;
+    padding-right: 2rem;
+    color: $text-muted;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
+      max-width: none;
+      padding-right: 0;
 
       .adsense {
         display: none;
@@ -19,6 +23,9 @@ main {
 
     article {
       width: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-bottom: 1rem;
       footer {
         text-align: right;
       }

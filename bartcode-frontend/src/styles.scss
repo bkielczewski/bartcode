@@ -1,13 +1,13 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '../node_modules/highlight.js/styles/default.css';
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons');
 @import 'variables';
 
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: $text-primary;
 }
 
