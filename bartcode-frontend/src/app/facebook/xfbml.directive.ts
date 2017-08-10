@@ -12,7 +12,7 @@ export class XfbmlDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.document && FB != null) {
+    if (this.document && typeof FB !== 'undefined') {
       this.document.fbAsyncInit = FB.XFBML.parse();
     }
   }
