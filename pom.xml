@@ -87,7 +87,6 @@
                             <phase>deploy</phase>
                             <goals>
                                 <goal>build</goal>
-                                <goal>push</goal>
                             </goals>
                         </execution>
                         <execution>
@@ -115,6 +114,36 @@
                             <phase>deploy</phase>
                             <goals>
                                 <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${branch}-build-${build.number}</tag>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-tag-version</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${project.version}</tag>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-tag-branch</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${branch}</tag>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-tag-branch-build</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
                             </goals>
                             <configuration>
                                 <tag>${branch}-build-${build.number}</tag>
