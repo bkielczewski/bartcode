@@ -2,7 +2,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdIconModule, MdToolbarModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -26,14 +26,14 @@ import { AdsenseModule } from './adsense/adsense.module';
     NavbarComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'bartcode-frontend' }),
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     HttpModule,
-    MdButtonModule,
-    MdIconModule,
-    MdToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
     AppRoutingModule,
     PostModule,
     DocumentModule,

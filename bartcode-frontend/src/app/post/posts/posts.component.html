@@ -30,15 +30,15 @@
       <section [innerHtml]="post.excerpt">
       </section>
       <footer>
-        <button md-button routerLink="/{{ post.relativeUrl }}">Read more</button>
+        <button mat-button routerLink="/{{ post.relativeUrl }}">Read more</button>
       </footer>
     </article>
 
     <nav *ngIf="nextPageUrl || previousPageUrl">
-      <button md-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
+      <button mat-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
         <i class="material-icons">arrow_back</i> Previous Page
       </button>
-      <button md-button routerLink="/{{ nextPageUrl }}" [disabled]="!nextPageUrl">
+      <button mat-button routerLink="/{{ nextPageUrl }}" [disabled]="!nextPageUrl">
         Next Page <i class="material-icons">arrow_forward</i>
       </button>
     </nav>
