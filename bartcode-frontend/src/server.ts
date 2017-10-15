@@ -1,67 +1,31 @@
-import { enableProdMode } from '@angular/core';
-import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+import { ngExpressEngine } from '@nguniversal/express-engine';
 
-import { applicationBuilderFromModuleFactory } from 'angular-ssr';
-
-import { join } from 'path';
 import * as express from 'express';
-import * as url from 'url';
 import * as compression from 'compression';
-import * as apicache from 'apicache';
-import { NotFoundError } from './app/shared/not-found-error';
+import { join } from 'path';
 
-enableProdMode();
+const PORT = 4000;
+const DIST = join(process.cwd(), 'dist');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/main.bundle');
+const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
 
-const port = process.env.PORT || 4000;
-const dist = join(__dirname, '/../dist');
-const documentAssets = join(__dirname, '/../../data/documents/assets');
-const postAssets = join(__dirname, '/../../data/posts/assets');
-const builder = applicationBuilderFromModuleFactory(AppModuleNgFactory, join(dist, 'index.html'));
-const application = builder.build();
-const cache = apicache.middleware;
 const app = express();
 
 app.use(compression());
 
-const appRouteHandler = async (request, response) => {
-  try {
-    const uri = getAbsoluteUri(request);
-    const snapshot = await application.renderUri(uri);
-    response.send(snapshot.renderedDocument);
-  }
-  catch (error) {
-    if (error instanceof NotFoundError) {
-      response.status(404).send(error.message);
-    } else {
-      console.error(error.message);
-      response.status(500).send(error.message);
-    }
-  }
-};
+app.engine('html', ngExpressEngine({
+  bootstrap: AppServerModuleNgFactory,
+  providers: [
+    provideModuleMap(LAZY_MODULE_MAP)
+  ]
+}));
 
-const getAbsoluteUri = (request: express.Request): string => {
-  return url.format({
-    protocol: request.protocol,
-    host: request.get('host'),
-    pathname: request.originalUrl
-  });
-};
-
-app.get('/documents/assets/**', express.static(documentAssets));
-app.get('/posts/assets/**', express.static(postAssets));
-app.get('*.*', express.static(dist));
-
-const appRoutes: Promise<any> = application.discoverRoutes()
-  .then(routes => routes
-    .filter(route => route.path)
-    .map(route => '/' + route.path.join('/'))
-    .forEach(path => app.get(path, cache('5 minutes'), appRouteHandler))
-  );
-
-Promise.all([appRoutes]).then(() => {
-  app.get('*', (request, response) => response.status(404).send('Page Not Found, url=' + request.originalUrl));
-  app.listen(port, () => {
-    console.log(`listening on http://localhost:${port}!`);
-  })
+app.set('view engine', 'html');
+app.set('views', join(DIST, 'browser'));
+app.get('*.*', express.static(join(DIST, 'browser'), { maxage: '1y' }));
+app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), { req }));
+app.listen(PORT, () => {
+  console.log(`Express server listening on http://localhost:${PORT}`);
 });
-

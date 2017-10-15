@@ -5,30 +5,30 @@
   "scripts": {
     "ng": "ng",
     "start": "node ./dist/server.js",
+    "build": "npm run build:browser-bundle && npm run build:server-bundle && npm run build:server",
+    "build:server-bundle": "ng build --aot --prod --extract-css=false",
+    "build:browser-bundle": "ng build --aot --prod --app server --output-hashing=none",
+    "build:server": "webpack --config ./webpack.server.config.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build": "npm run build:browser-bundle && npm run build:server-bundle && npm run build:server",
-    "build:server-bundle": "ng build --aot --prod",
-    "build:browser-bundle": "ng build --aot --prod --app server --output-hashing=none",
-    "build:server": "webpack --config ./webpack.server.config.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.4.5",
-    "@angular/cdk": "^2.0.0-beta.11",
     "@angular/common": "^4.4.5",
     "@angular/compiler": "^4.4.5",
     "@angular/core": "^4.4.5",
     "@angular/forms": "^4.4.5",
     "@angular/http": "^4.4.5",
-    "@angular/material": "^2.0.0-beta.11",
+    "@angular/material": "^2.0.0-beta.12",
     "@angular/platform-browser": "^4.4.5",
     "@angular/platform-browser-dynamic": "^4.4.5",
     "@angular/platform-server": "^4.4.5",
     "@angular/router": "^4.4.5",
     "@nguniversal/express-engine": "^1.0.0-beta.3",
     "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
+    "compression": "^1.7.1",
     "core-js": "^2.5.1",
     "express": "^4.15",
     "hammerjs": "^2.0.8",
@@ -38,6 +38,7 @@
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
+    "@angular/cdk": "^2.0.0-beta.12",
     "@angular/cli": "1.4.7",
     "@angular/compiler-cli": "^4.4.5",
     "@angular/language-service": "^4.4.5",
@@ -58,8 +59,10 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "ts-loader": "^2.3.7",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.3.3"
+    "typescript": "~2.3.3",
+    "webpack": "^3.7.1"
   }
 }
