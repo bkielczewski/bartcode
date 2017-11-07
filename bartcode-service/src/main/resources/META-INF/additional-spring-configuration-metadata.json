@@ -1,24 +1,23 @@
 {
   "properties": [
     {
-      "name": "application.base-url",
-      "type": "java.lang.String",
-      "description": "Base url for the website"
-    },
-    {
       "name": "application.data-path",
       "type": "java.lang.String",
-      "description": "Path where all files are kept"
+      "description": "Path to main data directory."
     },
     {
-      "name": "application.document-path",
+      "name": "application.articles-path",
       "type": "java.lang.String",
-      "description": "Path where documents are kept"
+      "description": "Path to articles."
     },
     {
-      "name": "application.post-path",
+      "name": "application.posts-path",
       "type": "java.lang.String",
-      "description": "Path where posts are kept"
+      "description": "Path to posts."
+    },
+    {
+      "name": "application.base-url",
+      "type": "java.lang.String",
+      "description": "Base url for all the content."
     }
-  ]
-}
+  ] }

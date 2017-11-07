@@ -1,0 +1,3 @@
+include 'bartcode-frontend'
+include 'bartcode-service'
+

@@ -7,9 +7,12 @@ build:
   cache: true
 
   ci:
-   - mvn clean deploy -Dbranch=${BRANCH} -Dbuild.number=${BUILD_NUMBER} -q
+    - ./gradlew build
+
+  post_ci:
+    - ./deploy_docker.sh bkielczewski/bartcode-service ./bartcode-service
 
 integrations:
-    hub:
-      - integrationName: docker
-        type: "Docker"
+  hub:
+    - integrationName: docker
+      type: "Docker"
