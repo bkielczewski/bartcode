@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-
 import { Observable } from 'rxjs/Observable';
-
 import { PostsService } from './posts.service';
 import { Post } from './post';
 import { Resources } from '../../shared/spring-data-rest';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PageableUtils } from '../../shared/pageable';
 
 @Injectable()
 export class YearPostsResolver implements Resolve<Resources<Post>> {
@@ -15,8 +14,8 @@ export class YearPostsResolver implements Resolve<Resources<Post>> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resources<Post>> {
-    return this.postsService.getPostsByYear(route.params['year'], route.params['page'] - 1, route.params['size'])
-      .catch((err: Response) => {
+    return this.postsService.getPostsByYear(route.params['year'], PageableUtils.fromPage(route.params['page'] - 1, route.params['size']))
+      .catch((err: HttpErrorResponse) => {
         this.router.navigate(['/error'], { queryParams: { code: err.status } });
         return Observable.throw(new Error('Couldn\'t get posts by year, cause: ' + err));
       });

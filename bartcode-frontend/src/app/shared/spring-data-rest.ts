@@ -10,3 +10,11 @@ export interface Page {
   totalPages: number;
   number: number;
 }
+
+export class HalUtils {
+
+  static getEmbedded<T>(name: string, resources: Resources<T>): T[] {
+    return resources._embedded ? resources._embedded[name] : [];
+  }
+
+}
