@@ -16,7 +16,7 @@ internal class PostEventHandler @Autowired constructor(
         private val postFactory: PostFactory,
         private val postRepository: PostRepository,
         @Value("\${application.posts-path}") private val postsPath: String
-): DocumentEventHandler {
+) : DocumentEventHandler {
 
     private val EXTENSION = ".md"
 

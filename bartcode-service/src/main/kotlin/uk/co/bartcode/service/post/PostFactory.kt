@@ -18,7 +18,7 @@ internal class PostFactory @Autowired constructor(
         private val markdownParser: MarkdownParser,
         private val propertyExtractor: PropertyExtractor,
         private val metadataGenerator: MetadataGenerator
-){
+) {
 
     private val EXCERPT_END_TAG = "<!--more-->"
 

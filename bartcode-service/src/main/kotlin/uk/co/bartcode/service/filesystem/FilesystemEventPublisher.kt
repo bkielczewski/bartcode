@@ -47,7 +47,7 @@ internal class FilesystemEventPublisher @Autowired constructor(
         publishEvent(directory, kind, path)
     }
 
-    private fun isDirectory(path : String): Boolean {
+    private fun isDirectory(path: String): Boolean {
         return Files.isDirectory(Paths.get(path), LinkOption.NOFOLLOW_LINKS)
     }
 

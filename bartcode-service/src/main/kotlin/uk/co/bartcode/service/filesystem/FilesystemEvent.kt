@@ -2,7 +2,7 @@ package uk.co.bartcode.service.filesystem
 
 import org.springframework.context.ApplicationEvent
 
-sealed class FilesystemEvent (source: Any, val path: String) : ApplicationEvent(source) {
+sealed class FilesystemEvent(source: Any, val path: String) : ApplicationEvent(source) {
 
     override fun toString(): String {
         return "FilesystemEvent(path='$path')"

@@ -8,8 +8,8 @@ import uk.co.bartcode.service.facebook.FacebookService
 
 @Component
 internal class PostsStatsUpdater @Autowired constructor(
-    private val postRepository: PostRepository,
-    private val facebookService: FacebookService
+        private val postRepository: PostRepository,
+        private val facebookService: FacebookService
 ) {
 
     @Scheduled(initialDelay = 3600000, fixedRate = 3600000)

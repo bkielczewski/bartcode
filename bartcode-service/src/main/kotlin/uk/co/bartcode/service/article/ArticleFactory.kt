@@ -13,7 +13,7 @@ internal class ArticleFactory @Autowired constructor(
         private val markdownParser: MarkdownParser,
         private val propertyExtractor: PropertyExtractor,
         private val metadataGenerator: MetadataGenerator
-){
+) {
 
     fun create(path: String): Article {
         logger.debug("Creating article, path={}", path)

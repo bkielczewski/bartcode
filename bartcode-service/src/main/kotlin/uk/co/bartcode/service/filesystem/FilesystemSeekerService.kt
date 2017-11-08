@@ -20,7 +20,7 @@ internal class FilesystemSeekerService {
         return finder.filesFound.toList()
     }
 
-    private class Finder (private val extension: String) : FileVisitor<Path> {
+    private class Finder(private val extension: String) : FileVisitor<Path> {
         val filesFound = mutableListOf<String>()
 
         override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {

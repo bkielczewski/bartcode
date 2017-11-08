@@ -20,4 +20,5 @@
       "type": "java.lang.String",
       "description": "Base url for all the content."
     }
-  ] }
+  ]
+}

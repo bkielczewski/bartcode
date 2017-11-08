@@ -16,7 +16,7 @@ internal class ArticleEventHandler @Autowired constructor(
         private val articleFactory: ArticleFactory,
         private val articleRepository: ArticleRepository,
         @Value("\${application.articles-path}") private val articlesPath: String
-): DocumentEventHandler {
+) : DocumentEventHandler {
 
     private val EXTENSION = ".md"
 

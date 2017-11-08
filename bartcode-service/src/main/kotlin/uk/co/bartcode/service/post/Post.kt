@@ -31,4 +31,4 @@ interface PostExcerptProjection {
 }
 
 @Embeddable
-data class PostStats (var shares: Int, var comments: Int)
+data class PostStats(var shares: Int, var comments: Int)

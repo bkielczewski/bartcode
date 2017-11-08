@@ -46,7 +46,7 @@ internal class FilesystemWatcherService {
             watchKey = watchService.take()
             val parent = watchKey.watchable() as Path
             processWatchEvents(parent, watchKey.pollEvents(), watchService)
-                    .forEach { (kind, path ) -> consumer(kind, path) }
+                    .forEach { (kind, path) -> consumer(kind, path) }
             watchKey.reset()
         }
     }
