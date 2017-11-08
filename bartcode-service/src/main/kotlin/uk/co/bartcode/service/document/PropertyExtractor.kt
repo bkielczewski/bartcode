@@ -2,7 +2,7 @@ package uk.co.bartcode.service.document
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import java.util.HashMap
+import java.util.*
 import java.util.regex.Pattern
 
 @Component

@@ -7,8 +7,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
-import java.nio.file.StandardWatchEventKinds.*
 import java.nio.file.*
+import java.nio.file.StandardWatchEventKinds.ENTRY_CREATE
 
 @Component
 internal class FilesystemEventPublisher @Autowired constructor(

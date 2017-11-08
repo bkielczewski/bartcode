@@ -3,7 +3,6 @@ package uk.co.bartcode.service.article
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import uk.co.bartcode.service.document.DocumentEventHandler

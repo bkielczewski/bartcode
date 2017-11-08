@@ -3,12 +3,10 @@ package uk.co.bartcode.service.filesystem
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
-
 import java.io.IOException
 import java.nio.file.*
-import java.nio.file.attribute.BasicFileAttributes
-
 import java.nio.file.StandardWatchEventKinds.*
+import java.nio.file.attribute.BasicFileAttributes
 
 @Service
 internal class FilesystemWatcherService {

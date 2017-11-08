@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
-import uk.co.bartcode.service.article.ArticleEventHandler
 import uk.co.bartcode.service.document.DocumentEventHandler
 import uk.co.bartcode.service.filesystem.DirectoryDeletedEvent
 import uk.co.bartcode.service.filesystem.FileCreatedEvent
