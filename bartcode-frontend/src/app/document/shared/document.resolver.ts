@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Document } from './document';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { DocumentService } from './document.service';
 import { NotFoundError } from '../../shared/not-found-error';
 

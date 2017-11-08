@@ -21,19 +21,19 @@ module.exports = {
       document: undefined,
       location: JSON.stringify({
         protocol: 'https',
-        host: `localhost`,
+        host: 'localhost'
       })
     }),
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
     // for "WARNING Critical dependency: the request of a dependency is an expression"
     new webpack.ContextReplacementPlugin(
-      /(.+)?angular(\\|\/)core(.+)?/,
+      /(.+)?angular([\\\/])core(.+)?/,
       path.join(__dirname, 'src'),
       {}
     ),
     new webpack.ContextReplacementPlugin(
-      /(.+)?express(\\|\/)(.+)?/,
-      path.join(__dirname, 'src'),
+      /(.+)?express([\\\/])(.+)?/,
+      path.join(__dirname, 'src')
     )
   ]
 };

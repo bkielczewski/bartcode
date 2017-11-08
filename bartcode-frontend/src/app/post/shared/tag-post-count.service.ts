@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { TagPostCount } from './tag-post-count';
 import { Resources } from '../../shared/spring-data-rest';
 
