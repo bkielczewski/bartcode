@@ -17,6 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DocumentModule } from './document/document.module';
 import { AdsenseModule } from './adsense/adsense.module';
 
+import '../rxjs-imports'
+
 @NgModule({
   declarations: [
     AppComponent,
