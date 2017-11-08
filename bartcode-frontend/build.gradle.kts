@@ -16,8 +16,4 @@ task<NpmTask>("npmBuild") {
     setArgs(listOf("run-script", "build"))
 }
 
-task("clean") {
-    delete("node_modules")
-}
-
 task("build").dependsOn("npmBuild")
