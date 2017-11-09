@@ -10,6 +10,7 @@ build:
     - ./gradlew build
 
   post_ci:
+    - ./deploy_docker.sh bkielczewski/bartcode-frontend ./bartcode-frontend
     - ./deploy_docker.sh bkielczewski/bartcode-service ./bartcode-service
 
 integrations:
