@@ -3,7 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { Post } from '../shared/post';
 import { MetadataService } from '../../metadata/metadata.service';
-import { Resources } from '../../shared/spring-data-rest';
+import { HalUtils, Resources } from '../../shared/spring-data-rest';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -17,6 +18,7 @@ export class PostsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private metadataService: MetadataService,
+              private sanitizer: DomSanitizer,
               @Inject(LOCALE_ID) private locale: string) {
   }
 
@@ -26,8 +28,14 @@ export class PostsComponent implements OnInit {
   }
 
   private onUpdate(data: RouteData) {
-    this.posts = data.posts._embedded.posts;
+    this.posts = HalUtils.getEmbedded('posts', data.posts)
+      .map(post => this.sanitizeExcerpt(post));
     this.updatePagingUrls(data);
+  }
+
+  private sanitizeExcerpt(post: Post) {
+    post.excerptSafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.excerpt);
+    return post;
   }
 
   private onParamsUpdate(params: Params) {

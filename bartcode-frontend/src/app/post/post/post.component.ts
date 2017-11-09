@@ -24,8 +24,8 @@ export class PostComponent implements OnInit {
   }
 
   private onPostLoaded(post: Post) {
-    post.textSafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.text);
     this.post = post;
+    this.post.bodySafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.body);
     this.metadataService.updateMetadata(post.metadata);
   }
 
