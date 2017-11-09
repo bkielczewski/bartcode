@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class RelativeTimePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    const current = new Date().valueOf();
-    const valueDate = new Date(value).valueOf();
+    const current = Date.now();
+    const valueDate = this.parseIsoDate(value);
     const elapsed = current - valueDate;
 
     const msPerMinute = 60 * 1000;
@@ -29,6 +29,18 @@ export class RelativeTimePipe implements PipeTransform {
     } else {
       return Math.round(elapsed / msPerYear) + ' years ago';
     }
+  }
+
+  private parseIsoDate(value: string): number {
+    const m = value.match(/^([0-9]*)-([0-9]*)-([0-9]*)T([0-9]*):([0-9]*):([0-9]*)\.([0-9]*)/);
+    const yyyy = Number.parseInt(m[1]);
+    const MM = Number.parseInt(m[2]) - 1;
+    const dd = Number.parseInt(m[3]);
+    const HH = Number.parseInt(m[4]);
+    const mm = Number.parseInt(m[5]);
+    const ss = Number.parseInt(m[6]);
+    const ms = Number.parseInt(m[7]);
+    return new Date(yyyy, MM, dd, HH, mm, ss, ms).getTime();
   }
 
 }
