@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DocumentRoutingModule } from './document-routing.module';
-import { DocumentComponent } from './document.component';
+import { ArticleRoutingModule } from './article-routing.module';
+import { ArticleComponent } from './article.component';
 import { MetadataModule } from '../metadata/metadata.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -10,11 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     MetadataModule,
-    DocumentRoutingModule
+    ArticleRoutingModule
   ],
   declarations: [
-    DocumentComponent
+    ArticleComponent
   ]
 })
-export class DocumentModule {
+export class ArticleModule {
 }

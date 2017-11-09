@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DocumentService } from './shared/document.service';
-import { DocumentComponent } from './document.component';
-import { DocumentResolver } from './shared/document.resolver';
+import { ArticleService } from './shared/article.service';
+import { ArticleComponent } from './article.component';
+import { ArticleResolver } from './shared/article.resolver';
 
 const routes: Routes = [
   {
     path: 'privacy-and-cookies',
-    component: DocumentComponent,
+    component: ArticleComponent,
     pathMatch: 'full',
     resolve: {
-      document: DocumentResolver
+      article: ArticleResolver
     }
   },
   {
     path: 'about',
-    component: DocumentComponent,
+    component: ArticleComponent,
     pathMatch: 'full',
     resolve: {
-      document: DocumentResolver
+      article: ArticleResolver
     }
   }
 ];
@@ -31,9 +31,9 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    DocumentService,
-    DocumentResolver
+    ArticleService,
+    ArticleResolver
   ]
 })
-export class DocumentRoutingModule {
+export class ArticleRoutingModule {
 }

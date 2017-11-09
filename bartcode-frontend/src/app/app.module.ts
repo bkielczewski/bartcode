@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
-import { DocumentModule } from './document/document.module';
+import { ArticleModule } from './article/article.module';
 import { AdsenseModule } from './adsense/adsense.module';
 import { HttpClientModule } from '@angular/common/http';
 import '../rxjs-imports'
@@ -35,7 +35,7 @@ import '../rxjs-imports'
     MatToolbarModule,
     AppRoutingModule,
     PostModule,
-    DocumentModule,
+    ArticleModule,
     AdsenseModule
   ],
   providers: [

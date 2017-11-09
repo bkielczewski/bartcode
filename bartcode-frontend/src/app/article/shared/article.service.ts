@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Document } from './document';
 import { Observable } from 'rxjs/Observable';
+import { Article } from './article';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class DocumentService {
+export class ArticleService {
 
   constructor(private http: HttpClient) {
   }
 
-  getDocumentByRelativeUrl(relativeUrl: string): Observable<Document> {
+  getArticleByRelativeUrl(relativeUrl: string): Observable<Article> {
     const params = new HttpParams().set('relativeUrl', relativeUrl);
-    return this.http.get<Document>(environment.serviceUrl + '/documents/search/relativeUrl', { params: params });
+    return this.http.get<Article>(environment.serviceUrl + '/articles/search/relativeUrl', { params: params });
   }
 }

@@ -1,11 +1,9 @@
 import { SafeHtml } from '@angular/platform-browser';
 import { Metadata } from '../../metadata/metadata';
 
-export interface Document {
-
+export interface Article {
   relativeUrl: string;
   metadata: Metadata;
-  text: string;
-  textSafeHtml: SafeHtml;
-
+  body: string;
+  bodySafeHtml: SafeHtml;
 }
