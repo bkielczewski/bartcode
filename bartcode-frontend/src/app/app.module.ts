@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ArticleModule } from './article/article.module';
 import { AdsenseModule } from './adsense/adsense.module';
 import { HttpClientModule } from '@angular/common/http';
+import locale from '@angular/common/locales/en-GB';
 import '../rxjs-imports'
 
 @NgModule({
@@ -46,4 +47,9 @@ import '../rxjs-imports'
   ]
 })
 export class AppModule {
+
+  constructor() {
+    registerLocaleData(locale);
+  }
+
 }
