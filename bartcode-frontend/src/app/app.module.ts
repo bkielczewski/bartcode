@@ -15,7 +15,6 @@ import { ArticleModule } from './article/article.module';
 import { AdsenseModule } from './adsense/adsense.module';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/en-GB';
-import '../rxjs-imports'
 
 @NgModule({
   declarations: [
