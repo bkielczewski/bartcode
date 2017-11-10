@@ -34,10 +34,10 @@
       true,
       {
         "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
+          "private-static-field",
+          "public-instance-field",
+          "private-instance-field",
+          "public-static-method"
         ]
       }
     ],
