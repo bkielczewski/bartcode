@@ -12,12 +12,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  year: number;
-  month: number;
-  tag: string;
+  year?: number;
+  month?: number;
+  tag?: string;
   posts: Post[] = [];
-  nextPageUrl: string;
-  previousPageUrl: string;
+  nextPageUrl?: string;
+  previousPageUrl?: string;
 
   constructor(private route: ActivatedRoute,
               private metadataService: MetadataService,
@@ -53,12 +53,12 @@ export class PostsComponent implements OnInit {
     if (pageNumber < (data.posts.page.totalPages)) {
       this.nextPageUrl = data.pagingUrl + '/page/' + (pageNumber + 1);
     } else {
-      this.nextPageUrl = null;
+      this.nextPageUrl = undefined;
     }
     if (pageNumber > 1) {
       this.previousPageUrl = data.pagingUrl + '/page/' + (pageNumber - 1);
     } else {
-      this.previousPageUrl = null;
+      this.previousPageUrl = undefined;
     }
   }
 

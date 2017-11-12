@@ -14,7 +14,7 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.map(params => params['code'] || null).subscribe(code => this.code = code);
+    this.route.queryParams.map(params => params['code']).subscribe(code => this.code = code);
   }
 
 }

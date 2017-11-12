@@ -34,7 +34,7 @@ export class PageableUtils {
     return pageable;
   }
 
-  static getHttpParams(pageable: Pageable): HttpParams {
+  static getHttpParams(pageable?: Pageable): HttpParams {
     let params: HttpParams = new HttpParams();
     if (pageable) {
       params = params
