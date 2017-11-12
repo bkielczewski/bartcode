@@ -1,48 +1,54 @@
-<main appAdsense appXfbml appHljs class="content full-page">
-  <aside>
-    <div class="adsense">
-      <ins class="adsbygoogle"
-           style="width:160px;height:600px"
-           data-ad-client="ca-pub-9090328787535038"
-           data-ad-slot="2543787708"></ins>
-    </div>
-  </aside>
-
-  <article>
+<div class="full-page">
+  <div class="content-area-1">
     <div class="adsense">
       <ins class="adsbygoogle"
            style="width:728px;height:90px"
            data-ad-client="ca-pub-9090328787535038"
            data-ad-slot="2455821704"></ins>
     </div>
-    <header>
-      <div class="fb-like" [attr.data-href]="post.metadata.canonicalUrl" data-layout="button"
-           data-action="like" data-show-faces="false" data-share="true"></div>
-      <app-post-header [post]="post"></app-post-header>
-    </header>
-    <section [innerHtml]="post.bodySafeHtml"></section>
-    <footer>
-      <div class="adsense">
-        <ins class="adsbygoogle"
-             style="width:336px;height:280px"
-             data-ad-client="ca-pub-9090328787535038"
-             data-ad-slot="9979088504"></ins>
-      </div>
+  </div>
+  <div class="content-area-3">
+    <main appAdsense appXfbml appHljs class="content">
+      <aside>
+        <div class="adsense">
+          <ins class="adsbygoogle"
+               style="width:160px;height:600px"
+               data-ad-client="ca-pub-9090328787535038"
+               data-ad-slot="2543787708"></ins>
+        </div>
+      </aside>
 
-      <div class="notice">
-        <p><strong>Polite Notice</strong> - if you have a questions concerning implementation details in your own
-          project you're much
-          better off asking them on <a href="https://stackoverflow.com">Stack Overflow</a>. </p>
-      </div>
+      <article>
+        <header>
+          <div class="fb-like" [attr.data-href]="post.metadata.canonicalUrl" data-layout="button"
+               data-action="like" data-show-faces="false" data-share="true"></div>
+          <app-post-header [post]="post"></app-post-header>
+        </header>
+        <section [innerHtml]="post.bodySafeHtml"></section>
+        <footer>
+          <div class="notice">
+            <p><strong>Polite Notice</strong> - if you have a questions concerning implementation details in your own
+              project you're much
+              better off asking them on <a href="https://stackoverflow.com">Stack Overflow</a>. </p>
+          </div>
 
-      <div class="comments">
-        <div class="fb-comments" data-width="100%" [attr.data-href]="post.metadata.canonicalUrl"
-             data-numposts="10"></div>
-      </div>
-    </footer>
-  </article>
-
-</main>
+          <div class="comments">
+            <div class="fb-comments" data-width="100%" [attr.data-href]="post.metadata.canonicalUrl"
+                 data-numposts="10"></div>
+          </div>
+        </footer>
+      </article>
+    </main>
+  </div>
+  <div class="content">
+    <div class="adsense">
+      <ins class="adsbygoogle"
+           style="width:336px;height:280px"
+           data-ad-client="ca-pub-9090328787535038"
+           data-ad-slot="9979088504"></ins>
+    </div>
+  </div>
+</div>
 
 <script type="application/ld+json">
 {

@@ -1,11 +1,20 @@
 @import "../../../variables";
 
+h3 {
+  border-bottom: 2px solid $text-primary;
+}
+
+.content-wrapper {
+  background: $background-300;
+}
+
 main {
+  padding-top: 1rem;
+
   aside {
     order: 1;
     max-width: 33%;
     padding-right: 2rem;
-    color: $text-muted;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
@@ -22,6 +31,8 @@ main {
     order: 2;
 
     article {
+      background: $background-500;
+      border-radius: 2px;
       width: 100%;
       box-sizing: border-box;
       padding: 1rem;

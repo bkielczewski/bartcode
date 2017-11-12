@@ -5,18 +5,17 @@
   align-items: center;
   justify-content: center;
   padding-top: 15rem;
-  padding-bottom: 15rem;
-  margin-bottom: 1rem;
+  padding-bottom: 20rem;
   text-align: center;
   color: $text-inverted;
   //noinspection CssUnknownTarget
-  background: url('/assets/planes.jpg') $background-300 no-repeat center center;
+  background: url('/assets/pexels-photo-276218.jpeg') no-repeat center center;
   background-size: cover;
 
   .title {
     h1 {
       text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
-      font-size: 5rem;
+      font-size: 7rem;
       margin: 0;
       text-transform: full-width;
       font-weight: normal;
@@ -31,14 +30,23 @@
 
     @media (max-width: $layout-breakpoint-sm) {
       h1 {
-        font-size: 3rem;
+        font-size: 6rem;
       }
       h2 {
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
     }
   }
 
+}
+
+.content-area-2 {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: $background-300;
+  border-top: 2px solid $text-primary;
+  padding: 1rem 0 1rem 0;
 }
 
 .content {

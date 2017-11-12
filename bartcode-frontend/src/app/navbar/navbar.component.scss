@@ -2,19 +2,50 @@
 
 mat-toolbar {
   width: 100%;
+  height: 70px;
   position: fixed;
   top: 0;
   z-index: 2;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.44);
-  opacity: .9;
+  color: $text-inverted;
+  background: $background-100;
+  transition: all 0.4s ease;
 
   .logo {
+    color: $text-inverted;
+    position: relative;
+    z-index: 0;
+    background: url('/assets/favicon-32x32.png') no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      padding-right: 1rem;
+    span {
+      padding-left: 48px;
     }
+  }
+
+  &.full-header {
+    height: 180px;
+    background: $background-100;
+    color: $text-inverted;
+
+    .logo {
+      font-size: larger;
+      height: 170px;
+      padding-left: 170px;
+      background: url('/assets/mstile-70x70.png') center center no-repeat;
+      span {
+        display: none;
+      }
+    }
+
+    button {
+      font-size: larger;
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
+    }
+  }
+
+  &.full-header.main-page {
+    background: transparent;
   }
 
   .spacer {

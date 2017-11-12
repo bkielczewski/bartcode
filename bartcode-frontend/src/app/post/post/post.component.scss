@@ -1,6 +1,12 @@
 @import "../../../variables";
 
+.content-wrapper {
+  background: $background-500;
+}
+
 main {
+  padding-top: 1rem;
+
   aside {
     order: 1;
     max-width: 33%;
@@ -32,9 +38,6 @@ main {
 
     .notice {
       color: $text-muted;
-      background: rgb(255, 254, 141);
-      border: 1px solid $text-muted;
-      padding: 1rem;
     }
 
     @media (max-width: $layout-breakpoint-sm) {

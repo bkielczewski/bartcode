@@ -1,14 +1,15 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '../node_modules/highlight.js/styles/default.css';
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css?family=Arvo:400,700');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons');
+@import 'theme';
 @import 'variables';
 
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Arvo', sans-serif;
   color: $text-primary;
+  background: $background-500;
 }
 
 html {
@@ -19,12 +20,22 @@ html {
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 300px;
+  padding-bottom: 80px;
   min-height: 100%;
 }
 
-[md-button], [md-raised-button] {
+[mat-button], [mat-raised-button] {
   text-transform: uppercase;
+}
+
+article {
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  h1, h2, h3, h4 {
+    font-weight: normal;
+  }
 }
 
 a {
@@ -35,18 +46,39 @@ a {
   }
 }
 
-h1 {
-  margin-bottom: 4rem;
-}
-
 pre {
-  overflow: auto;
+  overflow-x: auto;
   word-wrap: normal;
   white-space: pre;
 
   code {
     white-space: inherit;
   }
+}
+
+.full-page {
+  padding-top: 14rem;
+  background: $background-100;
+}
+
+.content-area-0 {
+  background: $background-100;
+  min-height: 80px;
+}
+
+.content-area-1 {
+  background: $background-130;
+  min-height: 80px;
+}
+
+.content-area-2 {
+  background: $background-300;
+  min-height: 80px;
+}
+
+.content-area-3 {
+  background: $background-500;
+  min-height: 80px;
 }
 
 .content {
@@ -65,11 +97,6 @@ pre {
     width: 100%;
     box-sizing: border-box;
     padding: 0 1.5rem 0 1.5rem;
-  }
-
-  &.full-page {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
   }
 }
 

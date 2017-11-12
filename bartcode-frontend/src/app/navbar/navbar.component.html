@@ -1,9 +1,6 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="{'full-header': fullHeader, 'main-page': mainPage }">
   <div class="content">
-    <span class="logo">
-      <img src="/assets/favicon-32x32.png" width="32" height="32" alt="Logo" />
-      <a routerLink="">Bartcode</a>
-    </span>
+    <a class="logo" routerLink=""><span>Bartcode</span></a>
     <span class="spacer"></span>
     <button mat-button routerLink="">Home</button>
     <button mat-button routerLink="/blog">Blog</button>

@@ -1,5 +1,5 @@
-<h2><a routerLink="/{{ post.relativeUrl }}">{{ post.metadata.title }}</a></h2>
-<ul>
+<h1><a routerLink="/{{ post.relativeUrl }}">{{ post.metadata.title }}</a></h1>
+<ul class="caption">
   <li><i class="material-icons">access_time</i> {{ post.published | relativeTime }}</li>
   <li><i class="material-icons">date_range</i> {{ post.published | date: "shortDate"}}</li>
   <li><i class="material-icons">comment</i> {{ post.stats.comments }}</li>
@@ -26,6 +26,4 @@
     "name": "Bartosz Kielczewski"
   }
 }
-
-
 </script>

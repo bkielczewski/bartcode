@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let year of years">
-    <h3><a routerLinkActive="active" routerLink="/{{ year }}">{{ year }}</a></h3>
+    <h4 class="mat-subheading-1"><a routerLinkActive="active" routerLink="/{{ year }}">{{ year }}</a></h4>
     <ul>
       <li *ngFor="let dateCount of yearCounts[year]">
         <a routerLinkActive="active" routerLink="/{{ year }}/{{ dateCount.month | number: '2.0-0'}}">

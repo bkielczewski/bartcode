@@ -1,47 +1,53 @@
-<main appAdsense class="content full-page">
-
-  <aside>
-    <h2>Topics</h2>
-    <app-tag-post-count></app-tag-post-count>
-
-    <h2>Archive</h2>
-    <app-date-post-count></app-date-post-count>
-
-    <div class="adsense">
-      <ins class="adsbygoogle"
-           style="width:160px;height:600px"
-           data-ad-client="ca-pub-9090328787535038"
-           data-ad-slot="2543787708"></ins>
-    </div>
-  </aside>
-
-  <div>
-    <div class="adsense">
+<div class="full-page">
+  <div class="content-area-1">
+    <div class="adsense" class="content">
       <ins class="adsbygoogle"
            style="width:728px;height:90px"
            data-ad-client="ca-pub-9090328787535038"
            data-ad-slot="2455821704"></ins>
     </div>
-
-    <article *ngFor="let post of posts" class="mat-elevation-z3">
-      <header>
-        <app-post-header [post]="post"></app-post-header>
-      </header>
-      <section [innerHtml]="post.excerptSafeHtml">
-      </section>
-      <footer>
-        <button mat-button routerLink="/{{ post.relativeUrl }}">Read more</button>
-      </footer>
-    </article>
-
-    <nav *ngIf="nextPageUrl || previousPageUrl">
-      <button mat-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
-        <i class="material-icons">arrow_back</i> Previous Page
-      </button>
-      <button mat-button routerLink="/{{ nextPageUrl }}" [disabled]="!nextPageUrl">
-        Next Page <i class="material-icons">arrow_forward</i>
-      </button>
-    </nav>
   </div>
 
-</main>
+  <div class="content-area-2">
+    <main appAdsense class="content">
+      <aside>
+        <h3 class="mat-subheading-2">Topics</h3>
+        <app-tag-post-count></app-tag-post-count>
+
+        <h3 class="mat-subheading-2">Archive</h3>
+        <app-date-post-count></app-date-post-count>
+
+        <div class="adsense">
+          <ins class="adsbygoogle"
+               style="width:160px;height:600px"
+               data-ad-client="ca-pub-9090328787535038"
+               data-ad-slot="2543787708"></ins>
+        </div>
+      </aside>
+
+      <div>
+        <h3 class="mat-subheading-2">All articles</h3>
+
+        <article *ngFor="let post of posts">
+          <header>
+            <app-post-header [post]="post"></app-post-header>
+          </header>
+          <section class="mat-body-1" [innerHtml]="post.excerptSafeHtml">
+          </section>
+          <footer>
+            <button mat-button routerLink="/{{ post.relativeUrl }}">Read more</button>
+          </footer>
+        </article>
+
+        <nav *ngIf="nextPageUrl || previousPageUrl">
+          <button mat-button routerLink="/{{ previousPageUrl }}" [disabled]="!previousPageUrl">
+            <i class="material-icons">arrow_back</i> Previous Page
+          </button>
+          <button mat-button routerLink="/{{ nextPageUrl }}" [disabled]="!nextPageUrl">
+            Next Page <i class="material-icons">arrow_forward</i>
+          </button>
+        </nav>
+      </div>
+    </main>
+  </div>
+</div>

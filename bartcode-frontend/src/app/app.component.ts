@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MetadataService } from './metadata/metadata.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -9,20 +9,28 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
+  mainPage = true;
+
   constructor(private router: Router,
               private metadataService: MetadataService,
               @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngOnInit(): void {
+    this.updateMainPageStatus();
     this.router.events
-      .filter(event => event instanceof NavigationStart)
-      .subscribe(() => this.onNavigationStart());
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe(() => this.onNavigation());
   }
 
-  private onNavigationStart() {
+  private onNavigation() {
+    this.updateMainPageStatus();
     this.resetMetadata();
     this.scrollIntoViewOnBrowser();
+  }
+
+  private updateMainPageStatus() {
+    this.mainPage = this.router.url == '/';
   }
 
   private resetMetadata() {
@@ -34,4 +42,8 @@ export class AppComponent implements OnInit {
       window.scroll(0, 0);
     }
   }
+}
+
+interface RouteData {
+  mainPage?: boolean;
 }

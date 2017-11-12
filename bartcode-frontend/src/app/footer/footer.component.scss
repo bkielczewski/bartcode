@@ -1,9 +1,9 @@
 @import '../../variables';
 
 footer {
-  background-color: $background-300;
-  color: $text-muted;
-  padding: 2rem 0 2rem 0;
+  background-color: $background-130;
+  color: $text-inverted;
+  padding: 1.5rem 0 1.5rem 0;
   font-size: smaller;
 
   position: absolute;
@@ -12,14 +12,19 @@ footer {
   left: 0;
 
   a {
-    color: $text-muted;
+    color: $text-inverted;
   }
 
   .content {
     ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       list-style-type: none;
+      margin: 0;
       padding: 0;
       li {
+        padding: 0 2rem 0 0;
         img {
           padding-right: 1rem;
         }
@@ -27,6 +32,18 @@ footer {
           display: flex;
           align-items: center;
         }
+      }
+    }
+
+    @media (max-width: $layout-breakpoint-sm) {
+      div {
+        width: 100%;
+        text-align: center;
+        padding: 0 0 1.5em 0;
+      }
+
+      ul li {
+        padding: 0 1rem 0 0;
       }
     }
   }
