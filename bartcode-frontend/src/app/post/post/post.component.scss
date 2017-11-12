@@ -4,6 +4,12 @@
   background: $background-500;
 }
 
+@media (max-width: $layout-breakpoint-sm) {
+  .content-area-1 {
+    display: none;
+  }
+}
+
 main {
   padding-top: 1rem;
 
@@ -16,10 +22,6 @@ main {
       order: 2;
       max-width: none;
       padding-right: 0;
-
-      .adsense {
-        display: none;
-      }
     }
   }
 

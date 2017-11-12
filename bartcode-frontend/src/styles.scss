@@ -22,6 +22,10 @@ body {
   margin: 0;
   padding-bottom: 80px;
   min-height: 100%;
+
+  @media (max-width: $layout-breakpoint-sm) {
+    padding-bottom: 124px;
+  }
 }
 
 [mat-button], [mat-raised-button] {
@@ -35,6 +39,11 @@ article {
   }
   h1, h2, h3, h4 {
     font-weight: normal;
+  }
+  @media (max-width: $layout-breakpoint-sm) {
+    h1 {
+      font-size: 1.2rem;
+    }
   }
 }
 

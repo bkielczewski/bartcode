@@ -24,23 +24,25 @@ mat-toolbar {
   }
 
   &.full-header {
-    height: 180px;
-    background: $background-100;
-    color: $text-inverted;
+    @media (min-width: $layout-breakpoint-sm + 1) {
+      height: 180px;
+      background: $background-100;
+      color: $text-inverted;
 
-    .logo {
-      font-size: larger;
-      height: 170px;
-      padding-left: 170px;
-      background: url('/assets/mstile-70x70.png') center center no-repeat;
-      span {
-        display: none;
+      .logo {
+        font-size: larger;
+        height: 170px;
+        padding-left: 170px;
+        background: url('/assets/mstile-70x70.png') center center no-repeat;
+        span {
+          display: none;
+        }
       }
-    }
 
-    button {
-      font-size: larger;
-      text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
+      button {
+        font-size: larger;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);
+      }
     }
   }
 
