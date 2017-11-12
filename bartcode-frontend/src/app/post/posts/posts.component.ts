@@ -12,6 +12,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+  year: number;
+  month: number;
+  tag: string;
   posts: Post[] = [];
   nextPageUrl: string;
   previousPageUrl: string;
@@ -39,6 +42,9 @@ export class PostsComponent implements OnInit {
   }
 
   private onParamsUpdate(params: Params) {
+    this.year = params['year'];
+    this.month = params['month'];
+    this.tag = params['tag'];
     this.updateMetadata(params);
   }
 
