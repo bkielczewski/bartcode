@@ -9,8 +9,6 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler
 class TaskExecutorConfig {
 
     @Bean
-    fun taskScheduler(): TaskScheduler {
-        return ConcurrentTaskScheduler()
-    }
+    fun taskScheduler(): TaskScheduler = ConcurrentTaskScheduler()
 
 }

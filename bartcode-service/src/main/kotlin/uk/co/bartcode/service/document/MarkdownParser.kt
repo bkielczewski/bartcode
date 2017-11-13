@@ -11,9 +11,7 @@ import java.nio.file.Paths
 @Component
 class MarkdownParser {
 
-    fun parse(file: String): String {
-        return render(read(file))
-    }
+    fun parse(file: String) = render(read(file))
 
     private fun read(file: String): String {
         try {
@@ -24,9 +22,7 @@ class MarkdownParser {
 
     }
 
-    private fun render(markdown: String): String {
-        return renderer.render(parser.parse(markdown))
-    }
+    private fun render(markdown: String) = renderer.render(parser.parse(markdown))
 
     companion object {
         private val options = MutableDataSet()
