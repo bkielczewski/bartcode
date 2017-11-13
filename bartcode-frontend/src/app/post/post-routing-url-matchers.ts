@@ -9,7 +9,7 @@ export function year(url: UrlSegment[]): UrlMatchResult {
   if (url.length == 3 && /^[0-9]{4,}\/page\/[0-9]+$/.test(path)) {
     return { consumed: url, posParams: { year: url[0], page: url[2] } };
   }
-  return { consumed: url };
+  return null;
 }
 
 export function yearMonth(url: UrlSegment[]): UrlMatchResult {
@@ -20,5 +20,5 @@ export function yearMonth(url: UrlSegment[]): UrlMatchResult {
   if (url.length == 4 && /^[0-9]{4,}\/[0-9]{2,}\/page\/[0-9]+$/.test(path)) {
     return { consumed: url, posParams: { year: url[0], month: url[1], page: url[3] } };
   }
-  return { consumed: url };
+  return null;
 }
