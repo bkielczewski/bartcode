@@ -10,6 +10,7 @@ html, body {
   font-family: 'Arvo', sans-serif;
   color: $text-primary;
   background: $background-500;
+  max-width: 100%;
 }
 
 html {
@@ -55,9 +56,15 @@ a {
   }
 }
 
+.hljs {
+  white-space: pre;
+  word-wrap: normal;
+  box-sizing: border-box;
+  background: $background-300;
+}
+
 pre {
   overflow-x: auto;
-  word-wrap: normal;
   white-space: pre;
 
   code {
@@ -68,26 +75,34 @@ pre {
 .full-page {
   padding-top: 14rem;
   background: $background-100;
+
+  @media (max-width: $layout-breakpoint-sm) {
+    padding-top: 70px;
+  }
 }
 
 .content-area-0 {
   background: $background-100;
   min-height: 80px;
+  padding: 1rem 0 1rem 0;
 }
 
 .content-area-1 {
   background: $background-130;
   min-height: 80px;
+  padding: 1rem 0 1rem 0;
 }
 
 .content-area-2 {
   background: $background-300;
   min-height: 80px;
+  padding: 1rem 0 1rem 0;
 }
 
 .content-area-3 {
   background: $background-500;
   min-height: 80px;
+  padding: 1rem 0 1rem 0;
 }
 
 .content {

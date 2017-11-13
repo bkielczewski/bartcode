@@ -7,7 +7,7 @@ mat-toolbar {
   top: 0;
   z-index: 2;
   color: $text-inverted;
-  background: $background-100;
+  background: $background-100-opaque;
   transition: all 0.4s ease;
 
   .logo {

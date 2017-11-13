@@ -8,32 +8,38 @@ h3 {
   background: $background-300;
 }
 
+.content-area-1 .content {
+  justify-content: center;
+}
+
+@media (max-width: $layout-breakpoint-md) {
+  .content-area-1 {
+    display: none;
+  }
+}
+
 main {
   padding-top: 1rem;
 
   aside {
     order: 1;
-    max-width: 33%;
+    width: 25%;
     padding-right: 2rem;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
-      max-width: none;
+      width: auto;
       padding-right: 0;
-
-      .adsense {
-        display: none;
-      }
     }
   }
 
   & > div {
+    width: 75%;
     order: 2;
 
     article {
       background: $background-500;
       border-radius: 2px;
-      width: 100%;
       box-sizing: border-box;
       padding: 1rem;
       margin-bottom: 1rem;
@@ -51,10 +57,7 @@ main {
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 1;
-
-      .adsense {
-        display: none;
-      }
+      width: auto;
     }
   }
 }

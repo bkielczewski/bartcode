@@ -4,7 +4,11 @@
   background: $background-500;
 }
 
-@media (max-width: $layout-breakpoint-sm) {
+.content-area-1 .content {
+  justify-content: center;
+}
+
+@media (max-width: $layout-breakpoint-md) {
   .content-area-1 {
     display: none;
   }
@@ -15,19 +19,19 @@ main {
 
   aside {
     order: 1;
-    max-width: 33%;
+    width: 25%;
     padding-right: 2rem;
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 2;
-      max-width: none;
+      width: auto;
       padding-right: 0;
     }
   }
 
   article {
     order: 2;
-    width: 100%;
+    width: 75%;
 
     header {
       .fb-like {
@@ -44,10 +48,19 @@ main {
 
     @media (max-width: $layout-breakpoint-sm) {
       order: 1;
+      width: auto;
+    }
+  }
+}
 
-      .adsense:first-child {
-        display: none;
-      }
+@media (max-width: $layout-breakpoint-sm) {
+  [appAdsense] {
+    .adsense {
+      display: none;
+    }
+
+    .adsense:first-child {
+      display: block;
     }
   }
 }
