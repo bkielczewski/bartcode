@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Response } from 'express';
+import { RESPONSE } from '@nguniversal/express-engine/tokens'
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,11 +12,20 @@ export class ErrorComponent implements OnInit {
 
   code: number;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, @Optional() @Inject(RESPONSE) private response: Response) {
   }
 
   ngOnInit() {
-    this.route.queryParams.map(params => params['code']).subscribe(code => this.code = code);
+    this.route.params
+      .map(params => params['code'])
+      .subscribe(code => this.handleErrorCode(code));
+  }
+
+  private handleErrorCode(code: number) {
+    this.code = code;
+    if (this.response) {
+      this.response.status(code);
+    }
   }
 
 }

@@ -25,7 +25,7 @@ app.engine('html', ngExpressEngine({
 app.set('view engine', 'html');
 app.set('views', join(DIST, 'browser'));
 app.get('*.*', express.static(join(DIST, 'browser'), { maxage: '1y' }));
-app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), { req }));
+app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), { req, res }));
 app.listen(PORT, () => {
   console.log(`Express server listening on http://localhost:${PORT}`);
 });

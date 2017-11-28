@@ -5,7 +5,6 @@ import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/mater
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,11 +14,11 @@ import { ArticleModule } from './article/article.module';
 import { AdsenseModule } from './adsense/adsense.module';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/en-GB';
+import { ErrorModule } from './error/error.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
     FooterComponent,
     HomeComponent,
     NavbarComponent
@@ -33,10 +32,11 @@ import locale from '@angular/common/locales/en-GB';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    AppRoutingModule,
-    PostModule,
+    AdsenseModule,
     ArticleModule,
-    AdsenseModule
+    ErrorModule,
+    PostModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "en-GB" }
