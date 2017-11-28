@@ -1,4 +1,3 @@
-import { Response } from 'express';
 import { RESPONSE } from '@nguniversal/express-engine/tokens'
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +11,7 @@ export class ErrorComponent implements OnInit {
 
   code: number;
 
-  constructor(private route: ActivatedRoute, @Optional() @Inject(RESPONSE) private response: Response) {
+  constructor(private route: ActivatedRoute, @Optional() @Inject(RESPONSE) private response: any) {
   }
 
   ngOnInit() {
