@@ -7,7 +7,7 @@ import java.util.*
 interface ArticleRepository : JpaRepository<Article, Long> {
 
     @RestResource(path = "relativeUrl", rel = "relativeUrl")
-    fun findOneByRelativeUrl(relativeUrl: String): Article
+    fun findOneByRelativeUrl(relativeUrl: String): Optional<Article>
 
     @RestResource(exported = false)
     fun findByPath(path: String): Optional<Article>

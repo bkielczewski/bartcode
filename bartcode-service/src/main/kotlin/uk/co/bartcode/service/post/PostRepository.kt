@@ -11,7 +11,7 @@ import java.util.*
 interface PostRepository : JpaRepository<Post, Long> {
 
     @RestResource(path = "relativeUrl", rel = "relativeUrl")
-    fun findOneByRelativeUrl(@Param("relativeUrl") relativeUrl: String): Post
+    fun findOneByRelativeUrl(@Param("relativeUrl") relativeUrl: String): Optional<Post>
 
     @RestResource(path = "recent", rel = "recent")
     fun findAllByOrderByPublishedDesc(pageable: Pageable): Page<Post>
