@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  serviceUrl: 'http://localhost:8080/api'
+  serviceUrl: 'http://localhost:8080/api',
+  ga: 'UA-110468138-1'
 };

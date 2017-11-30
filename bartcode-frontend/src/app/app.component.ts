@@ -2,6 +2,9 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MetadataService } from './metadata/metadata.service';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../environments/environment';
+
+declare const gtag: any;
 
 @Component({
   selector: 'app-root',
@@ -20,13 +23,14 @@ export class AppComponent implements OnInit {
     this.updateMainPageStatus();
     this.router.events
       .filter(event => event instanceof NavigationEnd)
-      .subscribe(() => this.onNavigation());
+      .subscribe((event: NavigationEnd) => this.onNavigation(event));
   }
 
-  private onNavigation() {
+  private onNavigation(event: NavigationEnd) {
     this.updateMainPageStatus();
     this.resetMetadata();
     this.scrollIntoViewOnBrowser();
+    this.sendAnalyticsEvent(event);
   }
 
   private updateMainPageStatus() {
@@ -42,8 +46,10 @@ export class AppComponent implements OnInit {
       window.scroll(0, 0);
     }
   }
-}
 
-interface RouteData {
-  mainPage?: boolean;
+  private sendAnalyticsEvent(event: NavigationEnd) {
+    if (isPlatformBrowser(this.platformId)) {
+      gtag('config', environment.ga, { 'page_path': event.urlAfterRedirects });
+    }
+  }
 }
