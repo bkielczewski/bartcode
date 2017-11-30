@@ -20,8 +20,6 @@ internal class PostFactory @Autowired constructor(
         private val metadataGenerator: MetadataGenerator
 ) {
 
-    private val EXCERPT_END_TAG = "<!--more-->"
-
     fun create(path: String): Post {
         logger.debug("Creating post, path={}", path)
         val body = markdownParser.parse(path)
@@ -48,7 +46,7 @@ internal class PostFactory @Autowired constructor(
         calendar.time = published
         return String.format("/%s/%s/%s",
                 calendar.get(Calendar.YEAR),
-                String.format("%02d", calendar.get(Calendar.MONTH)),
+                String.format("%02d", calendar.get(Calendar.MONTH) + 1),
                 StringUtils.stripFilenameExtension(StringUtils.getFilename(file)!!))
     }
 
