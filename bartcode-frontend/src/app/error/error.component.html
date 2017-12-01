@@ -3,7 +3,7 @@
   <mat-icon>error_outline</mat-icon>
   <p *ngIf="code == 404">Sorry, cannot... It's... just not there!</p>
   <p *ngIf="code == 500">Sorry, it's broken... Help me?</p>
-  <p *ngIf="code == 0">Sorry, can't connect... Wait a minute?</p>
+  <p *ngIf="code == 0 || code == 502">Sorry, can't connect... Wait a minute?</p>
   <p *ngIf="!code">????, just sorry...</p>
 
 </article>
