@@ -10,6 +10,7 @@ import uk.co.bartcode.service.filesystem.DirectoryDeletedEvent
 import uk.co.bartcode.service.filesystem.FileCreatedEvent
 import uk.co.bartcode.service.filesystem.FileDeletedEvent
 import uk.co.bartcode.service.filesystem.FileModifiedEvent
+import javax.transaction.Transactional
 
 @Component
 internal class ArticleEventHandler @Autowired constructor(
@@ -26,12 +27,14 @@ internal class ArticleEventHandler @Autowired constructor(
                 && StringUtils.endsWithIgnoreCase(path, EXTENSION)
     }
 
+    @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
         if (supports(event.path)) {
             articleRepository.deleteByPathStartingWith(event.path)
         }
     }
 
+    @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
         if (supports(event.path)) {
             articleRepository.findByPath(event.path)
@@ -40,12 +43,14 @@ internal class ArticleEventHandler @Autowired constructor(
         }
     }
 
+    @Transactional
     override fun handleFileCreatedEvent(event: FileCreatedEvent) {
         if (supports(event.path)) {
             articleRepository.save(articleFactory.create(event.path))
         }
     }
 
+    @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
         if (supports(event.path)) {
             articleRepository.deleteByPathStartingWith(event.path)
