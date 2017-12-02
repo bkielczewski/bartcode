@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    val springBootVersion = "2.0.0.M6"
+    val springBootVersion = "2.0.0.M7"
 
     repositories {
         mavenCentral()
@@ -14,7 +14,7 @@ buildscript {
 }
 
 plugins {
-    val kotlinVersion = "1.1.60"
+    val kotlinVersion = "1.2.0"
 
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
@@ -52,13 +52,14 @@ repositories {
 dependencies {
     val logstashLogbackEncoderVersion = "4.11"
     val flexmarkVersion = "0.27.0"
+    val springSocialFacebookVersion = "2.0.3.RELEASE"
 
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-social-facebook")
     compile("org.springframework.boot:spring-boot-configuration-processor")
+    compile("org.springframework.social:spring-social-facebook:$springSocialFacebookVersion")
     compile("com.vladsch.flexmark:flexmark:$flexmarkVersion")
     compile("org.jetbrains.kotlin:kotlin-stdlib")
     compile("org.jetbrains.kotlin:kotlin-reflect")

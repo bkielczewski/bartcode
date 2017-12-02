@@ -1,7 +1,7 @@
 # Compiled output
-/build
-/target
-/out
+build/
+target/
+out/
 
 # IDEs and editors
 /.idea
