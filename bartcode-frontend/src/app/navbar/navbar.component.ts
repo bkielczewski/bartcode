@@ -14,7 +14,7 @@ export class NavbarComponent {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const number = window.scrollY;
-    if (number > 0) {
+    if (number > 10) {
       this.fullHeader = false;
     } else {
       this.fullHeader = true;
