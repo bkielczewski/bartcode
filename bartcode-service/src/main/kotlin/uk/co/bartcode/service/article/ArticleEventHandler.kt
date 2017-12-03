@@ -21,22 +21,26 @@ internal class ArticleEventHandler @Autowired constructor(
 
     private val EXTENSION = ".md"
 
-    private fun supports(path: String): Boolean {
-        logger.trace("Checking if supported, path={}", path)
+    private fun supportsFile(path: String): Boolean {
+        logger.trace("Checking if file supported, path={}", path)
+        return supportsDirectory(path) && StringUtils.endsWithIgnoreCase(path, EXTENSION)
+    }
+
+    private fun supportsDirectory(path: String): Boolean {
+        logger.trace("Checking if directory supported, path={}", path)
         return StringUtils.startsWithIgnoreCase(path, articlesPath)
-                && StringUtils.endsWithIgnoreCase(path, EXTENSION)
     }
 
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             articleRepository.deleteByFileStartingWith(event.path)
         }
     }
 
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             articleRepository.findByFile(event.path)
                     .ifPresent { articleRepository.delete(it) }
             articleRepository.save(articleFactory.create(event.path))
@@ -45,14 +49,14 @@ internal class ArticleEventHandler @Autowired constructor(
 
     @Transactional
     override fun handleFileCreatedEvent(event: FileCreatedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             articleRepository.save(articleFactory.create(event.path))
         }
     }
 
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
-        if (supports(event.path)) {
+        if (supportsDirectory(event.path)) {
             articleRepository.deleteByFileStartingWith(event.path)
         }
     }

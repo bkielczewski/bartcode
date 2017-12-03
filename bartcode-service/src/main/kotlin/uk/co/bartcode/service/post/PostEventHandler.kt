@@ -21,22 +21,26 @@ internal class PostEventHandler @Autowired constructor(
 
     private val EXTENSION = ".md"
 
-    private fun supports(path: String): Boolean {
-        logger.trace("Checking if supported, path={}", path)
+    private fun supportsFile(path: String): Boolean {
+        logger.trace("Checking if file is supported, path={}", path)
+        return supportsDirectory(path) && StringUtils.endsWithIgnoreCase(path, EXTENSION)
+    }
+
+    private fun supportsDirectory(path: String): Boolean {
+        logger.trace("Checking if directory is supported, path={}", path)
         return StringUtils.startsWithIgnoreCase(path, postsPath)
-                && StringUtils.endsWithIgnoreCase(path, EXTENSION)
     }
 
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             postRepository.deleteByFileStartingWith(event.path)
         }
     }
 
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             postRepository.findByFile(event.path)
                     .ifPresent { postRepository.delete(it) }
             postRepository.save(postFactory.create(event.path))
@@ -45,14 +49,14 @@ internal class PostEventHandler @Autowired constructor(
 
     @Transactional
     override fun handleFileCreatedEvent(event: FileCreatedEvent) {
-        if (supports(event.path)) {
+        if (supportsFile(event.path)) {
             postRepository.save(postFactory.create(event.path))
         }
     }
 
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
-        if (supports(event.path)) {
+        if (supportsDirectory(event.path)) {
             postRepository.deleteByFileStartingWith(event.path)
         }
     }
