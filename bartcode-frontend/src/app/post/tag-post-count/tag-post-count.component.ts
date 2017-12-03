@@ -10,7 +10,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TagPostCountComponent implements OnInit {
 
+  private static MAX_FONT_SIZE_REM = 2.8;
+  private static MIN_FONT_SIZE_REM = .8;
+
   tagCounts: TagPostCount[];
+
+  private deltaCount: number;
 
   constructor(private tagCountService: TagPostCountService) {
   }
@@ -19,11 +24,19 @@ export class TagPostCountComponent implements OnInit {
     this.tagCountService.getTagCounts()
       .toArray()
       .catch(() => <Observable<TagPostCount[]>> Observable.empty())
-      .subscribe(tagCounts => this.tagCounts = tagCounts);
+      .subscribe(tagCounts => this.refreshTagCounts(tagCounts));
   }
 
-  getFontSize(tagCount: TagPostCount) {
-    return Math.min(Math.max((tagCount.count / 5), 1), 3);
+  getFontSizeRem(tagCount: TagPostCount) {
+    const rem = TagPostCountComponent.MAX_FONT_SIZE_REM * (tagCount.count / this.deltaCount);
+    return Math.max(Math.min(rem, TagPostCountComponent.MAX_FONT_SIZE_REM), TagPostCountComponent.MIN_FONT_SIZE_REM);
+  }
+
+  private refreshTagCounts(tagCounts) {
+    this.tagCounts = tagCounts;
+    const minCount = this.tagCounts.map(tagCount => tagCount.count).reduce((p, c) => p < c ? p : c);
+    const maxCount = this.tagCounts.map(tagCount => tagCount.count).reduce((p, c) => p > c ? p : c);
+    this.deltaCount = maxCount - minCount;
   }
 
 }
