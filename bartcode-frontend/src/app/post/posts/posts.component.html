@@ -36,7 +36,7 @@
           <header>
             <app-post-header [post]="post"></app-post-header>
           </header>
-          <section class="mat-body-1" [innerHtml]="post.excerptSafeHtml">
+          <section class="mat-body-1" [innerHtml]="post.excerpt | safeHtml">
           </section>
           <footer>
             <button mat-button routerLink="/{{ post.relativeUrl }}">Read more</button>

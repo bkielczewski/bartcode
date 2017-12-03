@@ -31,14 +31,8 @@ export class PostsComponent implements OnInit {
   }
 
   private onUpdate(data: RouteData) {
-    this.posts = HalUtils.getEmbedded('posts', data.posts)
-      .map(post => this.sanitizeExcerpt(post));
+    this.posts = HalUtils.getEmbedded('posts', data.posts);
     this.updatePagingUrls(data);
-  }
-
-  private sanitizeExcerpt(post: Post) {
-    post.excerptSafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.excerpt);
-    return post;
   }
 
   private onParamsUpdate(params: Params) {

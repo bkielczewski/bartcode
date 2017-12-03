@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 import { Post } from '../shared/post';
@@ -15,7 +14,6 @@ export class PostComponent implements OnInit {
   post: Post;
 
   constructor(private route: ActivatedRoute,
-              private sanitizer: DomSanitizer,
               private metadataService: MetadataService) {
   }
 
@@ -25,7 +23,6 @@ export class PostComponent implements OnInit {
 
   private onPostLoaded(post: Post) {
     this.post = post;
-    this.post.bodySafeHtml = this.sanitizer.bypassSecurityTrustHtml(post.body);
     this.metadataService.updateMetadata(post.metadata);
   }
 

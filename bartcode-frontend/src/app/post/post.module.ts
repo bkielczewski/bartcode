@@ -17,6 +17,7 @@ import { RelativeTimePipe } from './shared/relative-time.pipe';
 import { PostComponent } from './post/post.component';
 import { PostHeaderComponent } from './post-header/post-header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdsenseModule,
     HljsModule,
     FacebookModule,
+    SharedModule,
     PostRoutingModule
   ],
   declarations: [

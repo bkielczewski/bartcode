@@ -1,7 +1,7 @@
 <div class="full-page">
   <div class="content-area-3">
     <main class="content">
-      <article [innerHtml]="article.bodySafeHtml"></article>
+      <article [innerHtml]="article.body | safeHtml"></article>
     </main>
   </div>
 </div>
