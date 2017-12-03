@@ -37,12 +37,7 @@ export class MetadataService {
   }
 
   private updateTitle(title: string) {
-    let updatedTitle;
-    if (title) {
-      updatedTitle = title + ' ' + this.title.substring(this.title.indexOf('-'));
-    } else {
-      updatedTitle = this.title;
-    }
+    const updatedTitle = title ? title : this.title;
     this.titleService.setTitle(updatedTitle);
     this.metaService.updateTag({ content: updatedTitle }, 'property="og:title"');
     this.metaService.updateTag({ content: updatedTitle }, 'name="twitter:title"');
