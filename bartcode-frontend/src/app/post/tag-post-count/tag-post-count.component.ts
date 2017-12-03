@@ -23,7 +23,7 @@ export class TagPostCountComponent implements OnInit {
   }
 
   getFontSize(tagCount: TagPostCount) {
-    return Math.max((tagCount.count / 5), 1);
+    return Math.min(Math.max((tagCount.count / 5), 1), 3);
   }
 
 }
