@@ -30,14 +30,14 @@ internal class ArticleEventHandler @Autowired constructor(
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
         if (supports(event.path)) {
-            articleRepository.deleteByPathStartingWith(event.path)
+            articleRepository.deleteByFileStartingWith(event.path)
         }
     }
 
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
         if (supports(event.path)) {
-            articleRepository.findByPath(event.path)
+            articleRepository.findByFile(event.path)
                     .ifPresent { articleRepository.delete(it) }
             articleRepository.save(articleFactory.create(event.path))
         }
@@ -53,7 +53,7 @@ internal class ArticleEventHandler @Autowired constructor(
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
         if (supports(event.path)) {
-            articleRepository.deleteByPathStartingWith(event.path)
+            articleRepository.deleteByFileStartingWith(event.path)
         }
     }
 

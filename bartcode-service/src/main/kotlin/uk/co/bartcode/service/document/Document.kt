@@ -1,18 +1,17 @@
 package uk.co.bartcode.service.document
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(indexes = arrayOf(
         Index(name = "relativeUrl", columnList = "relativeUrl"),
-        Index(name = "path", columnList = "path")
+        Index(name = "file", columnList = "file")
 ))
 open class Document constructor(
         @Id @GeneratedValue val id: Long?,
         val relativeUrl: String,
-        @JsonIgnore val path: String,
+        val file: String,
         @Embedded val metadata: Metadata,
         @Lob val body: String
 )

@@ -10,10 +10,10 @@ interface ArticleRepository : JpaRepository<Article, Long> {
     fun findOneByRelativeUrl(relativeUrl: String): Optional<Article>
 
     @RestResource(exported = false)
-    fun findByPath(path: String): Optional<Article>
+    fun findByFile(path: String): Optional<Article>
 
     @RestResource(exported = false)
-    fun deleteByPathStartingWith(path: String)
+    fun deleteByFileStartingWith(prefix: String)
 
     @RestResource(exported = false)
     override fun deleteById(id: Long)

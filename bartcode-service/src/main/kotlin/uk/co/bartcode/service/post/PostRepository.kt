@@ -47,10 +47,10 @@ interface PostRepository : JpaRepository<Post, Long> {
     fun getTagPostCounts(): List<TagPostCount>
 
     @RestResource(exported = false)
-    fun findByPath(path: String): Optional<Post>
+    fun findByFile(path: String): Optional<Post>
 
     @RestResource(exported = false)
-    fun deleteByPathStartingWith(path: String)
+    fun deleteByFileStartingWith(prefix: String)
 
     @RestResource(exported = false)
     override fun deleteById(id: Long)
