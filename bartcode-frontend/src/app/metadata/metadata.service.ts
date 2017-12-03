@@ -16,7 +16,7 @@ export class MetadataService {
   private onInit() {
     this.title = this.titleService.getTitle();
     this.description = this.fromTagOrEmpty('name="description"');
-    this.canonicalUrl = this.fromTagOrEmpty('property="og.url"');
+    this.canonicalUrl = this.fromTagOrEmpty('property="og:url"');
   }
 
   private fromTagOrEmpty(selector: string) {
