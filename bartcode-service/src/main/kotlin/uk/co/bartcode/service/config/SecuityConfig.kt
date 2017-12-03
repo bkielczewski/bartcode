@@ -12,10 +12,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.PATCH, "**").fullyAuthenticated()
-                .antMatchers(HttpMethod.PUT, "**").fullyAuthenticated()
-                .antMatchers(HttpMethod.DELETE, "**").fullyAuthenticated()
-                .antMatchers(HttpMethod.POST, "**").fullyAuthenticated()
+                .antMatchers(HttpMethod.PATCH, "**").denyAll()
+                .antMatchers(HttpMethod.PUT, "**").denyAll()
+                .antMatchers(HttpMethod.DELETE, "**").denyAll()
+                .antMatchers(HttpMethod.POST, "**").denyAll()
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement()
