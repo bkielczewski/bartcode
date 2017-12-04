@@ -50,6 +50,7 @@ repositories {
 }
 
 dependencies {
+    val kotlinVersion = "1.2.0"
     val logstashLogbackEncoderVersion = "4.11"
     val flexmarkVersion = "0.27.0"
     val springSocialFacebookVersion = "2.0.3.RELEASE"
@@ -61,8 +62,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-configuration-processor")
     compile("org.springframework.social:spring-social-facebook:$springSocialFacebookVersion")
     compile("com.vladsch.flexmark:flexmark:$flexmarkVersion")
-    compile("org.jetbrains.kotlin:kotlin-stdlib")
-    compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     runtime("com.h2database:h2")
     runtime("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtime("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
