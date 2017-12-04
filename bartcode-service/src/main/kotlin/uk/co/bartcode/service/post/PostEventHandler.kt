@@ -22,30 +22,31 @@ internal class PostEventHandler @Autowired constructor(
     private val EXTENSION = ".md"
 
     private fun supportsFile(path: String): Boolean {
-        logger.trace("Checking if file is supported, path={}", path)
         return supportsDirectory(path) && StringUtils.endsWithIgnoreCase(path, EXTENSION)
     }
 
     private fun supportsDirectory(path: String): Boolean {
-        logger.trace("Checking if directory is supported, path={}", path)
         return StringUtils.startsWithIgnoreCase(path, postsPath)
     }
 
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
         if (supportsFile(event.path)) {
-            logger.debug("Deleting, path={}", event.path)
-            postRepository.deleteByFileStartingWith(event.path)
+            deleteExistingIfExists(event.path)
+        }
+    }
+
+    private fun deleteExistingIfExists(file: String) {
+        postRepository.findByFile(file).ifPresent {
+            logger.debug("Deleting, file={}", file)
+            postRepository.delete(it)
         }
     }
 
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
         if (supportsFile(event.path)) {
-            postRepository.findByFile(event.path).ifPresent {
-                logger.debug("Deleting, path={}", event.path)
-                postRepository.delete(it)
-            }
+            deleteExistingIfExists(event.path)
             postRepository.save(postFactory.create(event.path))
         }
     }
@@ -53,6 +54,7 @@ internal class PostEventHandler @Autowired constructor(
     @Transactional
     override fun handleFileCreatedEvent(event: FileCreatedEvent) {
         if (supportsFile(event.path)) {
+            deleteExistingIfExists(event.path)
             postRepository.save(postFactory.create(event.path))
         }
     }
@@ -60,7 +62,7 @@ internal class PostEventHandler @Autowired constructor(
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
         if (supportsDirectory(event.path)) {
-            logger.debug("Deleting, path={}", event.path)
+            logger.debug("Deleting, prefix={}", event.path)
             postRepository.deleteByFileStartingWith(event.path)
         }
     }

@@ -22,30 +22,31 @@ internal class ArticleEventHandler @Autowired constructor(
     private val EXTENSION = ".md"
 
     private fun supportsFile(path: String): Boolean {
-        logger.trace("Checking if file supported, path={}", path)
         return supportsDirectory(path) && StringUtils.endsWithIgnoreCase(path, EXTENSION)
     }
 
     private fun supportsDirectory(path: String): Boolean {
-        logger.trace("Checking if directory supported, path={}", path)
         return StringUtils.startsWithIgnoreCase(path, articlesPath)
     }
 
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
         if (supportsFile(event.path)) {
-            logger.debug("Deleting, path={}", event.path)
-            articleRepository.deleteByFileStartingWith(event.path)
+            deleteExistingIfExists(event.path)
+        }
+    }
+
+    private fun deleteExistingIfExists(file: String) {
+        articleRepository.findByFile(file).ifPresent {
+            logger.debug("Deleting, file={}", file)
+            articleRepository.delete(it)
         }
     }
 
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
         if (supportsFile(event.path)) {
-            articleRepository.findByFile(event.path).ifPresent {
-                logger.debug("Deleting, path={}", event.path)
-                articleRepository.delete(it)
-            }
+            deleteExistingIfExists(event.path)
             articleRepository.save(articleFactory.create(event.path))
         }
     }
@@ -53,6 +54,7 @@ internal class ArticleEventHandler @Autowired constructor(
     @Transactional
     override fun handleFileCreatedEvent(event: FileCreatedEvent) {
         if (supportsFile(event.path)) {
+            deleteExistingIfExists(event.path)
             articleRepository.save(articleFactory.create(event.path))
         }
     }
@@ -60,7 +62,7 @@ internal class ArticleEventHandler @Autowired constructor(
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
         if (supportsDirectory(event.path)) {
-            logger.debug("Deleting, path={}", event.path)
+            logger.debug("Deleting, prefix={}", event.path)
             articleRepository.deleteByFileStartingWith(event.path)
         }
     }
