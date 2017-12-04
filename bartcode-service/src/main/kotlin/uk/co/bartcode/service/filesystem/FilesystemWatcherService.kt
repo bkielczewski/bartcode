@@ -11,6 +11,8 @@ import java.nio.file.attribute.BasicFileAttributes
 @Service
 internal class FilesystemWatcherService {
 
+    val watchedDirs = mutableSetOf<String>()
+
     @Async
     fun startWatchThread(path: String, consumer: (kind: WatchEvent.Kind<*>, path: String) -> Unit) {
         logger.debug("Watching for changes, path={}", path)
@@ -29,9 +31,9 @@ internal class FilesystemWatcherService {
         try {
             Files.walkFileTree(start, object : SimpleFileVisitor<Path>() {
                 @Throws(IOException::class)
-                override fun preVisitDirectory(dir: Path,
-                                               attrs: BasicFileAttributes): FileVisitResult {
+                override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {
                     dir.register(watchService, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY)
+                    watchedDirs.add(dir.toString())
                     return FileVisitResult.CONTINUE
                 }
             })

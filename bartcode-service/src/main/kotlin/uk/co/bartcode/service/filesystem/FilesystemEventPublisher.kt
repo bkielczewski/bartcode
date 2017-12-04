@@ -7,8 +7,9 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
-import java.nio.file.*
+import java.nio.file.StandardWatchEventKinds
 import java.nio.file.StandardWatchEventKinds.ENTRY_CREATE
+import java.nio.file.WatchEvent
 
 @Component
 internal class FilesystemEventPublisher @Autowired constructor(
@@ -48,7 +49,7 @@ internal class FilesystemEventPublisher @Autowired constructor(
     }
 
     private fun isDirectory(path: String): Boolean {
-        return Files.isDirectory(Paths.get(path), LinkOption.NOFOLLOW_LINKS)
+        return watcherService.watchedDirs.contains(path)
     }
 
     private fun publishEvent(directory: Boolean, kind: WatchEvent.Kind<*>, path: String) {
@@ -58,7 +59,7 @@ internal class FilesystemEventPublisher @Autowired constructor(
             getEventForFile(kind, path)
         }
         if (event !== null) {
-            logger.trace("Publishing event={}", event)
+            logger.trace("Publishing event={}, directory={}, kind={}, path={}", event, directory, kind, path)
             eventPublisher.publishEvent(event)
         }
     }
