@@ -64,6 +64,7 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     runtime("com.h2database:h2")
+    runtime("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtime("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
