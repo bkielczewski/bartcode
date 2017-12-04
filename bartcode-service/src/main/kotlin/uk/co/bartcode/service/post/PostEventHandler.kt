@@ -34,6 +34,7 @@ internal class PostEventHandler @Autowired constructor(
     @Transactional
     override fun handleFileDeletedEvent(event: FileDeletedEvent) {
         if (supportsFile(event.path)) {
+            logger.debug("Deleting, path={}", event.path)
             postRepository.deleteByFileStartingWith(event.path)
         }
     }
@@ -41,8 +42,10 @@ internal class PostEventHandler @Autowired constructor(
     @Transactional
     override fun handleFileModifiedEvent(event: FileModifiedEvent) {
         if (supportsFile(event.path)) {
-            postRepository.findByFile(event.path)
-                    .ifPresent { postRepository.delete(it) }
+            postRepository.findByFile(event.path).ifPresent {
+                logger.debug("Deleting, path={}", event.path)
+                postRepository.delete(it)
+            }
             postRepository.save(postFactory.create(event.path))
         }
     }
@@ -57,6 +60,7 @@ internal class PostEventHandler @Autowired constructor(
     @Transactional
     override fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent) {
         if (supportsDirectory(event.path)) {
+            logger.debug("Deleting, path={}", event.path)
             postRepository.deleteByFileStartingWith(event.path)
         }
     }
