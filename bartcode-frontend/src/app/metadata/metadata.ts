@@ -1,7 +1,7 @@
 export interface Metadata {
 
-  canonicalUrl: string;
-  title: string;
-  description: string;
+  canonicalUrl?: string;
+  title?: string;
+  description?: string;
 
 }

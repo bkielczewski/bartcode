@@ -26,11 +26,7 @@
       </aside>
 
       <div>
-        <h3 class="mat-subheading-2" *ngIf="!year && !month && !tag">All articles</h3>
-        <h3 class="mat-subheading-2" *ngIf="year && !month && !tag">Articles of {{ year }}</h3>
-        <h3 class="mat-subheading-2" *ngIf="year && month && !tag">Articles of {{ year + "/" + month + "/01" |
-          date:"MMMM" }} {{ year }}</h3>
-        <h3 class="mat-subheading-2" *ngIf="!year && !month && tag !== undefined">Articles on {{ tag }}</h3>
+        <h3 class="mat-subheading-2">{{ getTitle() }}</h3>
 
         <article *ngFor="let post of posts">
           <header>

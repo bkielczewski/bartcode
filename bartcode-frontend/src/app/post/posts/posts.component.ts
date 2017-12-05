@@ -1,10 +1,8 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-
 import { Post } from '../shared/post';
 import { MetadataService } from '../../metadata/metadata.service';
 import { HalUtils, Resources } from '../../shared/spring-data-rest';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -12,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+
   year?: number;
   month?: number;
   tag?: string;
@@ -21,7 +20,6 @@ export class PostsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private metadataService: MetadataService,
-              private sanitizer: DomSanitizer,
               @Inject(LOCALE_ID) private locale: string) {
   }
 
@@ -35,11 +33,16 @@ export class PostsComponent implements OnInit {
     this.updatePagingUrls(data);
   }
 
-  private onParamsUpdate(params: Params) {
-    this.year = params['year'];
-    this.month = params['month'];
-    this.tag = params['tag'];
-    this.updateMetadata(params);
+  getTitle(): string {
+    if (!this.year && !this.month && !this.tag) {
+      return 'All Articles';
+    } else if (this.year && !this.month && !this.tag) {
+      return `Articles of ${this.year}`;
+    } else if (this.year && this.month && !this.tag) {
+      return `Articles of ${this.getMonthName(this.month)} ${this.year}`;
+    } else if (!this.year && !this.month && this.tag) {
+      return `Articles on ${this.tag}`;
+    }
   }
 
   private updatePagingUrls(data: RouteData) {
@@ -56,25 +59,33 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  private updateMetadata(params: Params) {
-    let title;
-    if (params['year'] && params['month']) {
-      title = 'Posts from ' + this.getMonthName(params['month']) + ' ' + params['year'];
-    } else if (params['year']) {
-      title = 'Posts from ' + params['year'];
-    } else if (params['tag']) {
-      title = 'Posts about ' + params['tag'];
-    } else {
-      title = 'Blog';
-    }
-    if (params['page']) {
-      title += ', page #' + params['page']
-    }
-    this.metadataService.updateMetadata(title);
+  private onParamsUpdate(params: Params) {
+    this.year = params['year'];
+    this.month = params['month'];
+    this.tag = params['tag'];
+    this.updateMetadata();
   }
 
-  private getMonthName(month: string): string {
-    return new Date('1900-' + month + '-01').toLocaleString(this.locale, { month: 'long' });
+  private updateMetadata() {
+    const title = this.getTitle();
+    const description = this.getDescription();
+    this.metadataService.updateMetadata({ title: title, description: description });
+  }
+
+  private getMonthName(month: number): string {
+    return new Date(`1900-${month}-01`).toLocaleString(this.locale, { month: 'long' });
+  }
+
+  private getDescription(): string {
+    if (!this.year && !this.month && !this.tag) {
+      return 'List of all available articles published on Bartcode';
+    } else if (this.year && !this.month && !this.tag) {
+      return `List of articles published in the year of ${this.year} published on Bartcode`;
+    } else if (this.year && this.month && !this.tag) {
+      return `List of articles published on ${this.getMonthName(this.month)} ${this.year} published on Bartcode`;
+    } else if (!this.year && !this.month && this.tag) {
+      return `List of articles covering ${this.tag} published on Bartcode`;
+    }
   }
 
 }
