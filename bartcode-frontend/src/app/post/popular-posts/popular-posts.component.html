@@ -1,5 +1,22 @@
 <ul>
   <li *ngFor="let post of posts">
     <a routerLink="/{{ post.relativeUrl }}">{{ post.metadata.title }}</a>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "{{ post.metadata.title }}",
+        "keywords": "{{ post.tags }}",
+        "url": "{{ post.metadata.canonicalUrl }}",
+        "datePublished": "{{ post.published }}",
+        "description": "{{ post.metadata.description }}",
+        "articleBody": "{{ post.excerpt }}",
+        "author": {
+          "@type": "Person",
+          "name": "Bartosz Kielczewski"
+        }
+      }
+
+    </script>
   </li>
 </ul>
