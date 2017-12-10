@@ -13,8 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ArticleModule } from './article/article.module';
 import { AdsenseModule } from './adsense/adsense.module';
 import { HttpClientModule } from '@angular/common/http';
-import locale from '@angular/common/locales/en-GB';
 import { ErrorModule } from './error/error.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import locale from '@angular/common/locales/en-GB';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ErrorModule } from './error/error.module';
   imports: [
     BrowserModule.withServerTransition({ appId: 'bartcode-frontend' }),
     BrowserAnimationsModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     CommonModule,
     FormsModule,
     HttpClientModule,
