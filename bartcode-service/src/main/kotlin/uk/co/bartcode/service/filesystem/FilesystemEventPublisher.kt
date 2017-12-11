@@ -19,7 +19,7 @@ internal class FilesystemEventPublisher @Autowired constructor(
         @Value("\${application.data-path}") private val dataPath: String
 ) {
 
-    private val EXTENSION = "md"
+    private val EXTENSIONS = setOf("md")
 
     @EventListener(ApplicationReadyEvent::class)
     private fun init() {
@@ -28,7 +28,7 @@ internal class FilesystemEventPublisher @Autowired constructor(
     }
 
     private fun notifyAboutExistingFiles(path: String) {
-        seekerService.seekFilesByExtension(EXTENSION, path)
+        seekerService.seekFilesByExtensions(EXTENSIONS, path)
                 .forEach {
                     val event = FileCreatedEvent(this, it)
                     logger.trace("Publishing event={}", event)
