@@ -5,6 +5,7 @@ module.exports = {
   entry: {server: './src/server.ts'},
   resolve: {extensions: ['.ts', '.js']},
   target: 'node',
+  mode: 'none',
   externals: [/(node_modules|main\..*\.js)/],
   output: {
     path: path.join(__dirname, 'dist'),

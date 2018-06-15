@@ -1,16 +1,16 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import { ngExpressEngine } from '@nguniversal/express-engine';
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import * as compression from 'compression';
 import { join } from 'path';
 
+const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../dist/server/main');
 const PORT = 4000;
-const DIST = join(process.cwd(), 'dist');
 const DATA = join(process.cwd(), 'data');
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/main.bundle');
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+const DIST = join(process.cwd(), 'dist');
 
 const app = express();
 
@@ -26,10 +26,11 @@ app.engine('html', ngExpressEngine({
 app.set('view engine', 'html');
 app.set('views', join(DIST, 'browser'));
 app.get('*.*',
-  express.static(join(DIST, 'browser'), { maxage: '1y' }),
-  express.static(DATA, { maxage: '1y' })
+  express.static(DATA, {maxage: '1y'}),
+  express.static(join(DIST, 'browser'), {maxage: '1y'})
 );
-app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), { req, res }));
+app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), {req}));
+
 app.listen(PORT, () => {
   console.log(`Express server listening on http://localhost:${PORT}`);
   console.log(`Data path is: ${DATA}`);
