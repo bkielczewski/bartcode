@@ -14,7 +14,7 @@ node {
 
 task<NpmTask>("npmBuild") {
   dependsOn(NpmInstallTask.NAME)
-  setArgs(listOf("run-scriptce", "build"))
+  setArgs(listOf("run-script", "build"))
 }
 
 task<Copy>("dist") {
