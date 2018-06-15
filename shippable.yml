@@ -7,11 +7,10 @@ build:
   cache: true
 
   ci:
-    - ./gradlew build
+    - ./shippable_ci.sh
 
   post_ci:
-    - ./deploy_docker.sh bkielczewski/bartcode-frontend ./bartcode-frontend
-    - ./deploy_docker.sh bkielczewski/bartcode-service ./bartcode-service
+    - ./shippable_post_ci.sh bkielczewski
 
 integrations:
   hub:

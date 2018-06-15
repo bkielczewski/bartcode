@@ -3,17 +3,26 @@ import com.moowork.gradle.node.npm.NpmTask
 import com.moowork.gradle.node.task.NodeTask
 
 plugins {
-    id("com.moowork.node") version "1.2.0"
+  id("java")
+  id("com.moowork.node")
 }
 
 node {
-    version = "8.7.0"
-    download = true
+  version = "10.4.1"
+  download = true
 }
 
 task<NpmTask>("npmBuild") {
-    dependsOn(NpmInstallTask.NAME)
-    setArgs(listOf("run-script", "build"))
+  dependsOn(NpmInstallTask.NAME)
+  setArgs(listOf("run-scriptce", "build"))
 }
 
-task("build").dependsOn("npmBuild")
+task<Copy>("dist") {
+  from("dist")
+  into("build/resources/main/public")
+}
+
+(tasks.getByName("processResources") as ProcessResources).apply {
+  dependsOn("npmBuild", "dist")
+}
+

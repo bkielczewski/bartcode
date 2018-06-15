@@ -14,30 +14,34 @@ fi
 
 IMAGE=${1}
 DOCKERFILE_DIR=${2:-./}
-BRANCH=${BRANCH:-master}
+BRANCH=${BRANCH:-local}
+BUILD=${BUILD_NUMBER:-local}
 IS_GIT_TAG=${IS_GIT_TAG:-false}
 
-OLD_PWD=$PWD
-cd ${DOCKERFILE_DIR}
-
-if [ ! -f ./Dockerfile ]; then
-    echo -n "No Dockerfile found in current working directory."
+if [ ! -f "${DOCKERFILE_DIR}/Dockerfile" ]; then
+    echo -n "No Dockerfile found in ${DOCKERFILE_DIR}"
     exit 1
 fi
 
-docker build -t ${IMAGE}:${BRANCH} .
+echo -n "Building ${IMAGE}:${BRANCH} in ${DOCKERFILE_DIR}" \n
+
+docker build -f ${DOCKERFILE_DIR}/Dockerfile -t ${IMAGE}:${BRANCH} ${DOCKERFILE_DIR}
 docker push ${IMAGE}:${BRANCH}
 
 if [ "$IS_GIT_TAG" == "true" ]
 then
+    echo -n "Tagging ${IMAGE}:${BRANCH} with :$GIT_TAG_NAME" \n
     docker tag ${IMAGE}:${BRANCH} ${IMAGE}:$GIT_TAG_NAME
     docker push ${IMAGE}:${GIT_TAG_NAME}
 fi
 
 if [ "$BRANCH" == "master" ]
 then
+    echo "Tagging ${IMAGE}:${BRANCH} with :latest" \n
     docker tag ${IMAGE}:${BRANCH} ${IMAGE}:latest
     docker push ${IMAGE}:latest
 fi
 
-cd ${OLD_PWD}
+echo -n "Tagging ${IMAGE}:${BRANCH} with :${BRANCH}-${BUILD}" \n
+docker tag ${IMAGE}:${BRANCH} ${IMAGE}:${BRANCH}-${BUILD}
+docker push ${IMAGE}:${BRANCH}-${BUILD}

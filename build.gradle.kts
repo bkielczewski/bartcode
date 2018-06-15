@@ -1,9 +1,35 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+buildscript {
+    val springBootVersion = "2.0.3.RELEASE"
+    val kotlinVersion = "1.2.50"
+    val nodePluginVersion = "1.2.0"
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
+        classpath("com.moowork.gradle:gradle-node-plugin:$nodePluginVersion")
+    }
+}
+
 allprojects {
     group = "uk.co.bartcode"
-    version = "1.0"
+    version = "1.0-SNAPSHOT"
 
     repositories {
         mavenCentral()
+        maven("https://repo.spring.io/milestone")
+    }
+
+    tasks {
+        withType<KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "1.8"
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+            }
+        }
     }
 }
 
@@ -15,8 +41,4 @@ dependencies {
     subprojects.forEach {
         archives(it)
     }
-}
-
-task<Wrapper>("wrapper") {
-    gradleVersion = "4.2"
 }
