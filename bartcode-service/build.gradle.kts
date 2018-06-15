@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
@@ -12,6 +14,8 @@ val springSocialFacebookVersion: String by project
 val flexmarkVersion: String by project
 
 dependencies {
+    compile(kotlin("reflect"))
+    compile(kotlin("stdlib-jdk8"))
     compile("com.vladsch.flexmark:flexmark:$flexmarkVersion")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
