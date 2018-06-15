@@ -22,7 +22,15 @@ task<Copy>("dist") {
   into("build/resources/main/public")
 }
 
+task<Delete>("distClean") {
+  delete("dist", "node_modules")
+  isFollowSymlinks = true
+}
+
 (tasks.getByName("processResources") as ProcessResources).apply {
   dependsOn("npmBuild", "dist")
 }
 
+(tasks.getByName("clean") as Delete).apply {
+  dependsOn("distClean")
+}
