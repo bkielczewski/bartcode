@@ -3,7 +3,7 @@
     {
       "name": "application.data-path",
       "type": "java.lang.String",
-      "description": "Path to main data directory."
+      "description": "Path to root data directory."
     },
     {
       "name": "application.articles-path",

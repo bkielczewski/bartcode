@@ -3,6 +3,7 @@ FROM openjdk:8-jre
 EXPOSE 8080
 
 VOLUME /app/logs
+VOLUME /app/data
 
 COPY ./build/libs/*.jar /app/app.jar
 

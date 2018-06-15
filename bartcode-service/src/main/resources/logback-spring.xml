@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <springProfile name="dev">
+    <springProfile name="dev,test">
         <include resource="org/springframework/boot/logging/logback/base.xml"/>
     </springProfile>
-    <springProfile name="prod,test">
+    <springProfile name="prod">
         <appender name="rollingJson" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <File>${LOG_FILE}.json</File>
             <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
