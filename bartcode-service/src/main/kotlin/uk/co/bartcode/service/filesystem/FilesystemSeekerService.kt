@@ -20,7 +20,7 @@ internal class FilesystemSeekerService {
 
             override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
                 val extension = StringUtils.getFilenameExtension(file.toString())
-                if (extension != null && extensions.contains(extension)) {
+                if (extension != null && extensions.contains(extension.toLowerCase())) {
                     logger.trace("Found file {}", file)
                     filesFound.add(file.toString())
                 }

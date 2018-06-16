@@ -21,10 +21,10 @@ class FacebookService {
     }
 
     private fun getParams(url: String): MultiValueMap<String, String> {
-        val params = LinkedMultiValueMap<String, String>()
-        params.put("id", listOf(url))
-        params.put("fields", listOf("share"))
-        return params
+        return LinkedMultiValueMap<String, String>().apply {
+            this["id"] = listOf(url)
+            this["fields"] = listOf("share")
+        }
     }
 
     companion object {

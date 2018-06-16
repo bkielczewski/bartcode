@@ -1,24 +1,15 @@
 package uk.co.bartcode.service.document
 
-import javax.persistence.*
+import uk.co.bartcode.service.file.File
+import javax.persistence.Embedded
+import javax.persistence.Entity
+import javax.persistence.Lob
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(indexes = arrayOf(
-        Index(name = "relativeUrl", columnList = "relativeUrl"),
-        Index(name = "file", columnList = "file")
-))
-open class Document constructor(
-        @Id @GeneratedValue val id: Long?,
-        val relativeUrl: String,
-        val file: String,
-        @Embedded val metadata: Metadata,
+open class Document(
+        id: Long?,
+        relativeUrl: String,
+        file: String,
+        @Embedded val metadata: DocumentMetadata,
         @Lob val body: String
-)
-
-@Embeddable
-data class Metadata(
-        val canonicalUrl: String,
-        val title: String,
-        val description: String
-)
+) : File(id, relativeUrl, file)

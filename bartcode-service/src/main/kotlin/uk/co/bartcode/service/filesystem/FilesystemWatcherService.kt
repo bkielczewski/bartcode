@@ -21,9 +21,9 @@ internal class FilesystemWatcherService {
             registerRecursively(Paths.get(path), watchService)
             doWatchLoop(watchService, consumer)
         } catch (e: InterruptedException) {
-            throw RuntimeException("Watching interrupted, path=" + path, e)
+            throw RuntimeException("Watching interrupted, path=$path", e)
         } catch (e: IOException) {
-            throw RuntimeException("Watching failed, path=" + path, e)
+            throw RuntimeException("Watching failed, path=$path", e)
         }
     }
 

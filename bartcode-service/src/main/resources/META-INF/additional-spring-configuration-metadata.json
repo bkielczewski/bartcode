@@ -1,24 +1,34 @@
 {
   "properties": [
     {
+      "name": "application.base-url",
+      "type": "java.lang.String",
+      "description": "Base url for all the content"
+    },
+    {
       "name": "application.data-path",
       "type": "java.lang.String",
-      "description": "Path to root data directory."
+      "description": "Path to main data directory"
     },
     {
       "name": "application.articles-path",
       "type": "java.lang.String",
-      "description": "Path to articles."
+      "description": "Path to articles relative to main data directory"
     },
     {
       "name": "application.posts-path",
       "type": "java.lang.String",
-      "description": "Path to posts."
+      "description": "Path to posts relative to main data directory"
     },
     {
-      "name": "application.base-url",
+      "name": "application.images-path",
       "type": "java.lang.String",
-      "description": "Base url for all the content."
+      "description": "Path to images relative to main data directory"
+    },
+    {
+      "name": "application.extensions",
+      "type": "java.lang.String",
+      "description": "File extensions to scan"
     }
   ]
 }

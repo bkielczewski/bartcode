@@ -1,12 +1,8 @@
-package uk.co.bartcode.service.document
+package uk.co.bartcode.service.filesystem
 
 import org.springframework.context.event.EventListener
-import uk.co.bartcode.service.filesystem.DirectoryDeletedEvent
-import uk.co.bartcode.service.filesystem.FileCreatedEvent
-import uk.co.bartcode.service.filesystem.FileDeletedEvent
-import uk.co.bartcode.service.filesystem.FileModifiedEvent
 
-internal interface DocumentEventHandler {
+internal interface FilesystemEventHandler {
 
     @EventListener(DirectoryDeletedEvent::class)
     fun handleDirectoryDeletedEvent(event: DirectoryDeletedEvent)

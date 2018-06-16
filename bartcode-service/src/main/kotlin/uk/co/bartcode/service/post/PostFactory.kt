@@ -1,7 +1,6 @@
 package uk.co.bartcode.service.post
 
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import uk.co.bartcode.service.document.MarkdownParser
@@ -14,7 +13,7 @@ import java.util.*
 import java.util.regex.Pattern
 
 @Component
-internal class PostFactory @Autowired constructor(
+internal class PostFactory(
         private val markdownParser: MarkdownParser,
         private val propertyExtractor: PropertyExtractor,
         private val metadataGenerator: MetadataGenerator

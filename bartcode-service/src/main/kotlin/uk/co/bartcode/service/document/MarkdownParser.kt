@@ -11,13 +11,13 @@ import java.nio.file.Paths
 @Component
 class MarkdownParser {
 
-    fun parse(file: String) = render(read(file))
+    fun parse(file: String): String = render(read(file))
 
     private fun read(file: String): String {
         try {
             return String(Files.readAllBytes(Paths.get(file)))
         } catch (e: IOException) {
-            throw RuntimeException("Cannot read, path=" + file, e)
+            throw RuntimeException("Cannot read, path=$file", e)
         }
 
     }
