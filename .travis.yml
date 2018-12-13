@@ -1,0 +1,19 @@
+language: java
+
+jdk:
+  - openjdk8
+
+services:
+  - docker
+
+script:
+  - ./gradlew test
+  - ./gradlew build
+  - docker build -t bkielczewski/bartcode-frontend ./bartcode-frontend
+  - docker build -t bkielczewski/bartcode-service ./bartcode-service
+
+deploy:
+  provider: script
+  script: bash ./docker_deploy.sh
+  on:
+    branch: master
