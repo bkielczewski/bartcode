@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    val springBootVersion = "2.0.3.RELEASE"
-    val kotlinVersion = "1.2.50"
+    val springBootVersion = "2.1.1.RELEASE"
+    val kotlinVersion = "1.3.10"
     val nodePluginVersion = "1.2.0"
 
     dependencies {
