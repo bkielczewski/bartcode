@@ -2,15 +2,18 @@ import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-
+import { enableProdMode } from '@angular/core';
+import { join } from 'path';
 import * as express from 'express';
 import * as compression from 'compression';
-import { join } from 'path';
+import * as serveStatic from 'serve-static';
+
+enableProdMode();
 
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../dist/server/main');
-const PORT = 4000;
+const BROWSER_BUNDLE = join(process.cwd(), 'dist', 'browser');
 const DATA = join(process.cwd(), 'data');
-const DIST = join(process.cwd(), 'dist');
+const PORT = 4000;
 
 const app = express();
 
@@ -24,12 +27,11 @@ app.engine('html', ngExpressEngine({
 }));
 
 app.set('view engine', 'html');
-app.set('views', join(DIST, 'browser'));
+app.set('views', BROWSER_BUNDLE);
 app.get('*.*',
-  express.static(DATA, {maxage: '1y'}),
-  express.static(join(DIST, 'browser'), {maxage: '1y'})
-);
-app.get('*', (req, res) => res.render(join(DIST, 'browser', 'index.html'), {req}));
+  serveStatic(DATA),
+  serveStatic(BROWSER_BUNDLE));
+app.get('*', (req, res) => res.render('index', {req}));
 
 app.listen(PORT, () => {
   console.log(`Express server listening on http://localhost:${PORT}`);

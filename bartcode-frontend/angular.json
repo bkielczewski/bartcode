@@ -102,6 +102,16 @@
             "outputPath": "dist/server",
             "main": "src/main-server.ts",
             "tsConfig": "src/tsconfig.app-server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
           }
         }
       }
