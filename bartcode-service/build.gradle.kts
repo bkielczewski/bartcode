@@ -15,7 +15,7 @@ val flexmarkVersion: String by project
 
 dependencies {
     compile(kotlin("reflect"))
-    compile(kotlin("stdlib-jdk8"))
+    compile(kotlin("stdlib"))
     compile("com.vladsch.flexmark:flexmark:$flexmarkVersion")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -25,6 +25,7 @@ dependencies {
     compile("org.springframework.social:spring-social-facebook:$springSocialFacebookVersion")
     runtime("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtime("com.h2database:h2")
+    runtime("io.micrometer:micrometer-registry-prometheus")
     runtime("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("com.nhaarman:mockito-kotlin:$mockitoKotlinVersion")
