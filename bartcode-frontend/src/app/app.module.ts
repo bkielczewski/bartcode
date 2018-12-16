@@ -37,9 +37,9 @@ import { environment } from '../environments/environment';
     MatToolbarModule,
     AdsenseModule,
     ArticleModule,
-    ErrorModule,
     PostModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ErrorModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "en-GB" }

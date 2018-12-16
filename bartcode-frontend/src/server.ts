@@ -7,6 +7,7 @@ import { join } from 'path';
 import * as express from 'express';
 import * as compression from 'compression';
 import * as serveStatic from 'serve-static';
+import * as Logger from 'node-json-logger';
 
 enableProdMode();
 
@@ -14,6 +15,7 @@ const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../dist/server/main
 const BROWSER_BUNDLE = join(process.cwd(), 'dist', 'browser');
 const DATA = join(process.cwd(), 'data');
 const PORT = 4000;
+const logger = new Logger();
 
 const app = express();
 
@@ -31,9 +33,9 @@ app.set('views', BROWSER_BUNDLE);
 app.get('*.*',
   serveStatic(DATA),
   serveStatic(BROWSER_BUNDLE));
-app.get('*', (req, res) => res.render('index', {req}));
+app.get('*', (req, res) => res.render('index', {req, res}));
 
 app.listen(PORT, () => {
-  console.log(`Express server listening on http://localhost:${PORT}`);
-  console.log(`Data path is: ${DATA}`);
+  logger.info(`Express server listening on http://localhost:${PORT}`);
+  logger.info(`Data path is: ${DATA}`);
 });
