@@ -1,4 +1,4 @@
-Bartcode
+Bartcode [![Build Status](https://travis-ci.org/bkielczewski/bartcode.svg?branch=master)](https://travis-ci.org/bkielczewski/bartcode)
 ========
 
 Website deployed at https://bartcode.co.uk
